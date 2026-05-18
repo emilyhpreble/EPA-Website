@@ -16,6 +16,7 @@ const sans = Albert_Sans({
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   variable: "--font-serif-display",
   display: "swap",
 });

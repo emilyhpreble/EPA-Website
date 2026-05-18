@@ -1,10 +1,10 @@
 import { site } from "@/lib/site";
 
-type Variant = "primary" | "outline";
+type Variant = "cream" | "plum" | "outline-cream" | "outline-plum";
 
 export function CalendlyButton({
   children = "Book a Free Strategy Call",
-  variant = "primary",
+  variant = "cream",
   className = "",
 }: {
   children?: React.ReactNode;
@@ -12,10 +12,14 @@ export function CalendlyButton({
   className?: string;
 }) {
   const base =
-    "inline-flex items-center justify-center rounded-full px-8 py-4 text-xs uppercase tracking-[0.2em] transition-colors";
+    "inline-flex items-center justify-center rounded-full px-10 py-4 text-xs uppercase tracking-[0.25em] transition-colors";
   const styles =
-    variant === "primary"
+    variant === "cream"
+      ? "bg-cream text-plum hover:bg-cream-light"
+      : variant === "plum"
       ? "bg-plum text-cream hover:bg-plum-deep"
+      : variant === "outline-cream"
+      ? "border border-cream text-cream hover:bg-cream hover:text-plum"
       : "border border-plum text-plum hover:bg-plum hover:text-cream";
   return (
     <a

@@ -13,7 +13,7 @@ export default function Accessibility() {
   return (
     <article className="mx-auto max-w-3xl px-6 py-24">
       <p className="text-xs uppercase tracking-[0.3em] text-forest">Accessibility</p>
-      <h1 className="mt-6 font-serif text-5xl text-plum">Accessibility Statement</h1>
+      <h1 className="display-headline mt-6 text-5xl text-plum">Accessibility Statement</h1>
       <p className="mt-4 text-sm text-muted">Last updated: 2026</p>
 
       <div className="prose mt-10 max-w-none space-y-6 text-lg leading-relaxed text-ink/85">
@@ -21,12 +21,12 @@ export default function Accessibility() {
           We at {site.name} are working to make our site accessible to people with disabilities.
         </p>
 
-        <h2 className="font-serif text-2xl text-plum">What web accessibility is</h2>
+        <h2 className="display-headline text-2xl text-plum">What web accessibility is</h2>
         <p>
           An accessible site allows visitors with disabilities to browse the site with the same or a similar level of ease and enjoyment as other visitors. This can be achieved through the capabilities of the system on which the site is operating, and through assistive technologies.
         </p>
 
-        <h2 className="font-serif text-2xl text-plum">Accessibility adjustments on this site</h2>
+        <h2 className="display-headline text-2xl text-plum">Accessibility adjustments on this site</h2>
         <p>
           We have adapted this site in accordance with WCAG 2.1 guidelines, and have made the site accessible to the level of AA. This site&apos;s contents have been adapted to work with assistive technologies, such as screen readers and keyboard use. As part of this effort, we have also:
         </p>
@@ -40,7 +40,7 @@ export default function Accessibility() {
           <li>Ensured all videos, audio, and files on the site are accessible</li>
         </ul>
 
-        <h2 className="font-serif text-2xl text-plum">Contact us</h2>
+        <h2 className="display-headline text-2xl text-plum">Contact us</h2>
         <p>
           If you encounter an accessibility barrier or have suggestions for improving the experience, please reach out via the <a href="/contact" className="text-plum underline">contact page</a>.
         </p>

@@ -33,37 +33,37 @@ export default function Contact() {
     <>
       <JsonLd data={[contactSchema, breadcrumb]} />
 
-      <section className="bg-cream">
-        <div className="mx-auto max-w-3xl px-6 py-24 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-forest">Contact</p>
-          <h1 className="mt-6 font-serif text-6xl text-plum">Let&apos;s tell your story.</h1>
-          <p className="mt-6 text-lg text-ink/80">
+      <section className="bg-coral py-24 text-cream">
+        <div className="mx-auto max-w-3xl px-8 text-center">
+          <p className="text-xs uppercase tracking-[0.3em] text-cream/80">Contact</p>
+          <h1 className="display-headline mt-6 text-6xl md:text-7xl">Let&apos;s tell your story.</h1>
+          <p className="mt-6 text-lg text-cream/95">
             Send a message, book a free strategy call, or find Emily on Instagram and LinkedIn.
           </p>
         </div>
       </section>
 
-      <section className="bg-cream-light py-20">
-        <div className="mx-auto grid max-w-5xl gap-12 px-6 md:grid-cols-2 md:items-start">
+      <section className="bg-cream py-20">
+        <div className="mx-auto grid max-w-5xl gap-12 px-8 md:grid-cols-2 md:items-start">
           <div>
-            <h2 className="font-serif text-3xl text-plum">Book a free strategy call</h2>
-            <p className="mt-4 text-ink/80">
+            <h2 className="display-headline text-3xl text-plum md:text-4xl">Book a free strategy call</h2>
+            <p className="mt-4 text-ink/85">
               The fastest way to get on Emily&apos;s calendar. Pick a time that works for you.
             </p>
             <div className="mt-6">
-              <CalendlyButton />
+              <CalendlyButton variant="plum" />
             </div>
 
             <div className="mt-12">
-              <h3 className="font-serif text-2xl text-plum">Or find Emily online</h3>
+              <h3 className="display-headline text-2xl text-plum">Or find Emily online</h3>
               <ul className="mt-4 space-y-2 text-sm">
                 <li>
-                  <a href={site.socials.instagram} target="_blank" rel="noopener" className="text-plum hover:underline">
+                  <a href={site.socials.instagram} target="_blank" rel="noopener" className="text-plum hover:text-coral">
                     Instagram → @emilyprebleauctions
                   </a>
                 </li>
                 <li>
-                  <a href={site.socials.linkedin} target="_blank" rel="noopener" className="text-plum hover:underline">
+                  <a href={site.socials.linkedin} target="_blank" rel="noopener" className="text-plum hover:text-coral">
                     LinkedIn → emilypreble
                   </a>
                 </li>
@@ -72,8 +72,8 @@ export default function Contact() {
           </div>
 
           <div>
-            <h2 className="font-serif text-3xl text-plum">Send a message</h2>
-            <p className="mt-4 text-ink/80">Tell Emily a little about your event and she&apos;ll be in touch.</p>
+            <h2 className="display-headline text-3xl text-plum md:text-4xl">Send a message</h2>
+            <p className="mt-4 text-ink/85">Tell Emily a little about your event and she&apos;ll be in touch.</p>
             <div className="mt-8">
               <ContactForm />
             </div>

@@ -5,8 +5,11 @@
   --color-cream-light: #f5f1e6;
   --color-plum: #360025;
   --color-plum-deep: #1f0015;
-  --color-forest: #3f4d32;
-  --color-forest-light: #5a6b4a;
+  --color-coral: #ef4c30;
+  --color-coral-dark: #d9381b;
+  --color-olive: #a79c41;
+  --color-forest: #262920;
+  --color-forest-light: #3f4d32;
   --color-ink: #1a1a1a;
   --color-muted: #6b6258;
 
@@ -34,12 +37,21 @@ body {
 
 h1, h2, h3, h4 {
   font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
   font-weight: 400;
   letter-spacing: -0.01em;
-  line-height: 1.1;
+  line-height: 1.05;
+}
+
+.display-headline {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }
 
 ::selection {
-  background: #360025;
+  background: #ef4c30;
   color: #ebe4d4;
 }

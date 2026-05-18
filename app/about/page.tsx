@@ -39,9 +39,19 @@ export default function About() {
     <>
       <JsonLd data={[personSchema, breadcrumb]} />
 
-      <section className="bg-cream">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-2 md:items-center">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-lg md:order-2">
+      <section className="bg-plum">
+        <div className="mx-auto grid max-w-7xl md:grid-cols-2">
+          <div className="bg-coral px-10 py-24 md:px-16 md:py-32 text-cream">
+            <p className="text-xs uppercase tracking-[0.3em] text-cream/80">About</p>
+            <h1 className="display-headline mt-6 text-6xl md:text-7xl">Hi, I&apos;m Emily.</h1>
+            <p className="mt-8 text-lg leading-relaxed text-cream/95">
+              A Portland, Oregon native, I&apos;m now proudly situated in the sunny, twang-filled city of Austin, Texas. I&apos;m a certified Benefit Auctioneer Specialist (BAS) and licensed auctioneer who firmly believes that with the right energy and the help of a well-timed joke, there&apos;s no limit to what a group of likeminded people can achieve.
+            </p>
+            <div className="mt-10">
+              <CalendlyButton variant="cream">Let&apos;s Talk</CalendlyButton>
+            </div>
+          </div>
+          <div className="relative aspect-[4/5] md:aspect-auto md:min-h-[600px]">
             <Image
               src="/images/emily-headshot.jpg"
               alt="Portrait of Emily Preble"
@@ -50,27 +60,17 @@ export default function About() {
               className="object-cover"
             />
           </div>
-          <div className="md:order-1">
-            <p className="text-xs uppercase tracking-[0.3em] text-forest">About</p>
-            <h1 className="mt-6 font-serif text-6xl text-plum">Hi, I&apos;m Emily.</h1>
-            <p className="mt-8 text-lg leading-relaxed text-ink/80">
-              A Portland, Oregon native, I&apos;m now proudly situated in the sunny, twang-filled city of Austin, Texas. I&apos;m a certified Benefit Auctioneer Specialist (BAS) and licensed auctioneer who firmly believes that with the right energy and the help of a well-timed joke, there&apos;s no limit to what a group of likeminded people can achieve.
-            </p>
-            <div className="mt-10">
-              <CalendlyButton>Let&apos;s Talk</CalendlyButton>
-            </div>
-          </div>
         </div>
       </section>
 
-      <section className="bg-cream-light py-24">
-        <article className="mx-auto max-w-3xl px-6">
-          <p className="text-xs uppercase tracking-[0.3em] text-forest">My Story</p>
-          <h2 className="mt-4 font-serif text-4xl text-plum">
+      <section className="bg-cream py-24">
+        <article className="mx-auto max-w-3xl px-8">
+          <p className="text-xs uppercase tracking-[0.3em] text-coral">My Story</p>
+          <h2 className="display-headline mt-6 text-4xl text-plum md:text-5xl">
             Everything is more compelling with a beginning, a middle, and an appropriately dramatic ending.
           </h2>
 
-          <div className="mt-10 space-y-6 text-lg leading-relaxed text-ink/80">
+          <div className="mt-10 space-y-6 text-lg leading-relaxed text-ink/85">
             <p>
               For as long as I can remember, I&apos;ve believed in the magic of a well-told story. My passion for storytelling began with humble roots (just ask my family; 10-year-old Emily could spin quite the yarn at the dinner table about my day&apos;s adventures). Over time, that passion became a practiced skill I now wield on behalf of missions that inspire me.
             </p>
@@ -80,24 +80,24 @@ export default function About() {
             <p>
               Now, as a brand strategist, designer, and fundraising consultant, I bring leadership, curiosity, charisma, and creativity together to uncover the through-line that connects audiences to purpose. I believe heart and humor are the foundations of every great story; laughter unites us, invites empathy, and persuades us to care and connect.
             </p>
-            <p className="font-serif text-2xl text-plum">
+            <p className="display-headline text-2xl text-coral md:text-3xl">
               If your cause has a story to tell and a mission worth rallying around, let&apos;s bring it to life, together.
             </p>
           </div>
         </article>
       </section>
 
-      <section className="bg-cream py-24">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="font-serif text-4xl text-plum">Let&apos;s connect!</h2>
-          <p className="mt-6 text-lg text-ink/80">
+      <section className="bg-plum py-24 text-cream">
+        <div className="mx-auto max-w-3xl px-8 text-center">
+          <h2 className="display-headline text-4xl md:text-5xl">Let&apos;s connect!</h2>
+          <p className="mt-6 text-lg text-cream/85">
             If you&apos;re ready to take your fundraising to the next level, I&apos;d love to chat more.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <CalendlyButton />
+            <CalendlyButton variant="cream" />
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-full border border-plum px-8 py-4 text-xs uppercase tracking-[0.2em] text-plum hover:bg-plum hover:text-cream"
+              className="inline-flex items-center justify-center rounded-full border border-cream px-10 py-4 text-xs uppercase tracking-[0.25em] text-cream hover:bg-cream hover:text-plum"
             >
               Connect via Email
             </Link>
