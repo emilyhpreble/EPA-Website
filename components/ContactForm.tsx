@@ -4,7 +4,7 @@ import { useState } from "react";
 
 type Status = "idle" | "sending" | "success" | "error";
 
-export function ContactForm() {
+export function ContactForm({ onDark = false }: { onDark?: boolean }) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -31,34 +31,41 @@ export function ContactForm() {
     }
   }
 
+  const labelColor = onDark ? "text-cream/80" : "text-plum";
+  const inputClass = onDark
+    ? "w-full border-0 border-b border-cream/40 bg-transparent px-0 py-2 text-cream placeholder:text-cream/40 focus:border-cream focus:outline-none"
+    : "w-full border-0 border-b border-plum/40 bg-transparent px-0 py-2 text-plum placeholder:text-plum/40 focus:border-plum focus:outline-none";
+
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-forest/20 bg-cream-light p-8 text-center">
-        <p className="font-serif text-2xl text-plum">Thanks — message received.</p>
-        <p className="mt-2 text-muted">Emily will be in touch soon.</p>
+      <div className={onDark ? "text-cream" : "text-plum"}>
+        <p className="display-headline text-2xl">Thanks — message received.</p>
+        <p className="mt-2 opacity-80">Emily will be in touch soon.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-5">
-      <div className="grid gap-5 md:grid-cols-2">
-        <Field name="firstName" label="First Name" required />
-        <Field name="lastName" label="Last Name" required />
+    <form onSubmit={onSubmit} className="grid gap-6">
+      <div className="grid gap-6 md:grid-cols-2">
+        <Field name="firstName" label="First Name" required labelColor={labelColor} inputClass={inputClass} />
+        <Field name="lastName" label="Last Name" required labelColor={labelColor} inputClass={inputClass} />
       </div>
-      <Field name="email" type="email" label="Email" required />
-      <Field name="message" label="Message" as="textarea" required />
+      <Field name="email" type="email" label="Email" required labelColor={labelColor} inputClass={inputClass} />
+      <Field name="message" label="Message" as="textarea" required labelColor={labelColor} inputClass={inputClass} />
 
       <button
         type="submit"
         disabled={status === "sending"}
-        className="justify-self-start rounded-full bg-plum px-10 py-4 text-xs uppercase tracking-[0.2em] text-cream transition-colors hover:bg-plum-deep disabled:opacity-50"
+        className={`mt-2 justify-self-start rounded-full px-10 py-4 text-xs uppercase tracking-[0.25em] transition-colors disabled:opacity-50 ${
+          onDark ? "bg-cream text-plum hover:bg-cream-light" : "bg-plum text-cream hover:bg-plum-deep"
+        }`}
       >
         {status === "sending" ? "Sending…" : "Send"}
       </button>
 
       {status === "error" && (
-        <p role="alert" className="text-sm text-red-700">
+        <p role="alert" className={onDark ? "text-cream/90 text-sm" : "text-red-700 text-sm"}>
           {error}
         </p>
       )}
@@ -72,25 +79,27 @@ function Field({
   type = "text",
   required = false,
   as = "input",
+  labelColor,
+  inputClass,
 }: {
   name: string;
   label: string;
   type?: string;
   required?: boolean;
   as?: "input" | "textarea";
+  labelColor: string;
+  inputClass: string;
 }) {
-  const className =
-    "w-full rounded-md border border-plum/20 bg-cream-light px-4 py-3 text-ink placeholder:text-muted focus:border-plum focus:outline-none";
   return (
     <label className="block">
-      <span className="mb-2 block text-xs uppercase tracking-[0.15em] text-forest">
+      <span className={`mb-2 block text-xs uppercase tracking-[0.15em] ${labelColor}`}>
         {label}
         {required && <span aria-hidden> *</span>}
       </span>
       {as === "textarea" ? (
-        <textarea name={name} required={required} rows={6} className={className} />
+        <textarea name={name} required={required} rows={4} className={inputClass} />
       ) : (
-        <input name={name} type={type} required={required} className={className} />
+        <input name={name} type={type} required={required} className={inputClass} />
       )}
     </label>
   );

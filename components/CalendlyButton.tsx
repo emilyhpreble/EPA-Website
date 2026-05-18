@@ -1,6 +1,6 @@
 import { site } from "@/lib/site";
 
-type Variant = "cream" | "plum" | "outline-cream" | "outline-plum";
+type Variant = "cream" | "plum" | "coral" | "outline-cream" | "outline-plum";
 
 export function CalendlyButton({
   children = "Book a Free Strategy Call",
@@ -18,6 +18,8 @@ export function CalendlyButton({
       ? "bg-cream text-plum hover:bg-cream-light"
       : variant === "plum"
       ? "bg-plum text-cream hover:bg-plum-deep"
+      : variant === "coral"
+      ? "bg-coral text-cream hover:bg-coral-dark"
       : variant === "outline-cream"
       ? "border border-cream text-cream hover:bg-cream hover:text-plum"
       : "border border-plum text-plum hover:bg-plum hover:text-cream";
