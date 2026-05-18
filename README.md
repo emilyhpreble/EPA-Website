@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Emily Preble Auctions — Website
 
-## Getting Started
+Marketing site for Emily Preble Auctions (benefit auctioneer + fundraising consultant, Austin TX).
 
-First, run the development server:
+**Stack**: Next.js 16 (App Router) · React 19 · Tailwind CSS v4 · TypeScript · deployed on Vercel.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build && npm start
+```
 
-## Learn More
+## Editing content
 
-To learn more about Next.js, take a look at the following resources:
+Most copy lives in two places:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `lib/site.ts` — site-wide constants (services list, testimonial, social links, license).
+- `app/<route>/page.tsx` — page-specific copy and layout.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Change a value, save, and Vercel auto-deploys on push to `main`.
 
-## Deploy on Vercel
+## What's wired up
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- ✅ All five pages: Home, About, Services, Contact, Accessibility
+- ✅ Brand palette + fonts matched to the existing Wix design
+- ✅ SEO: per-page metadata, canonical URLs, OG tags, Twitter cards
+- ✅ AEO: JSON-LD structured data (ProfessionalService, Person, Service, Review, BreadcrumbList, WebSite), `llms.txt`, AI crawler allow-list in robots
+- ✅ Sitemap + robots auto-generated
+- ✅ Favicon set + dynamic OG image (Next.js conventions)
+- ✅ Vercel Speed Insights and Analytics-ready (add the components in `app/layout.tsx` after deploy)
+- ✅ Contact form UI (currently a wireframe — see `TODO-FOR-EMILY.md`)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## What's NOT wired up yet
+
+See `TODO-FOR-EMILY.md` for the full punch-list. Short version:
+
+- Contact form submissions are not yet delivered to an inbox (Resend integration is stubbed in `app/api/contact/route.ts` with step-by-step enabling instructions).
+- Google Search Console / Bing Webmaster verification (do at domain cutover).
+- Domain is still on Wix — current Vercel build is a `*.vercel.app` staging preview.
+
+## Project structure
+
+```
+app/
+  layout.tsx           # global shell, metadata, JSON-LD
+  page.tsx             # Home
+  about/page.tsx
+  services/page.tsx
+  contact/page.tsx
+  accessibility/page.tsx
+  sitemap.ts           # auto-generated /sitemap.xml
+  robots.ts            # auto-generated /robots.txt with AI crawler allow-list
+  icon.tsx             # favicon
+  apple-icon.tsx       # iOS home-screen icon
+  opengraph-image.tsx  # default social-share image
+  manifest.ts          # PWA manifest
+  api/contact/route.ts # contact form handler (wireframed)
+components/
+  Header.tsx
+  Footer.tsx
+  ContactForm.tsx
+  CalendlyButton.tsx
+  JsonLd.tsx
+lib/
+  site.ts              # site-wide constants
+public/
+  llms.txt             # site summary for LLM crawlers
+  images/              # logo, headshot, photography
+```
