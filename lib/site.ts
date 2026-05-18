@@ -6,7 +6,7 @@ export const site = {
     "Emily Preble Auctions helps nonprofits raise more through charisma, humor, and strategy as a benefit auctioneer and fundraising consultant.",
   url: "https://emilyprebleauctions.com",
   locale: "en_US",
-  license: "TX License #18523",
+  license: "TX License #: 18523",
   copyrightYear: 2026,
   city: "Austin",
   region: "TX",
@@ -25,6 +25,29 @@ export const site = {
     { href: "/contact", label: "Contact" },
   ],
 } as const;
+
+export const pillars = [
+  {
+    tag: "Mission",
+    title: "Connecting your audience to your vision.",
+    body: "Every successful fundraiser starts with a story that resonates emotionally. Through strategic storytelling and compelling delivery, we'll work to connect your supporters with the deeper purpose behind your work, transforming an event audience into active, inspired advocates.",
+  },
+  {
+    tag: "Values",
+    title: "Inspired by the joy of giving.",
+    body: "People give when they feel connected. I lead with authenticity, warmth, and relentless enthusiasm —because generosity grows when your audience feels emotionally invested and inspired. Your mission is the priority; I’m here to elevate it with intention and heart.",
+  },
+  {
+    tag: "Process",
+    title: "Your message, made unforgettable.",
+    body: "What makes an audience care deeply enough to give—and keep giving? Together, we'll uncover the most important idea that anchors every touchpoint of your event. From pre-event planning to on-stage delivery, we’ll shape each moment with strategy, creativity, and care so that your story resonates, your message lands, and your fundraising efforts drive real results.",
+  },
+  {
+    tag: "Impact",
+    title: "Turning moments into momentum.",
+    body: "Your cause deserves more than a script and a stage – it deserves a partner who can bring it to life. With humor, heart, and strategy, I guide the room through your story so that generosity flows from a place of real connection. Intentional energy turns a mission into a movement.",
+  },
+] as const;
 
 export const services = [
   {
@@ -71,9 +94,19 @@ export const services = [
   },
 ] as const;
 
-export const testimonial = {
-  quote:
-    "Witty and contagiously energetic. Emily doubled our fundraising efforts — such a memorable event and memorable experience watching her do her thing. I highly recommend her for your next event!",
-  author: "Greg Spencer",
-  org: "Folds of Honor",
-};
+export const testimonials = [
+  {
+    quote:
+      "Huge thanks to Emily Preble! Emily's unmatched energy and enthusiasm totally lit up our event. She tailored her approach to our mission and audience, connected with attendees, and handled every detail seamlessly. A true pro. If you're looking for an auctioneer who brings passion, professionalism, foresight, and results, Emily is the one!",
+    author: "Pamela Raines",
+    org: "NVOP",
+  },
+  {
+    quote:
+      "Witty and contagiously energetic. Emily doubled our fundraising efforts– such a memorable event and memorable experience watching her do her thing. I highly recommend her for your next event!",
+    author: "Greg Spencer",
+    org: "Folds of Honor",
+  },
+] as const;
+
+export const testimonial = testimonials[1];
