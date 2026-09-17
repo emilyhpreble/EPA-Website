@@ -11,7 +11,7 @@ export function Header() {
     <header className="bg-plum text-cream">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-6">
         <Link
-          href="/"
+          href="https://www.emilyprebleauctions.com/"
           className="font-serif text-2xl tracking-tight text-cream hover:text-cream-light"
           aria-label={`${site.name} — home`}
         >
@@ -24,7 +24,7 @@ export function Header() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="primary-menu"
-          className="text-xs uppercase tracking-[0.25em] text-cream hover:text-coral"
+          className="text-sm font-semibold uppercase tracking-normal text-cream hover:text-coral"
         >
           {open ? "Close" : "Menu"}
         </button>
@@ -36,7 +36,7 @@ export function Header() {
           aria-label="Primary"
           className="border-t border-cream/10 bg-plum"
         >
-          <ul className="mx-auto flex max-w-7xl flex-col gap-4 px-8 py-8 text-sm uppercase tracking-[0.25em]">
+          <ul className="mx-auto flex max-w-7xl flex-col gap-4 px-8 py-8 text-base font-semibold uppercase tracking-normal">
             {site.nav.map((item) => (
               <li key={item.href}>
                 <Link

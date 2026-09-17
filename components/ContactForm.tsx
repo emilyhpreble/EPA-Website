@@ -39,7 +39,7 @@ export function ContactForm({ onDark = false }: { onDark?: boolean }) {
   if (status === "success") {
     return (
       <div className={onDark ? "text-cream" : "text-plum"}>
-        <p className="display-headline text-2xl">Thanks — message received.</p>
+        <p className="display-headline display-headline-upright text-2xl">Thanks — message received.</p>
         <p className="mt-2 opacity-80">Emily will be in touch soon.</p>
       </div>
     );
@@ -48,16 +48,16 @@ export function ContactForm({ onDark = false }: { onDark?: boolean }) {
   return (
     <form onSubmit={onSubmit} className="grid gap-6">
       <div className="grid gap-6 md:grid-cols-2">
-        <Field name="firstName" label="First Name" required labelColor={labelColor} inputClass={inputClass} />
-        <Field name="lastName" label="Last Name" required labelColor={labelColor} inputClass={inputClass} />
+        <Field name="firstName" label="First Name" labelColor={labelColor} inputClass={inputClass} />
+        <Field name="lastName" label="Last Name" labelColor={labelColor} inputClass={inputClass} />
       </div>
       <Field name="email" type="email" label="Email" required labelColor={labelColor} inputClass={inputClass} />
-      <Field name="message" label="Message" as="textarea" required labelColor={labelColor} inputClass={inputClass} />
+      <Field name="message" label="Message" as="textarea" labelColor={labelColor} inputClass={inputClass} />
 
       <button
         type="submit"
         disabled={status === "sending"}
-        className={`mt-2 justify-self-start rounded-full px-10 py-4 text-xs uppercase tracking-[0.25em] transition-colors disabled:opacity-50 ${
+        className={`mt-2 justify-self-start rounded-full px-10 py-4 text-sm font-semibold uppercase tracking-normal transition-colors disabled:opacity-50 ${
           onDark ? "bg-cream text-plum hover:bg-cream-light" : "bg-plum text-cream hover:bg-plum-deep"
         }`}
       >
@@ -92,7 +92,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className={`mb-2 block text-xs uppercase tracking-[0.15em] ${labelColor}`}>
+      <span className={`mb-2 block text-xs uppercase tracking-normal ${labelColor}`}>
         {label}
         {required && <span aria-hidden> *</span>}
       </span>

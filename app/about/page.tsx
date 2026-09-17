@@ -22,7 +22,7 @@ export default function About() {
     worksFor: { "@id": `${site.url}/#business` },
     address: { "@type": "PostalAddress", addressLocality: "Austin", addressRegion: "TX", addressCountry: "US" },
     sameAs: [site.socials.instagram, site.socials.linkedin],
-    image: `${site.url}/images/emily-about.png`,
+    image: `${site.url}/images/emily-about.jpg`,
   };
 
   const breadcrumb = {
@@ -44,7 +44,7 @@ export default function About() {
           <div className="grid bg-cream md:grid-cols-2">
             <div className="relative aspect-[4/5] md:aspect-auto md:min-h-[520px]">
               <Image
-                src="/images/emily-about.png"
+                src="/images/emily-about.jpg"
                 alt="Emily Preble"
                 fill
                 priority
@@ -105,7 +105,7 @@ export default function About() {
               <CalendlyButton variant="coral">Book a Free Strategy Call</CalendlyButton>
               <a
                 href={`mailto:${site.email}`}
-                className="inline-flex items-center justify-center rounded-full bg-coral px-10 py-4 text-xs uppercase tracking-[0.25em] text-cream hover:bg-coral-dark"
+                className="inline-flex items-center justify-center rounded-full bg-coral px-10 py-4 text-sm font-semibold uppercase tracking-normal text-cream hover:bg-coral-dark"
               >
                 Connect with Me via Email
               </a>

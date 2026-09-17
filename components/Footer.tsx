@@ -8,21 +8,21 @@ export function Footer() {
       <div className="bg-olive">
         <div className="mx-auto grid max-w-7xl gap-10 px-10 py-20 md:grid-cols-3 md:py-24">
           <div>
-            <Link href="/" className="font-serif text-4xl text-plum md:text-5xl" aria-label={`${site.name} — home`}>
+            <Link href="https://www.emilyprebleauctions.com/" className="font-serif text-4xl text-plum md:text-5xl" aria-label={`${site.name} — home`}>
               <span style={{ fontStyle: "normal" }}>Emily Preble </span>
               <span style={{ fontStyle: "italic" }}>Auctions</span>
             </Link>
           </div>
 
           <div>
-            <ul className="space-y-3 text-sm uppercase tracking-[0.2em] text-plum">
+            <ul className="space-y-3 text-sm uppercase tracking-normal text-plum">
               <li>
                 <a href={site.calendly} target="_blank" rel="noopener" className="hover:text-coral">
                   Book a Free<br />Strategy Call
                 </a>
               </li>
               <li className="pt-4">
-                <Link href="/contact" className="hover:text-coral">Contact Me</Link>
+                <Link href="https://www.emilyprebleauctions.com/contact" className="hover:text-coral">Contact Me</Link>
               </li>
             </ul>
 
@@ -73,7 +73,7 @@ export function Footer() {
       </div>
 
       <div className="bg-plum">
-        <p className="mx-auto max-w-7xl px-10 py-6 text-xs uppercase tracking-[0.25em] text-cream/80">
+        <p className="mx-auto max-w-7xl px-10 py-6 text-xs uppercase tracking-normal text-cream/80">
           © {site.copyrightYear} by {site.legalName.toUpperCase()}
         </p>
       </div>

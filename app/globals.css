@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #ebe4d4;
-  --color-cream-light: #f5f1e6;
-  --color-plum: #360025;
-  --color-plum-deep: #1f0015;
-  --color-coral: #ef4c30;
-  --color-coral-dark: #d9381b;
-  --color-olive: #a79c41;
-  --color-forest: #262920;
-  --color-forest-light: #3f4d32;
+  --color-cream: #eae5d6;
+  --color-cream-light: #f5f2e7;
+  --color-plum: #321426;
+  --color-plum-deep: #220d19;
+  --color-coral: #dd5037;
+  --color-coral-dark: #be422b;
+  --color-olive: #9a9243;
+  --color-forest: #20211d;
+  --color-forest-light: #394430;
   --color-ink: #1a1a1a;
   --color-muted: #6b6258;
 
@@ -18,7 +18,7 @@
 }
 
 :root {
-  --background: #ebe4d4;
+  --background: #eae5d6;
   --foreground: #1a1a1a;
 }
 
@@ -31,27 +31,63 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Albert Sans, system-ui, -apple-system, sans-serif;
   font-weight: 300;
-  line-height: 1.6;
+  line-height: 1.3;
   -webkit-font-smoothing: antialiased;
 }
 
+/* Keeps a paragraph's last line from ever being a single orphaned word —
+   supported in Chromium browsers today; unsupported browsers just fall
+   back to normal wrapping, so this is safe to apply everywhere. */
+p {
+  text-wrap: pretty;
+}
+
 h1, h2, h3, h4 {
-  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  font-family: var(--font-serif), "LouizeDisplay", Georgia, serif;
   font-style: italic;
   font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.05;
+  letter-spacing: -0.03em;
+  line-height: 1.28;
+  /* Headlines get "balance" rather than paragraphs' "pretty" — balance
+     evens out every line's length, which is what you want for a few
+     short lines of display type; "pretty" only guards the last line,
+     which matters more for long-form body copy. */
+  text-wrap: balance;
 }
 
 .display-headline {
-  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  font-family: var(--font-serif), "LouizeDisplay", Georgia, serif;
   font-style: italic;
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  line-height: 1.28;
+  text-wrap: balance;
+}
+
+/* The EPA brand pattern flood — same full-bleed treatment as the guide
+   covers and hub hero: solid plum underneath, the pattern as a single
+   cover-sized placement (no visible tiling seam), centered. */
+.pattern-flood {
+  background-color: var(--color-plum);
+  background-image: url("/images/pattern-purple.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Largest hero size only — Wix tightens leading as display type gets bigger */
+.hero-headline {
   line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* Louize Regular (not italic) — Tailwind's not-italic utility loses the
+   cascade to .display-headline since it's unlayered; this must be too. */
+.display-headline-upright {
+  font-style: normal;
 }
 
 ::selection {
-  background: #ef4c30;
-  color: #ebe4d4;
+  background: #dd5037;
+  color: #eae5d6;
 }

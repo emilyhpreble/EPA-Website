@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "Benefit auctioneer and fundraising consultant helping nonprofits raise more.",
     start_url: "/",
     display: "standalone",
-    background_color: "#ebe4d4",
-    theme_color: "#360025",
-    icons: [{ src: "/icon", sizes: "32x32", type: "image/png" }],
+    background_color: "#eae5d6",
+    theme_color: "#321426",
+    icons: [{ src: "/icon.png", sizes: "1500x1500", type: "image/png" }],
   };
 }

@@ -31,7 +31,7 @@ export function TestimonialSlider({
           </button>
 
           <blockquote className="max-w-2xl">
-            <p className="display-headline text-2xl leading-snug text-cream md:text-3xl">
+            <p className="display-headline display-headline-upright whitespace-pre-line text-2xl leading-snug text-cream md:text-3xl">
               {t.quote}
             </p>
             <figcaption className="mt-8 text-sm text-plum">
@@ -67,7 +67,7 @@ export function TestimonialSlider({
       <span aria-hidden className="display-headline block text-7xl text-coral leading-none">&ldquo;</span>
 
       <blockquote className="mt-4">
-        <p className="display-headline text-2xl leading-snug text-plum md:text-3xl">{t.quote}</p>
+        <p className="display-headline display-headline-upright whitespace-pre-line text-2xl leading-snug text-plum md:text-3xl">{t.quote}</p>
         <figcaption className="mt-8 text-sm text-coral">
           {t.author}, {t.org}
         </figcaption>
@@ -83,7 +83,7 @@ export function TestimonialSlider({
           >
             ‹
           </button>
-          <span className="text-xs uppercase tracking-[0.2em] text-plum/60">
+          <span className="text-xs uppercase tracking-normal text-plum/60">
             {i + 1} / {items.length}
           </span>
           <button

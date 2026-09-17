@@ -12,7 +12,7 @@ export function CalendlyButton({
   className?: string;
 }) {
   const base =
-    "inline-flex items-center justify-center rounded-full px-10 py-4 text-xs uppercase tracking-[0.25em] transition-colors";
+    "inline-flex items-center justify-center rounded-full px-10 py-4 text-sm font-semibold uppercase tracking-normal transition-colors";
   const styles =
     variant === "cream"
       ? "bg-cream text-plum hover:bg-cream-light"

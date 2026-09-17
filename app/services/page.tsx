@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { TestimonialSlider } from "@/components/TestimonialSlider";
 import { JsonLd } from "@/components/JsonLd";
-import { services, testimonials, site } from "@/lib/site";
+import { services, testimonials as staticTestimonials, site } from "@/lib/site";
+import { getGoogleReviews } from "@/lib/googleReviews";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -13,7 +14,10 @@ export const metadata: Metadata = {
   openGraph: { url: "/services", title: "Services" },
 };
 
-export default function Services() {
+export default async function Services() {
+  const liveReviews = await getGoogleReviews();
+  const testimonials = liveReviews ?? staticTestimonials;
+
   const servicesSchema = services.map((s) => ({
     "@context": "https://schema.org",
     "@type": "Service",
@@ -41,10 +45,10 @@ export default function Services() {
       <section className="bg-cream py-24">
         <div className="mx-auto grid max-w-6xl gap-16 px-10 md:grid-cols-2 md:px-12">
           <div>
-            <h1 className="display-headline text-6xl text-plum md:text-7xl">
-              <em className="italic">Services</em>
+            <h1 className="display-headline display-headline-upright text-6xl text-plum md:text-7xl">
+              Services
             </h1>
-            <p className="display-headline mt-6 text-2xl text-plum italic md:text-3xl">
+            <p className="display-headline mt-6 text-2xl text-coral italic md:text-3xl">
               Support that Goes Beyond the Stage
             </p>
             <p className="mt-8 text-base leading-relaxed text-plum">
@@ -75,8 +79,8 @@ export default function Services() {
         <div className="grid md:grid-cols-2">
           <div className="relative aspect-[4/5] md:aspect-auto md:min-h-[720px] bg-forest">
             <Image
-              src="/images/emily-stage.png"
-              alt="Emily Preble on stage at a benefit auction"
+              src="/images/emily-stage.jpg"
+              alt="Emily Preble speaking at a nonprofit fundraising event"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"

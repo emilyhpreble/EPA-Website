@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Albert_Sans, Cormorant_Garamond } from "next/font/google";
+import { Albert_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
@@ -13,10 +14,12 @@ const sans = Albert_Sans({
   display: "swap",
 });
 
-const serif = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
+// Brand display face — see 01_ASSETS/00_Branding/Fonts/LouizeDisplay(-Italic)
+const serif = localFont({
+  src: [
+    { path: "../public/fonts/LouizeDisplay-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/LouizeDisplay-Italic.woff2", weight: "400", style: "italic" },
+  ],
   variable: "--font-serif-display",
   display: "swap",
 });

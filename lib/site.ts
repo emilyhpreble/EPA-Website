@@ -5,6 +5,12 @@ export const site = {
   description:
     "Emily Preble Auctions helps nonprofits raise more through charisma, humor, and strategy as a benefit auctioneer and fundraising consultant.",
   url: "https://emilyprebleauctions.com",
+  // The Resources section is the one part of this codebase actually live
+  // and reachable right now — at its own subdomain, not the main site
+  // (which is still Wix). Its canonical/OG/sitemap URLs must say so, or
+  // Google sees a canonical tag pointing at a domain that isn't serving
+  // the page, which undermines indexing rather than helping it.
+  guidesUrl: "https://guides.emilyprebleauctions.com",
   locale: "en_US",
   license: "TX License #: 18523",
   copyrightYear: 2026,
@@ -18,11 +24,17 @@ export const site = {
   },
   calendly: "https://calendly.com/emilyprebleauctions",
   email: "hello@emilyprebleauctions.com",
+  // Every nav item except Resources points at the real, live Wix site —
+  // this codebase's own home/about/services/contact pages are a design
+  // preview, not where visitors should actually land. Resources is the one
+  // genuine exception: it's the part of this deployment that's actually
+  // live and meant to be visited directly.
   nav: [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/services", label: "Services" },
-    { href: "/contact", label: "Contact" },
+    { href: "https://www.emilyprebleauctions.com/", label: "Home" },
+    { href: "https://www.emilyprebleauctions.com/about", label: "About" },
+    { href: "https://www.emilyprebleauctions.com/services", label: "Services" },
+    { href: "/resources", label: "Resources" },
+    { href: "https://www.emilyprebleauctions.com/contact", label: "Contact" },
   ],
 } as const;
 
@@ -97,15 +109,15 @@ export const services = [
 export const testimonials = [
   {
     quote:
-      "Huge thanks to Emily Preble! Emily's unmatched energy and enthusiasm totally lit up our event. She tailored her approach to our mission and audience, connected with attendees, and handled every detail seamlessly. A true pro. If you're looking for an auctioneer who brings passion, professionalism, foresight, and results, Emily is the one!",
-    author: "Pamela Raines",
-    org: "NVOP",
+      "Working with Emily Preble as an event emcee and auctioneer for a gala was a dream! Our fundraising event was a huge success and Emily was instrumental in helping us surpass our fundraising goal. From the start, Emily invested herself in the mission of our organization and made personal connections to help her tell our story, connect to our gala guests, and lead a successful live auction and paddle raise. She was not only a true professional, but brought humor and heart to our event. Our guests loved her! From an event planning perspective, she checked in every step of the way and offered helpful suggestions and planning tips to help the event run smoothly. I'd gladly work with Emily again and again!",
+    author: "Sabina Corrigan",
+    org: "Family Houston",
   },
   {
     quote:
-      "Witty and contagiously energetic. Emily doubled our fundraising efforts– such a memorable event and memorable experience watching her do her thing. I highly recommend her for your next event!",
-    author: "Greg Spencer",
-    org: "Folds of Honor",
+      "We had the absolute BEST experience working with Emily Preble! From our very first meeting, she made the entire process feel easy, exciting, and completely manageable. She took the time to truly listen to our story and understand who we are and why we were hosting our event. That care and attention made all the difference.\n\nDuring the event, Emily was the perfect balance of energetic and professional. She brought incredible enthusiasm without ever feeling pushy or over-the-top. She read the room beautifully, connected with our guests, and communicated our mission in a way that genuinely resonated with everyone there.\n\nNot only was she a joy to work with, but she also helped us raise more money than we ever thought possible. Our guests truly enjoyed her, and we are so grateful for the impact she made on our event's success.\n\nIf you're considering working with Emily—do it! She is outstanding at what she does.",
+    author: "Brenda Hull",
+    org: "Santa Cruz",
   },
 ] as const;
 
