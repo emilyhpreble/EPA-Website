@@ -711,13 +711,32 @@ body {
   color: var(--epa-cream);
   border-bottom: 2px solid var(--epa-orange);
 }
-.app-bar .app-brand { font-family: var(--serif); font-size: 15px; }
+.app-bar .app-brand {
+  font-family: var(--serif);
+  font-size: 15px;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.app-bar .app-brand:hover { border-bottom-color: rgba(241, 237, 225, 0.6); }
 .app-bar .app-brand em { color: var(--epa-orange); font-style: italic; }
-/* Clickable, but deliberately not signposted: it reads as the brand
-   mark it already is. Emily knows; a client has no reason to try. */
-.app-brand-key { cursor: pointer; -webkit-user-select: none; user-select: none; }
-.app-bar .app-sep { opacity: 0.35; }
-.app-bar .app-title { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
+.app-bar .app-sep { opacity: 0.5; font-size: 12px; }
+.app-bar .app-title { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; opacity: 0.85; }
+.app-bar .app-crumb-link {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--epa-cream);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(241, 237, 225, 0.55);
+}
+.app-bar .app-crumb-link:hover { text-decoration-color: rgba(241, 237, 225, 0.95); }
 .app-bar .app-stage {
   margin-left: auto;
   font-size: 10px;
@@ -1107,20 +1126,7 @@ body.is-editing a.jump .jump-mark { opacity: 0.4; transform: none; }
 }
 
 /* ---------- SERIES LIBRARY ---------- */
-button.app-title {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--epa-cream);
-  background: transparent;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  border-bottom: 1px solid transparent;
-}
-button.app-title:hover { border-bottom-color: rgba(241, 237, 225, 0.6); }
-.lib-panel {
+button.lib-panel {
   width: min(34rem, 100%);
   max-height: 84vh;
   overflow-y: auto;
@@ -2686,19 +2692,6 @@ EPA.FIELDS = [];
   function mount() {
     renderTools();
 
-    /* The way in, for Emily, on a browser that has not been unlocked:
-       click the brand mark. It is already in the bar and reads as
-       branding, so it advertises nothing to a client - and anyone who
-       does click it just meets a passphrase prompt. Once unlocked this
-       browser shows the Edit button and none of this is needed again. */
-    /* The brand mark is the client's control now: it opens the library. */
-    var brand = document.querySelector(".app-bar .app-brand");
-    if (brand) {
-      brand.classList.add("app-brand-key");
-      brand.addEventListener("click", function () {
-        if (EPA.openLibrary) EPA.openLibrary();
-      });
-    }
     /* "E" toggles edit mode, unless the caret is in text. */
     document.addEventListener("keydown", function (ev) {
       if (ev.key !== "e" && ev.key !== "E") return;
@@ -2736,10 +2729,11 @@ EPA.FIELDS = [];
   function shell() {
     return '' +
       '<div class="app-bar">' +
-        '<span class="app-brand">Emily Preble <em>Auctions</em></span>' +
-        '<span class="app-sep">/</span>' +
-        '<button class="app-title" id="libBtn" type="button" title="See all guides in this series">' +
-          EPA.render.esc(EPA.GUIDE.meta.title) + '</button>' +
+        '<a class="app-brand" href="https://www.emilyprebleauctions.com/">Emily Preble <em>Auctions</em></a>' +
+        '<span class="app-sep" aria-hidden="true">&rsaquo;</span>' +
+        '<button class="app-crumb-link" id="libBtn" type="button" title="See all guides in this series">Resource Guides</button>' +
+        '<span class="app-sep" aria-hidden="true">&rsaquo;</span>' +
+        '<span class="app-title">' + EPA.render.esc(EPA.GUIDE.meta.title) + '</span>' +
         '<span class="app-stage">' + EPA.render.esc(EPA.GUIDE.meta.subtitle) + '</span>' +
         '<button class="app-toc" id="tocBtn" type="button" title="Jump to a section">Contents</button>' +
       '</div>' +

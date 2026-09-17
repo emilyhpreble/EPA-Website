@@ -650,15 +650,22 @@
   .app-bar .app-brand {
     font-family: var(--font-display);
     font-size: 15px;
-    background: none;
-    border: 0;
-    padding: 0;
     color: inherit;
-    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
   }
+  .app-bar .app-brand:hover { border-bottom-color: rgba(234, 229, 214, 0.6); }
   .app-bar .app-brand em { color: var(--mast-accent); font-style: italic; }
-  .app-bar .app-sep { opacity: 0.35; }
+  .app-bar .app-sep { opacity: 0.5; font-size: 12px; }
   .app-bar .app-title {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: inherit;
+    opacity: 0.85;
+  }
+  .app-bar .app-crumb-link {
     font-family: var(--font-body);
     font-size: 13px;
     font-weight: 600;
@@ -668,9 +675,11 @@
     padding: 0;
     color: inherit;
     cursor: pointer;
-    border-bottom: 1px solid transparent;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(234, 229, 214, 0.55);
   }
-  .app-bar .app-title:hover { border-bottom-color: rgba(234, 229, 214, 0.6); }
+  .app-bar .app-crumb-link:hover { text-decoration-color: rgba(234, 229, 214, 0.95); }
   .app-bar .app-stage {
     margin-left: auto;
     font-size: 10px;
@@ -787,9 +796,11 @@
 </style>
 
 <div class="app-bar">
-  <button class="app-brand" id="libBtn" type="button" title="See all guides in this series">Emily Preble <em>Auctions</em></button>
-  <span class="app-sep">/</span>
-  <button class="app-title" id="libBtn2" type="button" title="See all guides in this series">Event Budget Calculator</button>
+  <a class="app-brand" href="https://www.emilyprebleauctions.com/">Emily Preble <em>Auctions</em></a>
+  <span class="app-sep" aria-hidden="true">&rsaquo;</span>
+  <button class="app-crumb-link" id="libBtn2" type="button" title="See all guides in this series">Resource Guides</button>
+  <span class="app-sep" aria-hidden="true">&rsaquo;</span>
+  <span class="app-title">Event Budget Calculator</span>
   <span class="app-stage">A Planning Tool</span>
   <button class="app-toc" id="tocBtn" type="button" title="Jump to a step">Contents</button>
 </div>
@@ -1700,7 +1711,6 @@
     }, 350);
   }
 
-  document.getElementById("libBtn").addEventListener("click", openLibrary);
   document.getElementById("libBtn2").addEventListener("click", openLibrary);
   document.getElementById("tocBtn").addEventListener("click", openContents);
 
