@@ -149,6 +149,22 @@ export const resourceGuides: ResourceGuide[] = [
       { title: "Watch the Running Total", snippet: "Once you scroll past the first step, a bar at the top tracks your projected revenue against your goal as you go." },
     ],
   },
+  {
+    slug: "event-data-analyzer",
+    title: "Event Data Analyzer",
+    subtitle: "Reading Your Results",
+    blurb:
+      "Put in what happened at your event — revenue, the room, the clerking sheets and the underbid record — and get back what it means, in plain language, as a document you can hand to your board.",
+    cta: "Open the Tool",
+    sections: [
+      { title: "The Numbers", snippet: "What you set out to raise, and what you actually raised. Leave anything blank that doesn't apply — blanks are ignored rather than counted as zero." },
+      { title: "Live Auction Results", snippet: "The clerking card: what each lot sold for and who won it." },
+      { title: "Underbid Record", snippet: "The scratch pages, typed up as they were written — one lot per page, paddle numbers and all." },
+      { title: "Special Appeal", snippet: "The paddle raise tracking sheet. Write the levels as they ended up on the night, not as they were printed." },
+      { title: "What Worked, What Didn't", snippet: "Fill this out within 48 hours while the details are still fresh. Skip any row that isn't worth a note." },
+      { title: "Your Report", snippet: "This rebuilds itself every time anything above changes — a document you can hand to your board." },
+    ],
+  },
 ];
 
 export function getResourceGuide(slug: string): ResourceGuide | undefined {
