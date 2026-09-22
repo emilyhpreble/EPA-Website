@@ -281,7 +281,7 @@
     <div class="masthead-inner">
       <div class="wordmark">Emily Preble <span class="wm-accent">Auctions</span></div>
       <h1 class="tool-title">Event Data Analyzer</h1>
-      <p class="tool-tagline">Put in what happened at your event, and get back what it means and what to do about it &mdash; in plain language.</p>
+      <p class="tool-tagline">Enter in your event data and takeaways so we can clearly understand impact and next steps.</p>
     </div>
   </header>
 </div>
@@ -312,16 +312,16 @@
     </div>
     <div class="grid g3">
       <div class="field"><label for="f_org">Organization</label>
-        <div class="field-input"><input id="f_org" data-k="meta.org" type="text" placeholder="Abundant Life Foundation"></div></div>
+        <div class="field-input"><input id="f_org" data-k="meta.org" type="text" placeholder="Organization Name"></div></div>
       <div class="field"><label for="f_event">Event name</label>
-        <div class="field-input"><input id="f_event" data-k="meta.event" type="text" placeholder="Inaugural Roat&aacute;n Gala"></div></div>
+        <div class="field-input"><input id="f_event" data-k="meta.event" type="text" placeholder="Annual Spring Gala"></div></div>
       <div class="field"><label for="f_date">Event date</label>
         <div class="field-input"><input id="f_date" data-k="meta.date" type="text" placeholder="7/7/2026"></div></div>
     </div>
     <div class="btn-row">
-      <button class="btn" type="button" id="saveFileBtn">Save file (hand off)</button>
-      <button class="btn" type="button" id="loadFileBtn">Open a save file</button>
-      <button class="btn" type="button" id="clearBtn">Start over</button>
+      <button class="btn" type="button" id="saveFileBtn">Save file</button>
+      <button class="btn" type="button" id="loadFileBtn">Upload a file</button>
+      <button class="btn" type="button" id="clearBtn">Clear all fields</button>
       <input type="file" id="fileInput" accept=".json,application/json" hidden>
     </div>
   </section>
@@ -382,7 +382,7 @@
       <div class="step-head-text">
         <span class="step-number">Section 3</span>
         <h2>The bidder roster</h2>
-        <p class="step-blurb">Optional, and the single most valuable thing you can paste in. Emily's auction data comes back in <strong>paddle numbers</strong>. This is what turns those numbers into names, so the follow-up list at the end is a list of people rather than a list of digits.</p>
+        <p class="step-blurb">Optional, but the single most valuable thing you can paste in. Event data comes back in <strong>paddle numbers</strong>. Your event roster is what turns those paddle numbers into names, so the follow-up list at the end is a list of people rather than a list of digits. This should be easily accessible through your event software.</p>
       </div>
       <span class="who is-client">Your team</span>
     </div>
@@ -401,16 +401,16 @@
       </div>
       <span class="who is-epa">Emily</span>
     </div>
-    <textarea class="mono" data-k="live" rows="9" placeholder="1) Sebastiano's Buy Out &mdash; $1800 &mdash; #316"></textarea>
+    <textarea class="mono" data-k="live" rows="9" placeholder="1) Weekend Getaway Package &mdash; $1,800 &mdash; #316"></textarea>
     <p class="hint">One lot per line. A lot that sold twice takes two paddle numbers, on the same line or the next one. Optional extras anywhere on the line: <code>fmv $1200</code>, <code>cat travel</code>, <code>time 2:40</code>.</p>
-    <details class="sample"><summary>Show an example</summary><pre>1) Sebastiano's Buy Out — $1800 — #316
-2) Summer Adventure Package — $1000 — #114  cat experience
-3) Mt Tabor Stay — $1100 — #072  fmv $900  cat travel
-4) Silver Falls Family Cabin — $1500 — #098  cat travel
-5) Portland Arts + Culture — $850 — #064
-6) Bend Getaway — $1100 — #072  cat travel
-7) Mother's Day Rhododendron — $1400 — #089
-8) Rule the School — $1050 — #056, #058</pre></details>
+    <details class="sample"><summary>Show an example</summary><pre>1) Wine Country Weekend — $1800 — #316
+2) Golf Foursome Package — $1000 — #114  cat experience
+3) Mountain Cabin Stay — $1100 — #072  fmv $900  cat travel
+4) Lakefront Family Cabin — $1500 — #098  cat travel
+5) Local Arts + Culture Package — $850 — #064
+6) City Getaway Weekend — $1100 — #072  cat travel
+7) Spring Flower Basket — $1400 — #089
+8) Private School Experience — $1050 — #056, #058</pre></details>
     <div class="parse-note is-good" id="liveNote">Nothing entered yet.</div>
   </section>
 
@@ -424,14 +424,14 @@
       </div>
       <span class="who is-epa">Emily</span>
     </div>
-    <textarea class="mono" data-k="underbid" rows="14" placeholder="Lot 3 &mdash; Mt Tabor Stay&#10;open $2000&#10;inc $500&#10;101&#10;320&#10;420&#10;sold 333&#10;$10K"></textarea>
+    <textarea class="mono" data-k="underbid" rows="14" placeholder="Lot 3 &mdash; Weekend Getaway&#10;open $2000&#10;inc $500&#10;101&#10;320&#10;420&#10;sold 333&#10;$10K"></textarea>
     <p class="hint">
       Start a lot with <code>Lot 3 — name</code>, or just leave a blank line between pages. Then one paddle per line, or several separated by commas.
       A missed paddle is <code>???</code>. Finish with <code>sold 333</code> and the hammer price <code>$10K</code>.
       Add a table with <code>t12</code> after a paddle.
       <strong>To estimate where each bidder dropped out in dollars</strong>, add <code>open $2000</code> and <code>inc $500</code> &mdash; without them you'll get position instead, which is never wrong.
     </p>
-    <details class="sample"><summary>Show an example</summary><pre>Lot 3 — Mt Tabor Stay
+    <details class="sample"><summary>Show an example</summary><pre>Lot 3 — Weekend Getaway
 open $2000
 inc $500
 101
@@ -463,7 +463,7 @@ $10K</pre></details>
       </div>
       <span class="who is-epa">Emily</span>
     </div>
-    <textarea class="mono" data-k="appeal" rows="9" placeholder="$7,500: 6&#10;$2,500: 3, 13, 26&#10;$1,000: 2, 1&#10;$500: Murphy, 25, 14&#10;pre-commit: $10,000 #5&#10;paddle drop: $1,950"></textarea>
+    <textarea class="mono" data-k="appeal" rows="9" placeholder="$7,500: 6&#10;$2,500: 3, 13, 26&#10;$1,000: 2, 1&#10;$500: 8, 25, 14&#10;pre-commit: $10,000 #5&#10;paddle drop: $1,950"></textarea>
     <p class="hint">One level per line: <code>$2,500: 3, 13, 26</code> &mdash; the level, then every paddle that went up at it. Names work where you wrote a name instead of a number. Lump sums go on their own line: <code>pre-commit:</code>, <code>paddle drop:</code>, <code>match:</code>, <code>other:</code>.</p>
     <div class="parse-note is-good" id="appealNote">Nothing entered yet.</div>
   </section>
@@ -523,7 +523,7 @@ $10K</pre></details>
       <span class="who is-client">Your team</span>
     </div>
     <p class="row-label">Vendors and sponsors</p>
-    <textarea data-k="vendors" rows="4" placeholder="Bella Catering &mdash; caterer &mdash; renew &mdash; worth every penny&#10;First National &mdash; presenting sponsor &mdash; renew &mdash; approach in January"></textarea>
+    <textarea data-k="vendors" rows="4" placeholder="Sample Catering Co. &mdash; caterer &mdash; renew &mdash; worth every penny&#10;Community Bank &mdash; presenting sponsor &mdash; renew &mdash; approach in January"></textarea>
     <p class="hint">One per line: <code>name — role or level — renew? — notes</code>.</p>
     <div class="grid g4" style="margin-top:1.3rem">
       <div class="field"><label for="f_hold">Tentative hold date</label><div class="field-input"><input id="f_hold" data-k="next.date" type="text" placeholder="7/12/2027"></div></div>
@@ -715,7 +715,7 @@ $10K</pre></details>
      ======================================================================= */
 
   /* --- Live auction clerking card --------------------------------------
-     "1) Sebastiano's Buy Out — $1800 — #316", with optional fmv/cat/time,
+     "1) Wine Country Weekend — $1800 — #316", with optional fmv/cat/time,
      and a bare "#058" on its own line continuing the lot above it. */
   function parseLive(text) {
     var lots = [], problems = [];
@@ -2510,6 +2510,7 @@ $10K</pre></details>
       saveFile(slug() + "-data.json", JSON.stringify(S, null, 2), "application/json");
     });
     $("saveFileBtn").addEventListener("click", function () {
+      window.alert("This saves everything you\'ve entered so far as a file on your computer. Email that file \u2014 to yourself, a teammate, or your auctioneer \u2014 and opening it picks up exactly where you left off.");
       saveFile(slug() + "-data.json", JSON.stringify(S, null, 2), "application/json");
     });
     $("loadFileBtn").addEventListener("click", function () { $("fileInput").click(); });
