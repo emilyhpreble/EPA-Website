@@ -81,11 +81,12 @@ export default async function GuidePreview({
 
           <div className="mt-16 bg-white p-10 text-center">
             <p className="text-lg text-plum">
-              Want the full guide — every section, worked examples, and the interactive tools built in?
+              Want access to the full guide, complete with worked examples, templates, and the interactive
+              tools? Let me know below!
             </p>
             <Link
               href={`/resources/unlock?next=/resources/${guide.slug}.html`}
-              className="mt-6 inline-block bg-coral px-8 py-4 text-sm font-semibold uppercase tracking-wide text-cream hover:bg-plum"
+              className="mt-6 inline-block rounded-full bg-coral px-8 py-4 text-sm font-semibold uppercase tracking-wide text-cream hover:bg-plum"
             >
               {guide.cta === "Open the Tool" ? "Get Access to the Tool" : "Get Access to the Full Guide"}
             </Link>
