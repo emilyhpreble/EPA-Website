@@ -57,7 +57,7 @@ function UnlockForm() {
           <button
             type="submit"
             disabled={loading || !code}
-            className="mt-8 w-full bg-coral px-8 py-4 text-sm font-semibold uppercase tracking-wide text-cream hover:bg-cream hover:text-plum disabled:opacity-50"
+            className="mt-8 w-full rounded-full bg-coral px-8 py-4 text-sm font-semibold uppercase tracking-wide text-cream hover:bg-cream hover:text-plum disabled:opacity-50"
           >
             {loading ? "Checking…" : "Unlock"}
           </button>

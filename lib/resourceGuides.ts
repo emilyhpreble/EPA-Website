@@ -154,7 +154,7 @@ export const resourceGuides: ResourceGuide[] = [
     title: "Event Data Analyzer",
     subtitle: "Reading Your Results",
     blurb:
-      "Put in what happened at your event — revenue, the room, the clerking sheets and the underbid record — and get back what it means, in plain language, as a document you can hand to your board.",
+      "Put in what happened at your event — revenue, guest roster, clerking sheets, and the underbid record — and get back a detailed report on what the data means, ready to download and share with your team.",
     cta: "Open the Tool",
     sections: [
       { title: "The Numbers", snippet: "What you set out to raise, and what you actually raised. Leave anything blank that doesn't apply — blanks are ignored rather than counted as zero." },
