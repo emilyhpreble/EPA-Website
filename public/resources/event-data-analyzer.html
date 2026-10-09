@@ -399,8 +399,8 @@
     </div>
     <textarea class="mono" data-k="live" rows="9" placeholder="1) Weekend Getaway Package &mdash; $1,800 &mdash; #316"></textarea>
     <div class="photo-row" data-photo-kind="live">
-      <button class="btn" type="button" data-photo-btn>Upload a photo of the clerking sheet</button>
-      <input type="file" accept="image/*" multiple hidden data-photo-input>
+      <button class="btn" type="button" data-photo-btn>Upload a photo or PDF of the clerking sheet</button>
+      <input type="file" accept="image/*,application/pdf" multiple hidden data-photo-input>
       <p class="photo-status" data-photo-status="live" hidden></p>
     </div>
     <p class="hint">One lot per line. A lot that sold twice takes two paddle numbers, on the same line or the next one. Optional extras anywhere on the line: <code>fmv $1200</code>, <code>cat travel</code>, <code>time 2:40</code>.</p>
@@ -427,8 +427,8 @@
     </div>
     <textarea class="mono" data-k="underbid" rows="14" placeholder="Lot 3 &mdash; Weekend Getaway&#10;open $2000&#10;inc $500&#10;101&#10;320&#10;420&#10;sold 333&#10;$10K"></textarea>
     <div class="photo-row" data-photo-kind="underbid">
-      <button class="btn" type="button" data-photo-btn>Upload a photo of this underbid page</button>
-      <input type="file" accept="image/*" multiple hidden data-photo-input>
+      <button class="btn" type="button" data-photo-btn>Upload a photo or PDF of this underbid page</button>
+      <input type="file" accept="image/*,application/pdf" multiple hidden data-photo-input>
       <p class="photo-status" data-photo-status="underbid" hidden></p>
     </div>
     <p class="hint">
@@ -471,8 +471,8 @@ $10K</pre></details>
     </div>
     <textarea class="mono" data-k="appeal" rows="9" placeholder="$7,500: 6&#10;$2,500: 3, 13, 26&#10;$1,000: 2, 1&#10;$500: 8, 25, 14&#10;pre-commit: $10,000 #5&#10;paddle drop: $1,950"></textarea>
     <div class="photo-row" data-photo-kind="appeal">
-      <button class="btn" type="button" data-photo-btn>Upload a photo of the paddle raise sheet</button>
-      <input type="file" accept="image/*" multiple hidden data-photo-input>
+      <button class="btn" type="button" data-photo-btn>Upload a photo or PDF of the paddle raise sheet</button>
+      <input type="file" accept="image/*,application/pdf" multiple hidden data-photo-input>
       <p class="photo-status" data-photo-status="appeal" hidden></p>
     </div>
     <p class="hint">One level per line: <code>$2,500: 3, 13, 26</code> &mdash; the level, then every paddle that went up at it. Names work where you wrote a name instead of a number. Lump sums go on their own line: <code>pre-commit:</code>, <code>paddle drop:</code>, <code>match:</code>, <code>other:</code>.</p>
@@ -2548,6 +2548,83 @@ $10K</pre></details>
       });
   }
 
+  /* =======================================================================
+     PDF text extraction. A PDF built from a typed-up report (from a Claude
+     chat, a Google Doc export, anywhere with a real text layer) already
+     contains its own text — reading it back out is a parsing problem, not a
+     vision problem, so this costs nothing and needs no key. It only works
+     when the PDF actually has text in it; a PDF that is itself a photo or a
+     scan has no text layer to read, and should go through the photo path
+     above instead.
+     ======================================================================= */
+
+  /* pdf.js has shipped ES-module-only builds (.mjs) since v5, so this is
+     loaded with a dynamic import() rather than the old script-tag-plus-
+     global pattern jsPDF uses above — there is no window.pdfjsLib to wait
+     on, the import itself is the promise. */
+  var PDFJS_SRC = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/6.4.299/pdf.min.mjs";
+  var PDFJS_WORKER_SRC = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/6.4.299/pdf.worker.min.mjs";
+  var pdfjsPromise = null;
+
+  function loadPdfJs() {
+    if (pdfjsPromise) return pdfjsPromise;
+    pdfjsPromise = Promise.race([
+      import(/* webpackIgnore: true */ PDFJS_SRC),
+      new Promise(function (resolve) { setTimeout(function () { resolve(null); }, 12000); })
+    ]).then(function (mod) {
+      if (!mod) return null;
+      try { mod.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_SRC; } catch (e) {}
+      return mod;
+    }).catch(function () { return null; });
+    return pdfjsPromise;
+  }
+
+  /* pdf.js hands back a flat bag of text fragments per page with no line
+     breaks of its own. Fragments that share a vertical position are the same
+     line; a jump in that position is a new one. Rough, but it is exactly the
+     line-oriented shape the parsers above already expect. */
+  function pageTextLines(textContent) {
+    var lines = [], cur = [], lastY = null;
+    textContent.items.forEach(function (it) {
+      var y = it.transform ? it.transform[5] : null;
+      if (lastY !== null && y !== null && Math.abs(y - lastY) > 2) {
+        lines.push(cur.join("").trim());
+        cur = [];
+      }
+      cur.push(it.str);
+      lastY = y;
+      if (it.hasEOL) { lines.push(cur.join("").trim()); cur = []; lastY = null; }
+    });
+    if (cur.length) lines.push(cur.join("").trim());
+    return lines.filter(function (l) { return l.length > 0; }).join("\n");
+  }
+
+  function extractPdfText(file) {
+    return loadPdfJs().then(function (pdfjsLib) {
+      if (!pdfjsLib) throw new Error("pdfjs did not load");
+      return file.arrayBuffer().then(function (buf) {
+        return pdfjsLib.getDocument({ data: buf }).promise;
+      });
+    }).then(function (doc) {
+      var chain = Promise.resolve([]);
+      for (var n = 1; n <= doc.numPages; n++) {
+        (function (pageNo) {
+          chain = chain.then(function (pages) {
+            return doc.getPage(pageNo).then(function (page) {
+              return page.getTextContent();
+            }).then(function (tc) {
+              pages.push(pageTextLines(tc));
+              return pages;
+            });
+          });
+        })(n);
+      }
+      return chain;
+    }).then(function (pages) {
+      return pages.join("\n\n").trim();
+    });
+  }
+
   function appendToTextarea(ta, text) {
     var existing = ta.value || "";
     var next = existing.trim() ? existing.replace(/\s+$/, "") + "\n\n" + text.trim() : text.trim();
@@ -2576,6 +2653,23 @@ $10K</pre></details>
         return;
       }
       var file = files[i++];
+      var isPdf = file.type === "application/pdf" || /\.pdf$/i.test(file.name || "");
+
+      if (isPdf) {
+        showStatus("Reading PDF " + i + " of " + files.length + "…");
+        extractPdfText(file).then(function (text) {
+          if (text) {
+            appendToTextarea(ta, text);
+            toast("Added text from the PDF — check it against the report before moving on.");
+          } else {
+            toast("That PDF didn't have any readable text in it — a photo-of-paper PDF needs the photo option instead.");
+          }
+        }).catch(function () {
+          toast("Could not read that PDF. You can still paste or type this one in by hand.");
+        }).then(next);
+        return;
+      }
+
       showStatus("Reading photo " + i + " of " + files.length + "…");
       downscaleImage(file).then(function (blob) {
         return extractSheet(kind, blob);
