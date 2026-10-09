@@ -56,20 +56,14 @@
   .app-bar { position:sticky; top:0; z-index:30; display:flex; align-items:baseline; gap:0.75rem;
              flex-wrap:wrap; padding:0.7rem 1.1rem; background:var(--mast-bg); color:var(--mast-text);
              border-bottom:2px solid var(--mast-accent); }
-  .app-bar .app-brand {
-    font-family:var(--font-display); font-size:15px; color:inherit; text-decoration:none;
-    border-bottom:1px solid transparent;
-  }
-  .app-bar .app-brand:hover { border-bottom-color:rgba(234,229,214,0.6); }
+  .app-bar .app-brand { font-family:var(--font-display); font-size:15px; background:none; border:0;
+                        padding:0; color:inherit; cursor:pointer; }
   .app-bar .app-brand em { color:var(--mast-accent); font-style:italic; }
-  .app-bar .app-sep { opacity:0.5; font-size:12px; }
-  .app-bar .app-title { font-family:var(--font-body); font-size:13px; font-weight:600; letter-spacing:0.02em; color:inherit; opacity:0.85; }
-  .app-bar .app-crumb-link {
-    font-family:var(--font-body); font-size:13px; font-weight:600; letter-spacing:0.02em;
-    background:none; border:0; padding:0; color:inherit; cursor:pointer;
-    text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(234,229,214,0.55);
-  }
-  .app-bar .app-crumb-link:hover { text-decoration-color:rgba(234,229,214,0.95); }
+  .app-bar .app-sep { opacity:0.35; }
+  .app-bar .app-title { font-family:var(--font-body); font-size:13px; font-weight:600; letter-spacing:0.02em;
+                        background:none; border:0; padding:0; color:inherit; cursor:pointer;
+                        border-bottom:1px solid transparent; }
+  .app-bar .app-title:hover { border-bottom-color:rgba(234,229,214,0.6); }
   .app-bar .app-stage { margin-left:auto; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; opacity:0.7; }
   button.app-toc { font-family:var(--font-body); font-size:10px; font-weight:600; letter-spacing:0.12em;
                    text-transform:uppercase; color:var(--mast-text); background:transparent;
@@ -173,6 +167,10 @@
   .btn.is-primary { background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
   .btn.is-primary:hover { color:var(--accent-ink); opacity:0.9; }
   .btn-row { display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1.2rem; }
+  .btn[disabled] { opacity:0.55; cursor:default; }
+
+  .photo-row { display:flex; align-items:center; gap:0.7rem; flex-wrap:wrap; margin-top:1rem; }
+  .photo-status { margin:0; font-size:0.82rem; color:var(--text-muted); }
 
   /* ---------- Report ---------- */
   #reportCard { border-top:3px solid var(--accent); }
@@ -267,11 +265,9 @@
 </style>
 
 <div class="app-bar">
-  <a class="app-brand" href="https://www.emilyprebleauctions.com/">Emily Preble <em>Auctions</em></a>
-  <span class="app-sep" aria-hidden="true">&rsaquo;</span>
-  <button class="app-crumb-link" id="libBtn2" type="button" title="See everything in this series">Resource Guides</button>
-  <span class="app-sep" aria-hidden="true">&rsaquo;</span>
-  <span class="app-title">Event Data Analyzer</span>
+  <button class="app-brand" id="libBtn" type="button" title="See everything in this series">Emily Preble <em>Auctions</em></button>
+  <span class="app-sep">/</span>
+  <button class="app-title" id="libBtn2" type="button" title="See everything in this series">Event Data Analyzer</button>
   <span class="app-stage">Reading Your Results</span>
   <button class="app-toc" id="tocBtn" type="button" title="Jump to a step">Contents</button>
 </div>
@@ -397,11 +393,16 @@
       <div class="step-head-text">
         <span class="step-number">Section 4</span>
         <h2>Live auction results</h2>
-        <p class="step-blurb">The clerking card: what each lot sold for and who won it.</p>
+        <p class="step-blurb">The clerking card: what each lot sold for and who won it. Type it in, or upload a photo of the clerking sheet and we'll read it for you.</p>
       </div>
       <span class="who is-epa">Emily</span>
     </div>
     <textarea class="mono" data-k="live" rows="9" placeholder="1) Weekend Getaway Package &mdash; $1,800 &mdash; #316"></textarea>
+    <div class="photo-row" data-photo-kind="live">
+      <button class="btn" type="button" data-photo-btn>Upload a photo of the clerking sheet</button>
+      <input type="file" accept="image/*" multiple hidden data-photo-input>
+      <p class="photo-status" data-photo-status="live" hidden></p>
+    </div>
     <p class="hint">One lot per line. A lot that sold twice takes two paddle numbers, on the same line or the next one. Optional extras anywhere on the line: <code>fmv $1200</code>, <code>cat travel</code>, <code>time 2:40</code>.</p>
     <details class="sample"><summary>Show an example</summary><pre>1) Wine Country Weekend — $1800 — #316
 2) Golf Foursome Package — $1000 — #114  cat experience
@@ -420,11 +421,16 @@
       <div class="step-head-text">
         <span class="step-number">Section 5</span>
         <h2>Underbid record</h2>
-        <p class="step-blurb">The scratch pages, typed up as they were written: one lot per page, paddle numbers <strong>top to bottom in the order they bid</strong>. No dollar amounts per bid &mdash; there aren't any on the page.</p>
+        <p class="step-blurb">The scratch pages, typed up as they were written: one lot per page, paddle numbers <strong>top to bottom in the order they bid</strong>. No dollar amounts per bid &mdash; there aren't any on the page. Or upload a photo of the page and we'll read it for you.</p>
       </div>
       <span class="who is-epa">Emily</span>
     </div>
     <textarea class="mono" data-k="underbid" rows="14" placeholder="Lot 3 &mdash; Weekend Getaway&#10;open $2000&#10;inc $500&#10;101&#10;320&#10;420&#10;sold 333&#10;$10K"></textarea>
+    <div class="photo-row" data-photo-kind="underbid">
+      <button class="btn" type="button" data-photo-btn>Upload a photo of this underbid page</button>
+      <input type="file" accept="image/*" multiple hidden data-photo-input>
+      <p class="photo-status" data-photo-status="underbid" hidden></p>
+    </div>
     <p class="hint">
       Start a lot with <code>Lot 3 — name</code>, or just leave a blank line between pages. Then one paddle per line, or several separated by commas.
       A missed paddle is <code>???</code>. Finish with <code>sold 333</code> and the hammer price <code>$10K</code>.
@@ -459,11 +465,16 @@ $10K</pre></details>
       <div class="step-head-text">
         <span class="step-number">Section 6</span>
         <h2>Special appeal</h2>
-        <p class="step-blurb">The paddle raise tracking sheet. Write the levels as they ended up on the night, not as they were printed &mdash; if a level got rewritten mid-appeal, use the number you actually called.</p>
+        <p class="step-blurb">The paddle raise tracking sheet. Write the levels as they ended up on the night, not as they were printed &mdash; if a level got rewritten mid-appeal, use the number you actually called. Or upload a photo of the sheet and we'll read it for you.</p>
       </div>
       <span class="who is-epa">Emily</span>
     </div>
     <textarea class="mono" data-k="appeal" rows="9" placeholder="$7,500: 6&#10;$2,500: 3, 13, 26&#10;$1,000: 2, 1&#10;$500: 8, 25, 14&#10;pre-commit: $10,000 #5&#10;paddle drop: $1,950"></textarea>
+    <div class="photo-row" data-photo-kind="appeal">
+      <button class="btn" type="button" data-photo-btn>Upload a photo of the paddle raise sheet</button>
+      <input type="file" accept="image/*" multiple hidden data-photo-input>
+      <p class="photo-status" data-photo-status="appeal" hidden></p>
+    </div>
     <p class="hint">One level per line: <code>$2,500: 3, 13, 26</code> &mdash; the level, then every paddle that went up at it. Names work where you wrote a name instead of a number. Lump sums go on their own line: <code>pre-commit:</code>, <code>paddle drop:</code>, <code>match:</code>, <code>other:</code>.</p>
     <div class="parse-note is-good" id="appealNote">Nothing entered yet.</div>
   </section>
@@ -2478,7 +2489,127 @@ $10K</pre></details>
     });
   }
 
+  /* =======================================================================
+     Photo upload → AI transcription. A photo is read by the server (it has
+     the model and the key), transcribed into the exact plain-text grammar
+     the parser above already understands, then dropped into the matching
+     textarea as if it had been typed — the existing parser never knows the
+     difference. Several photos in a row queue one after another rather than
+     firing at once, so the status line always describes one real request.
+     ======================================================================= */
+
+  function photoTextareaFor(kind) {
+    return document.querySelector('textarea[data-k="' + kind + '"]');
+  }
+
+  /* A phone photo can be several megabytes at a resolution no sheet of
+     paper needs. Downscaling client-side keeps the upload fast and the
+     per-photo cost down; if canvas can't do it for any reason, the
+     original file goes up instead rather than blocking the upload. */
+  function downscaleImage(file) {
+    return new Promise(function (resolve) {
+      var img = new Image();
+      var url = URL.createObjectURL(file);
+      var done = false;
+      function fallback() { if (!done) { done = true; URL.revokeObjectURL(url); resolve(file); } }
+      img.onload = function () {
+        if (done) return;
+        try {
+          var MAX = 1600;
+          var w = img.naturalWidth, h = img.naturalHeight;
+          var scale = Math.min(1, MAX / Math.max(w, h));
+          var cw = Math.max(1, Math.round(w * scale)), ch = Math.max(1, Math.round(h * scale));
+          var canvas = document.createElement("canvas");
+          canvas.width = cw; canvas.height = ch;
+          var ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, cw, ch);
+          URL.revokeObjectURL(url);
+          canvas.toBlob(function (blob) {
+            done = true;
+            resolve(blob || file);
+          }, "image/jpeg", 0.85);
+        } catch (e) { fallback(); }
+      };
+      img.onerror = fallback;
+      setTimeout(fallback, 8000);
+      img.src = url;
+    });
+  }
+
+  function extractSheet(kind, blob) {
+    var fd = new FormData();
+    fd.append("kind", kind);
+    fd.append("image", blob, "sheet.jpg");
+    return fetch("/api/extract-sheet", { method: "POST", body: fd })
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (body) {
+          return { ok: r.ok, body: body };
+        });
+      });
+  }
+
+  function appendToTextarea(ta, text) {
+    var existing = ta.value || "";
+    var next = existing.trim() ? existing.replace(/\s+$/, "") + "\n\n" + text.trim() : text.trim();
+    ta.value = next;
+    var k = ta.getAttribute("data-k");
+    setPath(S, k, next);
+    save();
+    refresh(true);
+  }
+
+  function handlePhotoFiles(kind, fileList) {
+    var ta = photoTextareaFor(kind);
+    var statusEl = document.querySelector('[data-photo-status="' + kind + '"]');
+    var btn = document.querySelector('.photo-row[data-photo-kind="' + kind + '"] [data-photo-btn]');
+    var files = Array.prototype.slice.call(fileList || []);
+    if (!ta || !files.length) return;
+
+    var i = 0;
+    if (btn) btn.disabled = true;
+    function showStatus(msg) { if (statusEl) { statusEl.hidden = false; statusEl.textContent = msg; } }
+
+    function next() {
+      if (i >= files.length) {
+        if (statusEl) statusEl.hidden = true;
+        if (btn) btn.disabled = false;
+        return;
+      }
+      var file = files[i++];
+      showStatus("Reading photo " + i + " of " + files.length + "…");
+      downscaleImage(file).then(function (blob) {
+        return extractSheet(kind, blob);
+      }).then(function (res) {
+        if (res.ok && res.body && res.body.text) {
+          appendToTextarea(ta, res.body.text);
+          toast("Added text from photo " + i + " of " + files.length + " — check it against the sheet before moving on.");
+        } else {
+          toast((res.body && res.body.error) || "Could not read that photo. You can still type this one in by hand.");
+        }
+      }).catch(function () {
+        toast("Could not reach the server to read that photo.");
+      }).then(next);
+    }
+    next();
+  }
+
   function wire() {
+    document.addEventListener("click", function (ev) {
+      var btn = ev.target.closest ? ev.target.closest("[data-photo-btn]") : null;
+      if (!btn) return;
+      var row = btn.closest("[data-photo-kind]");
+      var input = row && row.querySelector("[data-photo-input]");
+      if (input) input.click();
+    });
+    document.addEventListener("change", function (ev) {
+      var input = ev.target;
+      if (!input.matches || !input.matches("[data-photo-input]")) return;
+      var row = input.closest("[data-photo-kind]");
+      var kind = row && row.getAttribute("data-photo-kind");
+      if (kind) handlePhotoFiles(kind, input.files);
+      input.value = "";
+    });
+
     document.addEventListener("input", function (ev) {
       var el = ev.target;
       if (!el || !el.getAttribute) return;
@@ -2675,6 +2806,7 @@ $10K</pre></details>
     }, 350);
   }
 
+  $("libBtn").addEventListener("click", openLibrary);
   $("libBtn2").addEventListener("click", openLibrary);
   $("tocBtn").addEventListener("click", openContents);
 
