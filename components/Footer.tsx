@@ -8,7 +8,7 @@ export function Footer() {
       <div className="bg-olive">
         <div className="mx-auto grid max-w-7xl gap-10 px-10 py-20 md:grid-cols-3 md:py-24">
           <div>
-            <Link href="https://www.emilyprebleauctions.com/" className="font-serif text-4xl text-plum md:text-5xl" aria-label={`${site.name} — home`}>
+            <Link href="https://www.emilyprebleauctions.com/" className="font-serif text-4xl text-plum md:text-5xl" aria-label={`${site.name} home`}>
               <span style={{ fontStyle: "normal" }}>Emily Preble </span>
               <span style={{ fontStyle: "italic" }}>Auctions</span>
             </Link>

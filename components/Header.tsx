@@ -13,7 +13,7 @@ export function Header() {
         <Link
           href="https://www.emilyprebleauctions.com/"
           className="font-serif text-2xl tracking-tight text-cream hover:text-cream-light"
-          aria-label={`${site.name} — home`}
+          aria-label={`${site.name} home`}
         >
           <span style={{ fontStyle: "normal" }}>Emily Preble </span>
           <span style={{ fontStyle: "italic" }}>Auctions</span>

@@ -52,7 +52,7 @@ function UnlockForm() {
             className="w-full border-b border-cream/40 bg-transparent px-2 py-3 text-center text-lg text-cream placeholder:text-cream/40 focus:border-coral focus:outline-none"
           />
           {error && (
-            <p className="mt-3 text-sm text-coral">That code didn&apos;t work — check it and try again.</p>
+            <p className="mt-3 text-sm text-coral">That code didn&apos;t work. Check it and try again.</p>
           )}
           <button
             type="submit"

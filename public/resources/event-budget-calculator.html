@@ -651,22 +651,15 @@
   .app-bar .app-brand {
     font-family: var(--font-display);
     font-size: 15px;
+    background: none;
+    border: 0;
+    padding: 0;
     color: inherit;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
+    cursor: pointer;
   }
-  .app-bar .app-brand:hover { border-bottom-color: rgba(234, 229, 214, 0.6); }
   .app-bar .app-brand em { color: var(--mast-accent); font-style: italic; }
-  .app-bar .app-sep { opacity: 0.5; font-size: 12px; }
+  .app-bar .app-sep { opacity: 0.35; }
   .app-bar .app-title {
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: inherit;
-    opacity: 0.85;
-  }
-  .app-bar .app-crumb-link {
     font-family: var(--font-body);
     font-size: 13px;
     font-weight: 600;
@@ -676,11 +669,9 @@
     padding: 0;
     color: inherit;
     cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: rgba(234, 229, 214, 0.55);
+    border-bottom: 1px solid transparent;
   }
-  .app-bar .app-crumb-link:hover { text-decoration-color: rgba(234, 229, 214, 0.95); }
+  .app-bar .app-title:hover { border-bottom-color: rgba(234, 229, 214, 0.6); }
   .app-bar .app-stage {
     margin-left: auto;
     font-size: 10px;
@@ -794,16 +785,23 @@
     padding: 0.45rem 0.9rem;
   }
   .lib-actions button:hover { border-color: var(--epa-orange); color: var(--epa-orange); }
+
+  /* Back to the series hub: a filled orange pill at the far left of the bar. */
+  a.app-home { font-family:"Albert Sans", system-ui, sans-serif; font-size:10px; font-weight:600;
+               letter-spacing:0.12em; text-transform:uppercase; color:#EAE5D6; background:#DD5037;
+               border-radius:999px; padding:0.32rem 0.8rem; align-self:center; text-decoration:none;
+               white-space:nowrap; transition:background 0.15s ease; }
+  a.app-home:hover { background:#c4432c; }
+  @media print { a.app-home { display:none !important; } }
 </style>
 
 <div class="app-bar">
-  <a class="app-brand" href="https://www.emilyprebleauctions.com/">Emily Preble <em>Auctions</em></a>
-  <span class="app-sep" aria-hidden="true">&rsaquo;</span>
-  <button class="app-crumb-link" id="libBtn2" type="button" title="See all guides in this series">Resource Guides</button>
-  <span class="app-sep" aria-hidden="true">&rsaquo;</span>
-  <span class="app-title">Event Budget Calculator</span>
+  <a class="app-home" href="/resources/epa-resource-guides.html" title="See every EPA guide and tool"><span aria-hidden="true">&#8592;</span> EPA Resource Library</a>
+  <button class="app-brand" id="libBtn" type="button" title="See all guides in this series">Emily Preble <em>Auctions</em></button>
+  <span class="app-sep">/</span>
+  <button class="app-title" id="libBtn2" type="button" title="See all guides in this series">Event Budget Calculator</button>
   <span class="app-stage">A Planning Tool</span>
-  <button class="app-toc" id="tocBtn" type="button" title="Jump to a step">Contents</button>
+  <button class="app-toc" id="tocBtn" type="button" title="Jump to a step">Tool Contents</button>
 </div>
 
 <div class="page">
@@ -905,7 +903,7 @@
           </div>
         </div>
         <div class="mix-row">
-          <div class="mix-info"><div class="mix-name">Auctions</div><div class="mix-strategy">Silent and live combined. Curate for appeal and accessibility, not just value.</div></div>
+          <div class="mix-info"><div class="mix-name">Auctions</div><div class="mix-strategy">Online and live combined. Curate for appeal and accessibility, not just value.</div></div>
           <div class="mix-figures">
             <div class="mix-pct-input"><input id="mixAuctions" type="number" min="0" max="100" step="1" value="15"><span>%</span></div>
             <div class="mix-target" id="targetAuctions">$0</div>
@@ -1031,8 +1029,8 @@
       <div class="step-head">
         <div class="step-head-text">
           <span class="step-number">Step 3</span>
-          <h2>Silent &amp; live auctions</h2>
-          <p class="step-blurb">Live auctions typically bring in about two thirds of your auction revenue, with silent auctions bringing in the rest.</p>
+          <h2>Live &amp; online auctions</h2>
+          <p class="step-blurb">In our experience, the live auction brings in about two thirds of your auction revenue, with the online auction bringing in the rest.</p>
         </div>
         <span class="pill" id="auctionsPill">$0 of $0 target</span>
       </div>
@@ -1054,14 +1052,14 @@
       </div>
       <p class="guard" id="liveQtyGuard" hidden>Running more than eight live auction items risks guest fatigue and a run of show that slips. Consider cutting the weakest lots and raising the value of the rest.</p>
 
-      <p class="subgroup-label">Silent auction</p>
-      <p class="step-blurb" style="margin-top:0">A solid rule of thumb is one item for every four to five giving units. With <strong id="silentGuDisplay">0</strong> giving units, that's about <strong id="silentQtyDisplay">0</strong> items at roughly <strong id="silentFmvDisplay">$0</strong> each. Fewer, better packages beat a long table of small ones, because bidding attention is finite and spreading it thin is what drives yield below 50%.</p>
+      <p class="subgroup-label">Online auction</p>
+      <p class="step-blurb" style="margin-top:0">A solid rule of thumb is one item for every four to five giving units. With <strong id="silentGuDisplay">0</strong> giving units, that's about <strong id="silentQtyDisplay">0</strong> items at roughly <strong id="silentFmvDisplay">$0</strong> each. Sell items individually rather than bundled into baskets, open every item at $10, and promote the auction like a second event. An online auction reaches supporters who never bought a ticket, and that reach is what lifts its return.</p>
       <div class="table-wrap">
         <table class="tier">
           <thead><tr><th>Items</th><th class="num">Qty</th><th class="num">Avg. fair market value</th><th class="num">Expected revenue</th></tr></thead>
           <tbody>
             <tr>
-              <td class="row-label">Silent auction items<span class="row-sub">Silent items typically sell for about 50% of fair market value</span></td>
+              <td class="row-label">Online auction items<span class="row-sub">Online items typically sell for 60% to 90% of fair market value. We plan at 70%.</span></td>
               <td class="num"><div class="cell-input"><input id="au_silent_qty" type="text" inputmode="numeric"></div></td>
               <td class="num"><div class="cell-input"><span>$</span><input id="au_silent_fmv" type="text" inputmode="numeric"></div></td>
               <td class="num cell-total" id="au_silent_total">$0</td>
@@ -1069,6 +1067,7 @@
           </tbody>
         </table>
       </div>
+      <p class="step-blurb" style="margin-top:0.6rem">At 60% to 90% of value, this lineup would raise <strong id="onlineRangeDisplay">$0</strong>. A well-promoted auction with a $10 start lands toward the top of that range. See <a href="/resources/online-auction-playbook.html" target="_blank" rel="noopener" style="color:#DD5037;font-weight:600">The Online Auction Playbook</a> for how.</p>
 
       <div class="section-total">
         <span>Auctions subtotal</span>
@@ -1474,7 +1473,7 @@
     setText('ticketAvgDisplay', fmtUSD(avgTicket));
     $('ticketPriceGuard').hidden = !(ticketQty > 0 && avgTicket > 0 && avgTicket < 175);
 
-    // Auctions: live 66%, silent 34% of the auctions target (industry benchmark split)
+    // Auctions: live 66%, online 34% of the auctions target (planning split)
     const liveTarget = targets.auctions * 0.66;
     const silentTarget = targets.auctions * 0.34;
     setText('liveTargetDisplay', fmtUSD(liveTarget));
@@ -1491,9 +1490,11 @@
 
     if (!dirty.has('au_silent_qty')) setVal('au_silent_qty', Math.round(gu / 4.5));
     const silentQty = clamp0(num('au_silent_qty'));
-    if (!dirty.has('au_silent_fmv')) setVal('au_silent_fmv', silentQty > 0 ? roundNice((silentTarget / 0.5) / silentQty) : 0);
+    if (!dirty.has('au_silent_fmv')) setVal('au_silent_fmv', silentQty > 0 ? roundNice((silentTarget / 0.7) / silentQty) : 0);
     const silentFmv = clamp0(num('au_silent_fmv'));
-    const silentTotal = silentQty * silentFmv * 0.5;
+    // Online items return 60-90% of fair market value; plan at 70%.
+    const silentTotal = silentQty * silentFmv * 0.7;
+    setText('onlineRangeDisplay', fmtUSD(silentQty * silentFmv * 0.6) + ' to ' + fmtUSD(silentQty * silentFmv * 0.9));
     setText('au_silent_total', fmtUSD(silentTotal));
     setText('silentGuDisplay', fmtNum(gu));
     setText('silentQtyDisplay', fmtNum(silentQty));
@@ -1598,7 +1599,7 @@
 })();
 </script>
 
-<script type="application/json" id="library-data" data-epa>{"seriesTitle":"EPA Resource Guides","seriesNote":"Practical guides for nonprofit teams running benefit auctions and fundraising events.","guides":[{"slug":"build-the-team","title":"Building Successful Event Committees","subtitle":"Build the Team","blurb":"Structure, roles, table hosting, sponsorships and accountability for a working event committee.","status":"available","url":"/resources/build-the-team.html"},{"slug":"leading-the-charge","title":"Pre-Committed Giving","subtitle":"Leading the Charge","blurb":"How to set the tone for generosity before the appeal begins: benchmarks, scripts, objections and templates.","status":"available","url":"/resources/leading-the-charge.html"},{"slug":"live-auction-101","title":"Live Auction 101","subtitle":"Procurement & Best Practices","blurb":"Know your audience, build the dream item list, choose a procurement method, make the ask, and learn from the results.","status":"available","url":"/resources/live-auction-101.html"},{"slug":"underbid-recording","title":"Auction Data & Underbid Recording","subtitle":"Learning from Non-Winning Bids","blurb":"How to capture every bid placed in your live auction, read what the numbers say about your lots and your donors, and turn losing bidders into your best cultivation list.","status":"available","url":"/resources/underbid-recording.html"},{"slug":"gratitude-plan","title":"Donor Gratitude and Stewardship","subtitle":"The Gratitude Plan","blurb":"A stewardship framework built on Thank, Show, Invite — with a donor timeline, ten donor tracks, and plug-and-play email, letter and phone templates.","status":"available","url":"/resources/gratitude-plan.html"},{"slug":"event-budget-calculator","title":"Event Budget Calculator","subtitle":"A Planning Tool","blurb":"Enter your fundraising goal and guest count, then see what your sponsorship levels, ticket prices and giving tiers need to be to hit it.","status":"available","url":"/resources/event-budget-calculator.html","cta":"Open the tool"},{"slug":"event-data-analyzer","title":"Event Data Analyzer","subtitle":"Reading Your Results","blurb":"Put in what happened at your event — revenue, guest roster, clerking sheets, and the underbid record — and get back a detailed report on what the data means, ready to download and share with your team.","status":"available","url":"/resources/event-data-analyzer.html","cta":"Open the tool"},{"slug":"placeholder-1","title":"More guides coming","subtitle":"","blurb":"Additional guides in this series are being written and will appear here.","status":"soon","url":""}],"seriesUrl":"/resources/epa-resource-guides.html","current":"event-budget-calculator"}</script>
+<script type="application/json" id="library-data" data-epa>{"seriesTitle":"EPA Resource Guides","seriesNote":"Practical guides for nonprofit teams running benefit auctions and fundraising events.","guides":[{"slug":"build-the-team","title":"Building Successful Event Committees","subtitle":"Build the Team","blurb":"Structure, roles, timelines, table hosting, sponsorships and accountability for a committee that does the work.","status":"available","url":"/resources/build-the-team.html"},{"slug":"leading-the-charge","title":"Pre-Committed Giving","subtitle":"Ensuring Paddle Raise Success","blurb":"How to secure leadership gifts before the paddle raise begins, so the room follows their lead: benchmarks, timelines, call scripts, objection handling and templates.","status":"available","url":"/resources/leading-the-charge.html"},{"slug":"live-auction-101","title":"Live Auction 101","subtitle":"Procurement & Best Practices","blurb":"Know your audience, build the dream item list, choose a procurement method, make the ask, and learn from the results.","status":"available","url":"/resources/live-auction-101.html"},{"slug":"online-auction-playbook","title":"The Online Auction Playbook","subtitle":"Raise More, Reach Further","blurb":"How to replace the silent auction table with an online auction that reaches every supporter, plus a full promotion plan and ready-to-send templates.","status":"available","url":"/resources/online-auction-playbook.html"},{"slug":"underbid-recording","title":"Auction Data & Underbid Recording","subtitle":"Learning from Non-Winning Bids","blurb":"How to capture every bid placed in your live auction, read what the numbers say about your lots and your donors, and turn losing bidders into your best cultivation list.","status":"available","url":"/resources/underbid-recording.html"},{"slug":"gratitude-plan","title":"Donor Gratitude and Stewardship","subtitle":"The Gratitude Plan","blurb":"A stewardship framework built on Thank, Show, Invite, with a donor timeline, ten donor tracks, receipt guidance, and plug-and-play email, letter and phone templates.","status":"available","url":"/resources/gratitude-plan.html"},{"slug":"event-budget-calculator","title":"Event Budget Calculator","subtitle":"A Planning Tool","blurb":"Enter your fundraising goal and guest count, then see what your sponsorship levels, ticket prices and giving tiers need to be to hit it.","status":"available","url":"/resources/event-budget-calculator.html","cta":"Open the tool"},{"slug":"event-data-analyzer","title":"Event Data Analyzer","subtitle":"Reading Your Results","blurb":"Put in what happened at your event (revenue, guest roster, clerking sheets and the underbid record) and get back a detailed report on what the data means, ready to download and share with your team.","status":"available","url":"/resources/event-data-analyzer.html","cta":"Open the tool"},{"slug":"placeholder-1","title":"More guides coming","subtitle":"","blurb":"Additional guides in this series are being written and will appear here.","status":"soon","url":""}],"seriesUrl":"/resources/epa-resource-guides.html","current":"event-budget-calculator"}</script>
 <script>
 (function () {
   "use strict";
@@ -1712,6 +1713,7 @@
     }, 350);
   }
 
+  document.getElementById("libBtn").addEventListener("click", openLibrary);
   document.getElementById("libBtn2").addEventListener("click", openLibrary);
   document.getElementById("tocBtn").addEventListener("click", openContents);
 

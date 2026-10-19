@@ -11,6 +11,7 @@ const GATED_FILES = [
   "/resources/build-the-team.html",
   "/resources/leading-the-charge.html",
   "/resources/live-auction-101.html",
+  "/resources/online-auction-playbook.html",
   "/resources/underbid-recording.html",
   "/resources/gratitude-plan.html",
   "/resources/event-budget-calculator.html",

@@ -262,14 +262,23 @@
                         border:1px solid rgba(50,20,38,0.28); background:transparent; color:var(--epa-purple);
                         border-radius:7px; padding:0.45rem 0.9rem; }
   .lib-actions button:hover { border-color:var(--epa-orange); color:var(--epa-orange); }
+
+  /* Back to the series hub: a filled orange pill at the far left of the bar. */
+  a.app-home { font-family:"Albert Sans", system-ui, sans-serif; font-size:10px; font-weight:600;
+               letter-spacing:0.12em; text-transform:uppercase; color:#EAE5D6; background:#DD5037;
+               border-radius:999px; padding:0.32rem 0.8rem; align-self:center; text-decoration:none;
+               white-space:nowrap; transition:background 0.15s ease; }
+  a.app-home:hover { background:#c4432c; }
+  @media print { a.app-home { display:none !important; } }
 </style>
 
 <div class="app-bar">
+  <a class="app-home" href="/resources/epa-resource-guides.html" title="See every EPA guide and tool"><span aria-hidden="true">&#8592;</span> EPA Resource Library</a>
   <button class="app-brand" id="libBtn" type="button" title="See everything in this series">Emily Preble <em>Auctions</em></button>
   <span class="app-sep">/</span>
   <button class="app-title" id="libBtn2" type="button" title="See everything in this series">Event Data Analyzer</button>
   <span class="app-stage">Reading Your Results</span>
-  <button class="app-toc" id="tocBtn" type="button" title="Jump to a step">Contents</button>
+  <button class="app-toc" id="tocBtn" type="button" title="Jump to a step">Tool Contents</button>
 </div>
 
 <div class="page">
@@ -302,7 +311,7 @@
       <div class="step-head-text">
         <span class="step-number">Start here</span>
         <h2>The event</h2>
-        <p class="step-blurb">Everything you enter is saved in this browser as you type. When you're ready to hand it over, use <strong>Save file</strong> at the bottom of this card and email it &mdash; whoever opens it next picks up exactly where you left off.</p>
+        <p class="step-blurb">Everything you enter is saved in this browser as you type. When you're ready to hand it over, use <strong>Save file</strong> at the bottom of this card and email it. Whoever opens it next picks up exactly where you left off.</p>
       </div>
       <span class="who is-client">Either of us</span>
     </div>
@@ -328,7 +337,7 @@
       <div class="step-head-text">
         <span class="step-number">Section 1</span>
         <h2>The numbers</h2>
-        <p class="step-blurb">What you set out to raise, and what you actually raised. Leave anything blank that doesn't apply &mdash; blanks are ignored rather than counted as zero.</p>
+        <p class="step-blurb">What you set out to raise, and what you actually raised. Leave anything blank that doesn't apply. Blanks are ignored rather than counted as zero.</p>
       </div>
       <span class="who is-client">Your team</span>
     </div>
@@ -383,7 +392,7 @@
       <span class="who is-client">Your team</span>
     </div>
     <textarea class="mono" data-k="roster" rows="7" placeholder="101, Jane Doe, 4, returning&#10;320, Bob Smith, 7, new"></textarea>
-    <p class="hint">One per line: <code>paddle, name, table, new or returning</code>. Paste straight from a spreadsheet &mdash; tabs and commas both work, and the last two are optional.</p>
+    <p class="hint">One per line: <code>paddle, name, table, new or returning</code>. Paste straight from a spreadsheet: tabs and commas both work, and the last two are optional.</p>
     <div class="parse-note is-good" id="rosterNote">No roster yet. Everything will report in paddle numbers.</div>
   </section>
 
@@ -397,21 +406,21 @@
       </div>
       <span class="who is-epa">Emily</span>
     </div>
-    <textarea class="mono" data-k="live" rows="9" placeholder="1) Weekend Getaway Package &mdash; $1,800 &mdash; #316"></textarea>
+    <textarea class="mono" data-k="live" rows="9" placeholder="1) Weekend Getaway Package - $1,800 - #316"></textarea>
     <div class="photo-row" data-photo-kind="live">
       <button class="btn" type="button" data-photo-btn>Upload a photo or PDF of the clerking sheet</button>
       <input type="file" accept="image/*,application/pdf" multiple hidden data-photo-input>
       <p class="photo-status" data-photo-status="live" hidden></p>
     </div>
     <p class="hint">One lot per line. A lot that sold twice takes two paddle numbers, on the same line or the next one. Optional extras anywhere on the line: <code>fmv $1200</code>, <code>cat travel</code>, <code>time 2:40</code>.</p>
-    <details class="sample"><summary>Show an example</summary><pre>1) Wine Country Weekend — $1800 — #316
-2) Golf Foursome Package — $1000 — #114  cat experience
-3) Mountain Cabin Stay — $1100 — #072  fmv $900  cat travel
-4) Lakefront Family Cabin — $1500 — #098  cat travel
-5) Local Arts + Culture Package — $850 — #064
-6) City Getaway Weekend — $1100 — #072  cat travel
-7) Spring Flower Basket — $1400 — #089
-8) Private School Experience — $1050 — #056, #058</pre></details>
+    <details class="sample"><summary>Show an example</summary><pre>1) Wine Country Weekend - $1800 - #316
+2) Golf Foursome Package - $1000 - #114  cat experience
+3) Mountain Cabin Stay - $1100 - #072  fmv $900  cat travel
+4) Lakefront Family Cabin - $1500 - #098  cat travel
+5) Local Arts + Culture Package - $850 - #064
+6) City Getaway Weekend - $1100 - #072  cat travel
+7) Spring Flower Basket - $1400 - #089
+8) Private School Experience - $1050 - #056, #058</pre></details>
     <div class="parse-note is-good" id="liveNote">Nothing entered yet.</div>
   </section>
 
@@ -421,23 +430,23 @@
       <div class="step-head-text">
         <span class="step-number">Section 5</span>
         <h2>Underbid record</h2>
-        <p class="step-blurb">The scratch pages, typed up as they were written: one lot per page, paddle numbers <strong>top to bottom in the order they bid</strong>. No dollar amounts per bid &mdash; there aren't any on the page. Or upload a photo of the page and we'll read it for you.</p>
+        <p class="step-blurb">The scratch pages, typed up as they were written: one lot per page, paddle numbers <strong>top to bottom in the order they bid</strong>. No dollar amounts per bid (there aren't any on the page). Or upload a photo of the page and we'll read it for you.</p>
       </div>
       <span class="who is-epa">Emily</span>
     </div>
-    <textarea class="mono" data-k="underbid" rows="14" placeholder="Lot 3 &mdash; Weekend Getaway&#10;open $2000&#10;inc $500&#10;101&#10;320&#10;420&#10;sold 333&#10;$10K"></textarea>
+    <textarea class="mono" data-k="underbid" rows="14" placeholder="Lot 3 - Weekend Getaway&#10;open $2000&#10;inc $500&#10;101&#10;320&#10;420&#10;sold 333&#10;$10K"></textarea>
     <div class="photo-row" data-photo-kind="underbid">
       <button class="btn" type="button" data-photo-btn>Upload a photo or PDF of this underbid page</button>
       <input type="file" accept="image/*,application/pdf" multiple hidden data-photo-input>
       <p class="photo-status" data-photo-status="underbid" hidden></p>
     </div>
     <p class="hint">
-      Start a lot with <code>Lot 3 — name</code>, or just leave a blank line between pages. Then one paddle per line, or several separated by commas.
+      Start a lot with <code>Lot 3 - name</code>, or just leave a blank line between pages. Then one paddle per line, or several separated by commas.
       A missed paddle is <code>???</code>. Finish with <code>sold 333</code> and the hammer price <code>$10K</code>.
       Add a table with <code>t12</code> after a paddle.
-      <strong>To estimate where each bidder dropped out in dollars</strong>, add <code>open $2000</code> and <code>inc $500</code> &mdash; without them you'll get position instead, which is never wrong.
+      <strong>To estimate where each bidder dropped out in dollars</strong>, add <code>open $2000</code> and <code>inc $500</code>. Without them you'll get position instead, which is never wrong.
     </p>
-    <details class="sample"><summary>Show an example</summary><pre>Lot 3 — Weekend Getaway
+    <details class="sample"><summary>Show an example</summary><pre>Lot 3 - Weekend Getaway
 open $2000
 inc $500
 101
@@ -464,8 +473,8 @@ $10K</pre></details>
     <div class="step-head">
       <div class="step-head-text">
         <span class="step-number">Section 6</span>
-        <h2>Special appeal</h2>
-        <p class="step-blurb">The paddle raise tracking sheet. Write the levels as they ended up on the night, not as they were printed &mdash; if a level got rewritten mid-appeal, use the number you actually called. Or upload a photo of the sheet and we'll read it for you.</p>
+        <h2>Paddle raise</h2>
+        <p class="step-blurb">The paddle raise tracking sheet. Write the levels as they ended up on the night, not as they were printed. If a level got rewritten mid-appeal, use the number you actually called. Or upload a photo of the sheet and we'll read it for you.</p>
       </div>
       <span class="who is-epa">Emily</span>
     </div>
@@ -475,7 +484,7 @@ $10K</pre></details>
       <input type="file" accept="image/*,application/pdf" multiple hidden data-photo-input>
       <p class="photo-status" data-photo-status="appeal" hidden></p>
     </div>
-    <p class="hint">One level per line: <code>$2,500: 3, 13, 26</code> &mdash; the level, then every paddle that went up at it. Names work where you wrote a name instead of a number. Lump sums go on their own line: <code>pre-commit:</code>, <code>paddle drop:</code>, <code>match:</code>, <code>other:</code>.</p>
+    <p class="hint">One level per line: <code>$2,500: 3, 13, 26</code>: the level, then every paddle that went up at it. Names work where you wrote a name instead of a number. Lump sums go on their own line: <code>pre-commit:</code>, <code>paddle drop:</code>, <code>match:</code>, <code>other:</code>.</p>
     <div class="parse-note is-good" id="appealNote">Nothing entered yet.</div>
   </section>
 
@@ -489,8 +498,8 @@ $10K</pre></details>
       </div>
       <span class="who is-client">Your team</span>
     </div>
-    <textarea data-k="precommit" rows="5" placeholder="Jane Doe &mdash; $10,000 &mdash; yes &mdash; gave from the stage&#10;Bob Smith &mdash; $5,000 &mdash; no &mdash; asked too late"></textarea>
-    <p class="hint">One per line: <code>name — amount asked — committed? — notes</code>.</p>
+    <textarea data-k="precommit" rows="5" placeholder="Jane Doe - $10,000 - yes - gave from the stage&#10;Bob Smith - $5,000 - no - asked too late"></textarea>
+    <p class="hint">One per line: <code>name - amount asked - committed? - notes</code>.</p>
     <div class="grid g2">
       <div class="field"><label for="f_stage">Were pre-commits recognized from the stage?</label>
         <div class="field-input"><input id="f_stage" data-k="pre.stage" type="text" placeholder="Yes / No"></div></div>
@@ -505,7 +514,7 @@ $10K</pre></details>
       <div class="step-head-text">
         <span class="step-number">Section 8</span>
         <h2>What worked, what didn't</h2>
-        <p class="step-blurb">Fill this out within 48 hours while the details are still fresh. Skip any row that isn't worth a note &mdash; empty rows are left out of the report.</p>
+        <p class="step-blurb">Fill this out within 48 hours while the details are still fresh. Skip any row that isn't worth a note. Empty rows are left out of the report.</p>
       </div>
       <span class="who is-client">Your team</span>
     </div>
@@ -534,8 +543,8 @@ $10K</pre></details>
       <span class="who is-client">Your team</span>
     </div>
     <p class="row-label">Vendors and sponsors</p>
-    <textarea data-k="vendors" rows="4" placeholder="Sample Catering Co. &mdash; caterer &mdash; renew &mdash; worth every penny&#10;Community Bank &mdash; presenting sponsor &mdash; renew &mdash; approach in January"></textarea>
-    <p class="hint">One per line: <code>name — role or level — renew? — notes</code>.</p>
+    <textarea data-k="vendors" rows="4" placeholder="Sample Catering Co. - caterer - renew - worth every penny&#10;Community Bank - presenting sponsor - renew - approach in January"></textarea>
+    <p class="hint">One per line: <code>name - role or level - renew? - notes</code>.</p>
     <div class="grid g4" style="margin-top:1.3rem">
       <div class="field"><label for="f_hold">Tentative hold date</label><div class="field-input"><input id="f_hold" data-k="next.date" type="text" placeholder="7/12/2027"></div></div>
       <div class="field"><label for="f_venue">Venue</label><div class="field-input"><input id="f_venue" data-k="next.venue" type="text" placeholder="Confirm or reconsider?"></div></div>
@@ -543,8 +552,8 @@ $10K</pre></details>
       <div class="field"><label for="f_theme">Theme ideas</label><div class="field-input"><input id="f_theme" data-k="next.theme" type="text" placeholder=""></div></div>
     </div>
     <p class="row-label" style="margin-top:1.3rem">Immediate action items</p>
-    <textarea data-k="actions" rows="4" placeholder="Call the top four underbidders &mdash; Sarah &mdash; Tuesday&#10;Confirm the venue hold &mdash; Marcus &mdash; Oct 1"></textarea>
-    <p class="hint">One per line: <code>action — owner — deadline</code>. Assign an owner and a date before you close this out.</p>
+    <textarea data-k="actions" rows="4" placeholder="Call the top four underbidders - Sarah - Tuesday&#10;Confirm the venue hold - Marcus - Oct 1"></textarea>
+    <p class="hint">One per line: <code>action - owner - deadline</code>. Assign an owner and a date before you close this out.</p>
   </section>
 
   <!-- ============ 10. Last year ============ -->
@@ -559,7 +568,7 @@ $10K</pre></details>
     </div>
     <div class="grid g4">
       <div class="field"><label for="l_rev">Total revenue</label><div class="field-input"><span class="prefix">$</span><input id="l_rev" data-k="last.revenue" type="text" inputmode="decimal"></div></div>
-      <div class="field"><label for="l_fan">Fund-a-need total</label><div class="field-input"><span class="prefix">$</span><input id="l_fan" data-k="last.appeal" type="text" inputmode="decimal"></div></div>
+      <div class="field"><label for="l_fan">Paddle raise total</label><div class="field-input"><span class="prefix">$</span><input id="l_fan" data-k="last.appeal" type="text" inputmode="decimal"></div></div>
       <div class="field"><label for="l_live">Live auction revenue</label><div class="field-input"><span class="prefix">$</span><input id="l_live" data-k="last.live" type="text" inputmode="decimal"></div></div>
       <div class="field"><label for="l_part">Participation rate</label><div class="field-input"><input id="l_part" data-k="last.participation" type="text" inputmode="decimal" placeholder="%"></div></div>
       <div class="field"><label for="l_avg">Average gift</label><div class="field-input"><span class="prefix">$</span><input id="l_avg" data-k="last.avgGift" type="text" inputmode="decimal"></div></div>
@@ -577,7 +586,7 @@ $10K</pre></details>
       <div class="step-head-text">
         <span class="step-number">The output</span>
         <h2>Your report</h2>
-        <p class="step-blurb">This rebuilds itself every time anything above changes. <strong>You can edit it directly</strong> &mdash; click into any sentence and rewrite it &mdash; and the edits are what gets copied out.</p>
+        <p class="step-blurb">This rebuilds itself every time anything above changes. <strong>You can edit it directly</strong>: click into any sentence and rewrite it, and your edits are what gets copied out.</p>
       </div>
       <span class="who is-client">Either of us</span>
     </div>
@@ -588,7 +597,7 @@ $10K</pre></details>
       <button class="btn" type="button" id="jsonBtn">Download save file</button>
       <button class="btn" type="button" id="rebuildBtn" hidden>Rebuild from the data</button>
     </div>
-    <p class="hint" id="editedNote" hidden>You have edited this report by hand, so it has stopped rebuilding itself &mdash; otherwise your next change upstairs would wipe what you wrote. <b>Rebuild from the data</b> throws your edits away and starts fresh.</p>
+    <p class="hint" id="editedNote" hidden>You have edited this report by hand, so it has stopped rebuilding itself. Otherwise your next change upstairs would wipe what you wrote. <b>Rebuild from the data</b> throws your edits away and starts fresh.</p>
     <div class="report" id="report" contenteditable="true" spellcheck="false"></div>
   </section>
 
@@ -597,7 +606,7 @@ $10K</pre></details>
 <footer><p>Emily Preble Auctions</p></footer>
 </div>
 
-<script type="application/json" id="library-data" data-epa>{"seriesTitle":"EPA Resource Guides","seriesNote":"Practical guides for nonprofit teams running benefit auctions and fundraising events.","guides":[{"slug":"build-the-team","title":"Building Successful Event Committees","subtitle":"Build the Team","blurb":"Structure, roles, table hosting, sponsorships and accountability for a working event committee.","status":"available","url":"/resources/build-the-team.html"},{"slug":"leading-the-charge","title":"Pre-Committed Giving","subtitle":"Leading the Charge","blurb":"How to set the tone for generosity before the appeal begins: benchmarks, scripts, objections and templates.","status":"available","url":"/resources/leading-the-charge.html"},{"slug":"live-auction-101","title":"Live Auction 101","subtitle":"Procurement & Best Practices","blurb":"Know your audience, build the dream item list, choose a procurement method, make the ask, and learn from the results.","status":"available","url":"/resources/live-auction-101.html"},{"slug":"underbid-recording","title":"Auction Data & Underbid Recording","subtitle":"Learning from Non-Winning Bids","blurb":"How to capture every bid placed in your live auction, read what the numbers say about your lots and your donors, and turn losing bidders into your best cultivation list.","status":"available","url":"/resources/underbid-recording.html"},{"slug":"gratitude-plan","title":"Donor Gratitude and Stewardship","subtitle":"The Gratitude Plan","blurb":"A stewardship framework built on Thank, Show, Invite — with a donor timeline, ten donor tracks, and plug-and-play email, letter and phone templates.","status":"available","url":"/resources/gratitude-plan.html"},{"slug":"event-budget-calculator","title":"Event Budget Calculator","subtitle":"A Planning Tool","blurb":"Enter your fundraising goal and guest count, then see what your sponsorship levels, ticket prices and giving tiers need to be to hit it.","status":"available","url":"/resources/event-budget-calculator.html","cta":"Open the tool"},{"slug":"event-data-analyzer","title":"Event Data Analyzer","subtitle":"Reading Your Results","blurb":"Put in what happened at your event — revenue, guest roster, clerking sheets, and the underbid record — and get back a detailed report on what the data means, ready to download and share with your team.","status":"available","url":"/resources/event-data-analyzer.html","cta":"Open the tool"},{"slug":"placeholder-1","title":"More guides coming","subtitle":"","blurb":"Additional guides in this series are being written and will appear here.","status":"soon","url":""}],"seriesUrl":"/resources/epa-resource-guides.html","current":"event-data-analyzer"}</script>
+<script type="application/json" id="library-data" data-epa>{"seriesTitle":"EPA Resource Guides","seriesNote":"Practical guides for nonprofit teams running benefit auctions and fundraising events.","guides":[{"slug":"build-the-team","title":"Building Successful Event Committees","subtitle":"Build the Team","blurb":"Structure, roles, timelines, table hosting, sponsorships and accountability for a committee that does the work.","status":"available","url":"/resources/build-the-team.html"},{"slug":"leading-the-charge","title":"Pre-Committed Giving","subtitle":"Ensuring Paddle Raise Success","blurb":"How to secure leadership gifts before the paddle raise begins, so the room follows their lead: benchmarks, timelines, call scripts, objection handling and templates.","status":"available","url":"/resources/leading-the-charge.html"},{"slug":"live-auction-101","title":"Live Auction 101","subtitle":"Procurement & Best Practices","blurb":"Know your audience, build the dream item list, choose a procurement method, make the ask, and learn from the results.","status":"available","url":"/resources/live-auction-101.html"},{"slug":"online-auction-playbook","title":"The Online Auction Playbook","subtitle":"Raise More, Reach Further","blurb":"How to replace the silent auction table with an online auction that reaches every supporter, plus a full promotion plan and ready-to-send templates.","status":"available","url":"/resources/online-auction-playbook.html"},{"slug":"underbid-recording","title":"Auction Data & Underbid Recording","subtitle":"Learning from Non-Winning Bids","blurb":"How to capture every bid placed in your live auction, read what the numbers say about your lots and your donors, and turn losing bidders into your best cultivation list.","status":"available","url":"/resources/underbid-recording.html"},{"slug":"gratitude-plan","title":"Donor Gratitude and Stewardship","subtitle":"The Gratitude Plan","blurb":"A stewardship framework built on Thank, Show, Invite, with a donor timeline, ten donor tracks, receipt guidance, and plug-and-play email, letter and phone templates.","status":"available","url":"/resources/gratitude-plan.html"},{"slug":"event-budget-calculator","title":"Event Budget Calculator","subtitle":"A Planning Tool","blurb":"Enter your fundraising goal and guest count, then see what your sponsorship levels, ticket prices and giving tiers need to be to hit it.","status":"available","url":"/resources/event-budget-calculator.html","cta":"Open the tool"},{"slug":"event-data-analyzer","title":"Event Data Analyzer","subtitle":"Reading Your Results","blurb":"Put in what happened at your event (revenue, guest roster, clerking sheets and the underbid record) and get back a detailed report on what the data means, ready to download and share with your team.","status":"available","url":"/resources/event-data-analyzer.html","cta":"Open the tool"},{"slug":"placeholder-1","title":"More guides coming","subtitle":"","blurb":"Additional guides in this series are being written and will appear here.","status":"soon","url":""}],"seriesUrl":"/resources/epa-resource-guides.html","current":"event-data-analyzer"}</script>
 <script>
 (function () {
   "use strict";
@@ -611,7 +620,7 @@ $10K</pre></details>
   var REV_ROWS = [
     ["tickets", "Ticket / table sales"],
     ["sponsors", "Sponsorships"],
-    ["silent", "Silent auction"],
+    ["silent", "Online auction"],
     ["liveRev", "Live auction"],
     ["fan", "Fund-a-need / paddle raise"],
     ["raffle", "Raffle / games"],
@@ -619,7 +628,7 @@ $10K</pre></details>
   ];
 
   var DEBRIEF_ROWS = [
-    "Registration / check-in", "Cocktail hour", "Silent auction / revenue enhancers",
+    "Registration / check-in", "Cocktail hour", "Online auction / revenue enhancers",
     "Program flow + pacing", "Fund-a-need / special appeal", "Live auction",
     "Auctioneer + stage performance", "Check-out / end of night", "AV / sound",
     "Lighting / ambiance", "Venue", "Staffing / volunteers", "Overall energy + room"
@@ -661,8 +670,23 @@ $10K</pre></details>
       var raw = localStorage.getItem(KEY);
       if (!raw) return;
       var parsed = JSON.parse(raw);
-      if (parsed && typeof parsed === "object") S = Object.assign(blank(), parsed);
+      if (parsed && typeof parsed === "object") S = Object.assign(blank(), migrate(parsed));
     } catch (e) {}
+  }
+
+  /* Debrief rows are keyed by their label, so a renamed row would orphan
+     what was typed under the old name. Older saves get carried across. */
+  var RENAMED_DEBRIEF = { "Silent auction / revenue enhancers": "Online auction / revenue enhancers" };
+  function migrate(obj) {
+    var d = obj && obj.debrief;
+    if (d && typeof d === "object") {
+      Object.keys(RENAMED_DEBRIEF).forEach(function (oldKey) {
+        var newKey = RENAMED_DEBRIEF[oldKey];
+        if (d[oldKey] && !d[newKey]) d[newKey] = d[oldKey];
+        delete d[oldKey];
+      });
+    }
+    return obj;
   }
 
   /* =======================================================================
@@ -763,7 +787,7 @@ $10K</pre></details>
       lot.name = line.replace(/\s+/g, " ")
                      .replace(/^[\s—–\-:|,]+/, "")
                      .replace(/[\s—–\-:|,]+$/, "")
-                     .replace(/\s*[—–\-]\s*[—–\-]\s*/g, " — ")
+                     .replace(/\s*[—–\-]\s*[—–\-]\s*/g, " - ")
                      .trim();
 
       if (lot.price == null && !lot.winners.length && !lot.name) return;
@@ -894,7 +918,7 @@ $10K</pre></details>
           var lv = money(xm[1]), ct = parseInt(xm[2], 10);
           if (lv !== null && ct > 0) { levels.push({ level: lv, donors: [], count: ct }); return; }
         }
-        problems.push("Skipped “" + line + "” — no colon, so there is no level to read.");
+        problems.push("Skipped “" + line + "”: there is no colon, so there is no level to read.");
         return;
       }
       var left = line.slice(0, ci).trim(), right = line.slice(ci + 1).trim();
@@ -1113,7 +1137,7 @@ $10K</pre></details>
         else if (match.winner && cl.winners.length && cl.winners.indexOf(match.winner) < 0) {
           a.under.problems.push(match.label + ": the clerking card says "
             + cl.winners.map(padShow).join(" and ") + " won it, the underbid page says "
-            + padShow(match.winner) + ". Worth settling before this goes out \u2014 one of the two is mis-keyed.");
+            + padShow(match.winner) + ". Worth settling before this goes out, since one of the two is mis-keyed.");
         }
       }
       cl.winners.forEach(function (w) {
@@ -1156,9 +1180,21 @@ $10K</pre></details>
     a.liveTotal = liveTotal || null;
     var ranked = Object.keys(spend).sort(function (x, y) { return spend[y] - spend[x]; });
     a.buyers = ranked.map(function (k) { return { paddle: k, spent: spend[k] }; });
-    var top3 = ranked.slice(0, 3).reduce(function (s, k) { return s + spend[k]; }, 0);
-    a.top3 = liveTotal ? (top3 / liveTotal) * 100 : null;
+    /* The top three ratio follows the Underbid Recording guide: each guest's
+       live auction purchases plus their paddle raise gift, as a share of the
+       two combined. With no paddle raise sheet it falls back to live only. */
+    var combined = {};
+    Object.keys(spend).forEach(function (k) { combined[k] = spend[k]; });
+    Object.keys(a.appealPaddles).forEach(function (k) {
+      combined[k] = (combined[k] || 0) + a.appealPaddles[k];
+    });
+    var base = liveTotal + (a.appealTotal || 0);
+    var rankedAll = Object.keys(combined).sort(function (x, y) { return combined[y] - combined[x]; });
+    var top3 = rankedAll.slice(0, 3).reduce(function (s, k) { return s + combined[k]; }, 0);
+    a.top3 = base ? (top3 / base) * 100 : null;
     a.top3Amount = top3;
+    a.top3Base = base;
+    a.top3WithAppeal = !!a.appealTotal;
 
     /* ---- one-bid lots, bidding wars, order effect, FMV ---- */
     a.oneBid = lots.filter(function (l) { return l.bids > 0 && l.bidders <= 1; });
@@ -1312,7 +1348,7 @@ $10K</pre></details>
     var ev = (S.meta && S.meta.event) || "Your event";
     var dt = (S.meta && S.meta.date) || "";
 
-    H.push("<h3>" + esc(ev) + (org ? " &mdash; " + esc(org) : "") + "</h3>");
+    H.push("<h3>" + esc(ev) + (org ? ", " + esc(org) : "") + "</h3>");
     H.push("<p class=\"est\">Post-event analysis" + (dt ? ", " + esc(dt) : "") + ". Prepared with Emily Preble Auctions.</p>");
 
     /* ---------- 1. The numbers ---------- */
@@ -1335,7 +1371,7 @@ $10K</pre></details>
       if (a.rev.goal !== null) {
         var ratio = (a.rev.actual / a.rev.goal) * 100;
         bits.push("You raised " + usdPlain(a.rev.actual) + " against a goal of " + usdPlain(a.rev.goal)
-          + " &mdash; " + pct(ratio) + " of what you set out to do"
+          + ", " + pct(ratio) + " of what you set out to do"
           + (ratio >= 100 ? ", which you should say out loud to your board." : "."));
       } else {
         bits.push("You raised " + usdPlain(a.rev.actual) + ".");
@@ -1368,7 +1404,7 @@ $10K</pre></details>
 
       if (a.rev.fulfillment !== null) {
         H.push("<p>Of " + usdPlain(a.rev.pledged) + " pledged in the appeal, " + usdPlain(a.rev.collected)
-          + " has come in so far &mdash; " + pct(a.rev.fulfillment) + ". "
+          + " has come in so far (" + pct(a.rev.fulfillment) + "). "
           + (a.rev.fulfillment >= 95 ? "That is essentially full collection, and it means your follow-up is working."
              : a.rev.fulfillment >= 85 ? "That is normal at this stage. The last stretch is usually a handful of people who need one more reminder."
              : "There is real money still outstanding. Pledge reminders are the least glamorous and highest-yielding work available to you right now.") + "</p>");
@@ -1386,7 +1422,7 @@ $10K</pre></details>
       if (a.room.noShows !== null && a.room.noShows > 0) {
         roomBits.push(a.room.noShows + " " + plural(a.room.noShows, "no-show") + " is "
           + pct(a.room.noShowRate) + " of the tickets"
-          + (a.room.noShowRate > 12 ? " — high enough to plan for next year, in seats and in catering guarantees." : ", which is within normal range."));
+          + (a.room.noShowRate > 12 ? ", high enough to plan for next year, in seats and in catering guarantees." : ", which is within normal range."));
       }
     }
     if (a.room.firstTime && a.room.attended) {
@@ -1407,7 +1443,7 @@ $10K</pre></details>
         ? "That is not a crisis. It usually means one fixable thing went sideways, and the bidding data below is how you find out which one."
         : a.participation <= 60
         ? "That is a healthy gala. Most well-run events live right here."
-        : "That is a high-energy room. Something is working — the pacing, the storytelling, the seating, the lot mix — and it is worth writing down what you did while you still remember.";
+        : "That is a high-energy room. Something is working (the pacing, the storytelling, the seating, the lot mix), and it is worth writing down what you did while you still remember.";
       H.push("<p><b>" + pct(a.participation) + " of the paddles in your room took part</b> in the live auction, the appeal, or both. " + band + "</p>");
       H.push("<p class=\"est\">Calculated against paddles issued rather than guests, because some events issue one paddle per person and some one per couple. Compare it year to year only if you stay consistent.</p>");
     }
@@ -1424,7 +1460,7 @@ $10K</pre></details>
       var bothShare = (s.both / t) * 100, liveShare = (s.liveOnly / t) * 100;
       H.push("<p>" + (bothShare > liveShare
         ? "More of your guests gave in both places than gave only in the auction, which is exactly the direction you want. It means the program is converting buyers into givers rather than just selling them things."
-        : "Your live-auction-only group is larger than the group that did both. That is not a failure — shoppers are real guests who came to acquire something — but growing the overlap is the single clearest sign that a program is maturing. Watch this ratio more than any other number here.") + "</p>");
+        : "Your live-auction-only group is larger than the group that did both. That is not a failure. Shoppers are real guests who came to acquire something. But growing the overlap is the single clearest sign that a program is maturing. Watch this ratio more than any other number here.") + "</p>");
     }
 
     /* ---------- 3. The auction ---------- */
@@ -1438,7 +1474,7 @@ $10K</pre></details>
     } else {
       H.push("<p>Across " + a.lots.length + " " + plural(a.lots.length, "lot") + ", your room placed <b>"
         + a.totalBids + " " + plural(a.totalBids, "bid") + "</b> from <b>" + a.uniqueBidders + " different "
-        + plural(a.uniqueBidders, "paddle") + "</b> — an average of "
+        + plural(a.uniqueBidders, "paddle") + "</b>, an average of "
         + a.avgBidsPerLot.toFixed(1) + " bids per lot, and "
         + a.avgBidsPerBidder.toFixed(1) + " bids per bidder. "
         + "A winners-only record would have shown you " + a.lots.length + " "
@@ -1478,7 +1514,7 @@ $10K</pre></details>
           + esc(p[0].label) + " and " + esc(p[1].label) + " both landed around "
           + usdPlain(p[0].hammer) + ". But " + esc(p[0].label) + " drew " + p[0].bidders
           + " bidders and " + esc(p[1].label) + " drew " + p[1].bidders + ". "
-          + "On a revenue report those two lines are identical. In practice one of them is a category with room to grow, and the other is fragile — if "
+          + "On a revenue report those two lines are identical. In practice one of them is a category with room to grow, and the other is fragile. If "
           + (p[1].bidders === 1 ? "that bidder" : "one of those bidders") + " misses next year's event, it collapses.</p>");
       }
 
@@ -1501,7 +1537,7 @@ $10K</pre></details>
              : gap > 0
              ? "Your room warmed up as the night went on. If that repeats next year, it is an argument for holding your strongest lot back rather than leading with it."
              : "Your room was hottest at the front and cooled off. If that repeats, you are either running the auction too long or spending your best items too early.")
-          + " Be careful about treating one year as a rule — note it, watch for it next year, and let the pattern prove itself.</p>");
+          + " Be careful about treating one year as a rule: note it, watch for it next year, and let the pattern prove itself.</p>");
       }
 
       if (a.fmv.length) {
@@ -1527,19 +1563,23 @@ $10K</pre></details>
             + "</td><td>" + (c.bids || "&mdash;") + "</td></tr>");
         });
         H.push("</tbody></table>");
-        H.push("<p>Be careful about importing conventional wisdom here. Categories perform very differently by region and by community &mdash; a golf package can anchor an auction in one state and land flat in another. Your own numbers are more reliable than anyone's general advice.</p>");
+        H.push("<p>Be careful about importing conventional wisdom here. Categories perform very differently by region and by community. A golf package can anchor an auction in one state and land flat in another. Your own numbers are more reliable than anyone's general advice.</p>");
       }
     }
 
     /* ---------- 4. Power bidders ---------- */
     if (a.top3 !== null) {
       H.push("<h3>4. How much rests on how few</h3>");
-      H.push("<p>Your three biggest buyers spent " + usdPlain(a.top3Amount) + " of "
-        + usdPlain(a.liveTotal) + " in live auction revenue. That is a <b>top three ratio of "
-        + pct(a.top3) + "</b>.</p>");
+      H.push("<p>Your three biggest supporters gave " + usdPlain(a.top3Amount) + " of "
+        + usdPlain(a.top3Base) + (a.top3WithAppeal
+          ? " in combined live auction and paddle raise revenue"
+          : " in live auction revenue (add the paddle raise sheet to include their gifts)")
+        + ". That is a <b>top three ratio of " + pct(a.top3) + "</b>.</p>");
       H.push("<p>" + (a.top3 > 40
-        ? "Above 40% is the line where I start paying attention. It does not mean anything has gone wrong &mdash; a great year often looks exactly like this &mdash; but the result is resting on very few shoulders. If one of those three has a wedding to attend next April, you are planning around a hole you cannot fill in a week. The answer is not to worry; it is to broaden the bidder base deliberately while you have time, starting with the follow-up list below."
-        : "That is a comfortably broad base. No small group is carrying the night, which means a single absence next year will not decide your result. Track the direction this moves more than the number itself.") + "</p>");
+        ? "Above 40% is concentrated. It does not mean anything has gone wrong (a great year often looks exactly like this), but the result is resting on very few shoulders. If one of those three has a wedding to attend next April, you are planning around a hole you cannot fill in a week. The answer is not to worry; it is to broaden your base deliberately while you have time, starting with the follow-up list below."
+        : a.top3 >= 25
+        ? "Between 25% and 40% is worth watching. Your leadership donors are doing their job, and the rest of the room is carrying real weight too. Track the direction this moves from year to year, and keep cultivating the next tier of bidders so the base keeps widening."
+        : "Under 25% is a comfortably broad base. No small group is carrying the night, which means a single absence next year will not decide your result. Track the direction this moves more than the number itself.") + "</p>");
       if (a.buyers.length) {
         H.push("<table><thead><tr><th>Buyer</th><th>Spent in the live auction</th><th>Share</th></tr></thead><tbody>");
         a.buyers.slice(0, 8).forEach(function (b) {
@@ -1552,7 +1592,7 @@ $10K</pre></details>
 
     /* ---------- 5. The appeal ---------- */
     if (a.appeal.levels.length || a.appeal.lumps.length) {
-      H.push("<h3>5. The appeal</h3>");
+      H.push("<h3>5. The paddle raise</h3>");
       H.push("<table><thead><tr><th>Giving level</th><th>Donors</th><th>Total</th></tr></thead><tbody>");
       a.appeal.levels.forEach(function (l) {
         H.push("<tr><td>" + usd(l.level) + "</td><td>" + l.count + "</td><td>" + usd(l.level * l.count) + "</td></tr>");
@@ -1571,7 +1611,7 @@ $10K</pre></details>
       if (lowest && a.appeal.levels.length >= 3) {
         var bottom = a.appeal.levels.slice(-2).reduce(function (s, l) { return s + l.count; }, 0);
         H.push("<p>" + (bottom >= a.appealDonors * 0.4
-          ? "Your bottom two levels carried " + bottom + " of " + a.appealDonors + " donors. That is the ladder working as intended — a room only reaches healthy participation when there is a level almost everyone can say yes to."
+          ? "Your bottom two levels carried " + bottom + " of " + a.appealDonors + " donors. That is the ladder working as intended: a room only reaches healthy participation when there is a level almost everyone can say yes to."
           : "Only " + bottom + " of " + a.appealDonors + " donors came in at your bottom two levels. When the lower rungs stay thin, it is usually because the ask moved down too fast to give people time to raise a hand. Slowing down at the bottom is the cheapest participation you will ever buy.") + "</p>");
       }
     }
@@ -1579,7 +1619,7 @@ $10K</pre></details>
     /* ---------- 6. Who to call ---------- */
     H.push("<h3>6. Who to call this week</h3>");
     if (!a.shortlist.length) {
-      H.push("<p class=\"empty\">Nothing here yet — this list builds itself from the underbid record.</p>");
+      H.push("<p class=\"empty\">Nothing here yet. This list builds itself from the underbid record.</p>");
     } else {
       H.push("<p>These are the people who raised a paddle for your mission, over and over, and went home with nothing. They are the most under-served group at any benefit auction: they participated, they were willing to spend, and the evening ended with them empty-handed and unacknowledged.</p>");
       H.push("<table><thead><tr><th>Who</th><th>Lots bid on</th><th>Bids</th><th>Went as high as</th><th>Gave in the appeal</th></tr></thead><tbody>");
@@ -1600,7 +1640,7 @@ $10K</pre></details>
       if (anyEst) {
         H.push("<p class=\"est\">Every dollar figure in the “went as high as” column is an <b>estimate</b>. The underbid sheet records the order paddles went up, not the amount each one bid; these are read off the opening bid and increments, and an auctioneer who changes increments mid-lot will move them. Treat them as the right neighbourhood, not a quotation, and never repeat one back to the donor as a number they said.</p>");
       } else {
-        H.push("<p class=\"est\">No opening bids or increments were recorded, so this shows how far up the ladder each person stayed rather than a dollar figure. That is not a downgrade — position is exactly what was written down, and it cannot be wrong.</p>");
+        H.push("<p class=\"est\">No opening bids or increments were recorded, so this shows how far up the ladder each person stayed rather than a dollar figure. That is not a downgrade. Position is exactly what was written down, and it cannot be wrong.</p>");
       }
 
       var top = a.shortlist[0];
@@ -1610,17 +1650,18 @@ $10K</pre></details>
            : "They stayed in longer than anyone else who lost. ")
         + (top.appeal
            ? "They also gave " + usdPlain(top.appeal) + " in the appeal, which makes them a supporter you are already close to and have probably been under-thanking."
-           : "They gave nothing in the appeal either, which is not a failure of generosity — a shopper came to acquire something specific, and when they lose the item the reason for the spending goes away with it.") + "</p>");
+           : "They gave nothing in the appeal either, which is not a failure of generosity. A shopper came to acquire something specific, and when they lose the item the reason for the spending goes away with it.") + "</p>");
 
-      H.push("<h4>The 72-hour rule</h4>");
-      H.push("<p>The person who bid on Saturday night was not making an everyday spending decision. They were in a ballroom, with a paddle in their hand, watching someone else want the same thing. That version of them does not last the week. By Wednesday they are back to looking at their regular budget, and what felt essential on Saturday feels like a lot of money on Thursday. <b>Make these calls within three days.</b></p>");
+      H.push("<h4>The first week</h4>");
+      H.push("<p>The person who bid on Saturday night was not making an everyday spending decision. They were in a ballroom, with a paddle in their hand, watching someone else want the same thing. That version of them does not last the week. <b>Thank every bidder within 48 hours, then make any second-chance offer within the week.</b></p>");
       H.push("<p>Four things you can do with this list, and only the second one carries an ask:</p>");
       H.push("<ul>"
-        + "<li><b>The simple acknowledgment.</b> “We noticed how active you were in the bidding, we're sorry you didn't go home with anything, and we hope you'll be back next year.”</li>"
-        + "<li><b>The second chance.</b> If a donor or vendor will double a lot, offer it to the underbidder at the winning price, not a negotiated one — the number they already stretched to is the number they already accepted. Line the offer up before you call.</li>"
+        + "<li><b>The simple acknowledgment.</b> \u201CWe noticed how active you were in the bidding, we're sorry you didn't go home with anything, and we hope you'll be back next year.\u201D Send it within 48 hours.</li>"
+        + "<li><b>The second chance.</b> If a donor or vendor can provide a comparable item or experience, offer it to the underbidder at or near their own last bid, or at the winning price if the donor prefers. Present it as a new offer, never as a price they already agreed to. Line the offer up before you call, and remember the receipt: only the amount paid above fair market value is deductible.</li>"
         + "<li><b>The related invitation.</b> Someone who bid on a travel package and lost belongs on the invitation list for the donor trip you run later in the year.</li>"
         + "<li><b>The capacity flag.</b> When an underbid is dramatically larger than a donor's giving history, hand it to whoever manages your major gift portfolio. This is the person your standard database queries will never surface.</li>"
         + "</ul>");
+      H.push("<p>If a winner backs out or never pays, offer the lot to the next-highest bidder at their own last bid. Underbid data stays internal: it is for thanking and cultivating, never for sharing or shaming.</p>");
       H.push("<p>The pitfall is turning any of this into a solicitation. If your first contact after the event is an ask, you have burned a bridge before you finished building it. Thank first, and let the relationship do the rest.</p>");
     }
 
@@ -1638,7 +1679,7 @@ $10K</pre></details>
         H.push("<p><b>Auction champions (" + T.champions.length + ").</b> "
           + esc(listWords(T.champions.slice(0, 6).map(function (p) { return who(a, p); })))
           + (T.champions.length > 6 ? ", and others" : "")
-          + " bid on three or more lots and won nothing. Their bidding drove your prices up and made the auction feel important to everyone sitting near them. They are doing real work for you and deserve to be treated accordingly &mdash; starting with seating them on purpose next year, where their energy will do the most good.</p>");
+          + " bid on three or more lots and won nothing. Their bidding drove your prices up and made the auction feel important to everyone sitting near them. They are doing real work for you and deserve to be treated accordingly, starting with seating them on purpose next year, where their energy will do the most good.</p>");
       }
       if (T.pledgers.length) {
         H.push("<p><b>Pledgers (" + T.pledgers.length + ").</b> They gave in the appeal and never raised a paddle in the auction. They want to give you money and would rather not receive anything in return. They are often your most efficient revenue, and they are the easiest people in the room to under-thank, because they ask for so little.</p>");
@@ -1685,7 +1726,7 @@ $10K</pre></details>
       }
       if (a.oneBid.length) {
         recs.push("<li><b>Reconsider " + esc(listWords(a.oneBid.map(function (l) { return l.label; })))
-          + ".</b> Either the opening bid was too high or the lot belonged in the silent auction. It is all right to tell a long-time donor you would like to give their package a rest for a year and let it percolate — that conversation is much easier to have when you can point at the trend.</li>");
+          + ".</b> Either the opening bid was too high or the lot belonged in the online auction. It is all right to tell a long-time donor you would like to give their package a rest for a year and let it percolate. That conversation is much easier to have when you can point at the trend.</li>");
       }
       if (a.categories.length >= 2) {
         recs.push("<li><b>Lean into " + esc(titleish(a.categories[0].name)) + ".</b> It brought in "
@@ -1696,7 +1737,7 @@ $10K</pre></details>
       recs.push("<li><b>Three new bidders and three new lots.</b> A simple annual goal, and one of the most sensible ways to keep an auction from calcifying. This record is how you find out whether you actually hit it.</li>");
       H.push("<ul>" + recs.join("") + "</ul>");
       if (a.lots.length >= 6) {
-        H.push("<p class=\"est\">As a starting place for a live auction of eight to eleven lots: two or three high-value lots at $6,000&ndash;$8,000, four or five mid-value at $3,000&ndash;$5,000, and two or three at $1,800&ndash;$2,500. Adjust it to your own results as soon as you have them — you now do.</p>");
+        H.push("<p class=\"est\">As a starting place, keep the live auction to five to eight lots and run it as an escalator: open strong, build in value, and finish with the showstopper. A sound mix is one or two lively openers at $1,800 to $2,500, three or four mid-value lots at $3,000 to $5,000, and one or two closers at $6,000 to $8,000, with the biggest saved for last. Adjust it to your own results as soon as you have them, and now you do.</p>");
       }
     }
 
@@ -1716,7 +1757,9 @@ $10K</pre></details>
     }
     var dm = S.debriefMeta || {};
     var dmBits = [];
-    if (dm.planned || dm.actual) dmBits.push("Program was called for " + esc(dm.planned || "—") + " and started at " + esc(dm.actual || "—") + ".");
+    if (dm.planned && dm.actual) dmBits.push("Program was called for " + esc(dm.planned) + " and started at " + esc(dm.actual) + ".");
+    else if (dm.planned) dmBits.push("Program was called for " + esc(dm.planned) + ".");
+    else if (dm.actual) dmBits.push("Program started at " + esc(dm.actual) + ".");
     if (dm.end) dmBits.push("It ended at " + esc(dm.end) + ".");
     if (dm.win) dmBits.push("<b>Biggest win:</b> " + esc(dm.win) + ".");
     if (dm.fix && dm.fix.trim()) dmBits.push("<b>Biggest thing to fix:</b> " + esc(dm.fix.trim()));
@@ -1743,7 +1786,7 @@ $10K</pre></details>
     var kpi = [
       ["Total revenue", a.rev.actual, num(L.revenue), "money"],
       ["Live auction revenue", a.liveTotal, num(L.live), "money"],
-      ["Fund-a-need total", a.appealTotal || null, num(L.appeal), "money"],
+      ["Paddle raise total", a.appealTotal || null, num(L.appeal), "money"],
       ["Average appeal gift", a.appealAvg, num(L.avgGift), "money"],
       ["Participation rate", a.participation, num(L.participation), "pct"],
       ["Unique bidders", a.uniqueBidders || null, num(L.bidders), "int"],
@@ -1872,7 +1915,7 @@ $10K</pre></details>
     if (a.appealDonors) parts.push(a.appealDonors + " appeal donors");
     $("statusNote").innerHTML = parts.length
       ? "<b>" + esc((S.meta && S.meta.event) || "This event") + ":</b> " + esc(parts.join(" &middot; ")).replace(/&amp;middot;/g, "&middot;")
-      : "Nothing entered yet. Start anywhere — it saves as you type.";
+      : "Nothing entered yet. Start anywhere; it saves as you type.";
   }
 
   /* =======================================================================
@@ -1906,7 +1949,7 @@ $10K</pre></details>
     function text(n) {
       return (n.textContent || "").replace(/\s+/g, " ").trim();
     }
-    var title = ((S.meta && S.meta.event) || "Event") + " — Post-Event Analysis";
+    var title = ((S.meta && S.meta.event) || "Event") + ": Post-Event Analysis";
     out.push("# " + title + "\n");
     walk(root);
     return out.join("\n").replace(/\n{3,}/g, "\n\n").trim() + "\n";
@@ -1939,7 +1982,7 @@ $10K</pre></details>
       sel.addRange(range);
       var ok = document.execCommand("copy");
       sel.removeAllRanges();
-      if (ok) { toast("Copied. Paste straight into the Google Doc — the formatting comes with it."); return; }
+      if (ok) { toast("Copied. Paste straight into the Google Doc. The formatting comes with it."); return; }
     } catch (e) {}
 
     if (navigator.clipboard && window.ClipboardItem) {
@@ -2660,9 +2703,9 @@ $10K</pre></details>
         extractPdfText(file).then(function (text) {
           if (text) {
             appendToTextarea(ta, text);
-            toast("Added text from the PDF — check it against the report before moving on.");
+            toast("Added text from the PDF. Check it against the report before moving on.");
           } else {
-            toast("That PDF didn't have any readable text in it — a photo-of-paper PDF needs the photo option instead.");
+            toast("That PDF didn't have any readable text in it. A photo-of-paper PDF needs the photo option instead.");
           }
         }).catch(function () {
           toast("Could not read that PDF. You can still paste or type this one in by hand.");
@@ -2676,7 +2719,7 @@ $10K</pre></details>
       }).then(function (res) {
         if (res.ok && res.body && res.body.text) {
           appendToTextarea(ta, res.body.text);
-          toast("Added text from photo " + i + " of " + files.length + " — check it against the sheet before moving on.");
+          toast("Added text from photo " + i + " of " + files.length + ". Check it against the sheet before moving on.");
         } else {
           toast((res.body && res.body.error) || "Could not read that photo. You can still type this one in by hand.");
         }
@@ -2735,7 +2778,7 @@ $10K</pre></details>
       saveFile(slug() + "-data.json", JSON.stringify(S, null, 2), "application/json");
     });
     $("saveFileBtn").addEventListener("click", function () {
-      window.alert("This saves everything you\'ve entered so far as a file on your computer. Email that file \u2014 to yourself, a teammate, or your auctioneer \u2014 and opening it picks up exactly where you left off.");
+      window.alert("This saves everything you\'ve entered so far as a file on your computer. Email that file (to yourself, a teammate, or your auctioneer), and opening it picks up exactly where you left off.");
       saveFile(slug() + "-data.json", JSON.stringify(S, null, 2), "application/json");
     });
     $("loadFileBtn").addEventListener("click", function () { $("fileInput").click(); });
@@ -2751,7 +2794,7 @@ $10K</pre></details>
              people fill different halves, and whoever opens the file second
              must not wipe out what they already typed. Anything already
              filled in here wins; anything blank takes the incoming value. */
-          merge(S, incoming);
+          merge(S, migrate(incoming));
           save(); hydrate(); refresh(true);
           toast("Merged in " + f.name + ". Anything you had already filled in was kept.");
         } catch (e) {

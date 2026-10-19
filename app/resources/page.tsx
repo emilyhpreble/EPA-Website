@@ -35,8 +35,8 @@ export default function Resources() {
           </p>
           <p className="mt-8 max-w-2xl text-base leading-relaxed text-cream/85">
             Practical guides for nonprofit teams running benefit auctions and fundraising
-            events — built from what actually works in the room. Free to use, from event
-            committee structure to donor stewardship.
+            events, built from what actually works in the room. Free to use, from event
+            committee structure to the online auction to donor stewardship.
           </p>
         </div>
       </section>

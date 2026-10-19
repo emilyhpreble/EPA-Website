@@ -636,6 +636,39 @@ body.is-editing .checklist li:hover::before { background: none; }
   widows: 2;
 }
 
+/* ---------- FOOTNOTES / SOURCES ---------- */
+.epa-doc sup { font-size: 0.68em; line-height: 0; vertical-align: super; }
+.epa-doc sup a {
+  color: var(--epa-orange);
+  font-weight: 600;
+  text-decoration: none;
+  scroll-margin-top: 1in;
+}
+.epa-doc sup a:hover { text-decoration: underline; }
+.sources-list { margin: 0.3in 0 0.2in 0; }
+.sources-title {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 8pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--epa-green);
+  margin-bottom: 0.1in;
+}
+.sources-list ol { list-style: none; margin: 0; padding: 0; }
+.sources-list li {
+  font-size: 8.6pt;
+  line-height: 1.45;
+  color: var(--epa-purple);
+  opacity: 0.8;
+  margin-bottom: 0.07in;
+  overflow-wrap: anywhere;
+  scroll-margin-top: 1in;
+}
+.sources-list li:target { opacity: 1; background: rgba(221,80,55,0.10); }
+.sources-list .fn-num { font-weight: 600; color: var(--epa-orange); }
+.sources-list .fn-back { color: var(--epa-orange); text-decoration: none; margin-left: 0.04in; }
+
 /* ============================================================
    TRACKER TABLE (blank, for client fill-in)
    ============================================================ */
@@ -712,32 +745,13 @@ body {
   color: var(--epa-cream);
   border-bottom: 2px solid var(--epa-orange);
 }
-.app-bar .app-brand {
-  font-family: var(--serif);
-  font-size: 15px;
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-}
-.app-bar .app-brand:hover { border-bottom-color: rgba(241, 237, 225, 0.6); }
+.app-bar .app-brand { font-family: var(--serif); font-size: 15px; }
 .app-bar .app-brand em { color: var(--epa-orange); font-style: italic; }
-.app-bar .app-sep { opacity: 0.5; font-size: 12px; }
-.app-bar .app-title { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; opacity: 0.85; }
-.app-bar .app-crumb-link {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--epa-cream);
-  background: transparent;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: rgba(241, 237, 225, 0.55);
-}
-.app-bar .app-crumb-link:hover { text-decoration-color: rgba(241, 237, 225, 0.95); }
+/* Clickable, but deliberately not signposted: it reads as the brand
+   mark it already is. Emily knows; a client has no reason to try. */
+.app-brand-key { cursor: pointer; -webkit-user-select: none; user-select: none; }
+.app-bar .app-sep { opacity: 0.35; }
+.app-bar .app-title { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
 .app-bar .app-stage {
   margin-left: auto;
   font-size: 10px;
@@ -1127,6 +1141,19 @@ body.is-editing a.jump .jump-mark { opacity: 0.4; transform: none; }
 }
 
 /* ---------- SERIES LIBRARY ---------- */
+button.app-title {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--epa-cream);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+button.app-title:hover { border-bottom-color: rgba(241, 237, 225, 0.6); }
 .lib-panel {
   width: min(34rem, 100%);
   max-height: 84vh;
@@ -1186,18 +1213,74 @@ body.is-editing a.jump .jump-mark { opacity: 0.4; transform: none; }
   text-transform: uppercase;
 }
 .lib-open { color: var(--epa-orange); }
-.lib-all {
-  display: inline-block;
-  margin-bottom: 0.9rem;
+/* The way home. Emily asked for this to be impossible to miss, so it is
+   a full-width orange button, not a text link: in the library modal, and
+   again under the last page of every guide. */
+.lib-return {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 1rem;
+  padding: 0.85rem 1.2rem;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--epa-cream);
+  background: var(--epa-orange);
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(221, 80, 55, 0.28);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.lib-return:hover { background: #c4432c; transform: translateY(-1px); }
+.lib-return:focus-visible { outline: 2px solid var(--epa-purple); outline-offset: 3px; }
+.lib-return-wrap {
+  width: min(8.5in, 100%);
+  margin: 2.2rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+.lib-return-wrap .lib-return { font-size: 13px; padding: 1rem 1.4rem; margin: 0; }
+.lib-return-note {
+  font-size: 12px;
+  color: var(--epa-purple);
+  opacity: 0.7;
+  text-align: center;
+}
+@media print { .lib-return-wrap, .app-home { display: none !important; } }
+
+/* Top-bar twin of .lib-return: a filled orange pill at the far left, the
+   place a reader looks for "back". */
+a.app-home {
+  font-family: var(--sans);
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--epa-orange);
+  color: var(--epa-cream);
+  background: var(--epa-orange);
+  border-radius: 999px;
+  padding: 0.32rem 0.8rem;
+  align-self: center;
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  white-space: nowrap;
+  transition: background 0.15s ease;
 }
-.lib-all:hover { border-bottom-color: currentColor; }
+a.app-home:hover { background: #c4432c; }
+a.app-home:focus-visible { outline: 2px solid var(--epa-cream); outline-offset: 2px; }
+/* With the library pill added the bar runs out of room on laptops and
+   tablets; the stage label is the one item a reader can live without. */
+@media (max-width: 1100px) {
+  .app-bar .app-stage { display: none; }
+  .app-bar .app-toc { margin-left: auto; }
+}
 .lib-here { color: var(--epa-purple); opacity: 0.55; }
 .lib-soon { color: var(--epa-purple); opacity: 0.5; }
 
@@ -1366,8 +1449,8 @@ button.app-toc:focus-visible { outline: 2px solid var(--epa-orange); outline-off
 <div id="app"></div>
 
 
-<script type="application/json" id="guide-data" data-epa>{"meta":{"title":"Building Successful Event Committees","subtitle":"A Guide for Event Committees","brand":"Emily Preble <em>Auctions<\/em>","editHash":"7b58ba83f02a025440a2f42b8777b0227ae75edc93b54d7105eed2807863e7af"},"sections":[{"id":"cover","label":"Cover","blocks":[{"type":"coverPage","eyebrow":"Emily Preble <em>Auctions<\/em>","title":"Build the Team","accent":"A Guide for Event Committees","subtitle":"Your role, your goals, and how we&rsquo;ll make<br>your event unforgettable, together."}]},{"id":"contents","label":"Contents","blocks":[{"type":"tableOfContents","title":"In This Guide"}]},{"id":"why-this-matters","label":"Why This Matters","pageBreakBefore":true,"blocks":[{"type":"sectionHeader","title":"Why This Matters"},{"type":"bodyText","variant":"lede","text":"You didn&rsquo;t join this committee to stuff envelopes. You joined because you believe in the mission, and you know other fantastic people who might agree to <em>join<\/em> the mission when asked. Your job for the next few months is simple: bring the right people into the room, and help them understand why their contribution matters."},{"type":"bodyText","text":"An event committee is not the same as your board, though the two overlap. Your board governs the organization. Your event committee executes one specific goal: fill the room with the right people and hit a specific revenue number. It has its own structure, its own timeline, and its own accountability, separate from board business."},{"type":"bodyText","text":"Well-run event committees also double as a training ground. Give committee members a real role and real recognition, and in three to five years, this organization has a bench of trained, mission-aligned candidates ready for board service."}],"summary":"Why an event committee is not your board, and what this group actually exists to do."},{"id":"your-team","label":"Build the Structure Before You Recruit","pageBreakBefore":true,"blocks":[{"type":"sectionHeader","title":"Build the Structure Before You Recruit"},{"type":"bodyText","text":"A working event committee needs defined roles before anyone joins. At minimum, here&rsquo;s who&rsquo;s on the team:"},{"type":"roleList","compact":true,"items":[{"name":"Chair and Co-Chair","description":"Coordinate with the executive director or staff lead on major decisions, and have authority over smaller day-to-day calls. The chair and co-chair build their own committee. It&rsquo;s their network being activated, so they own the invitation list."},{"name":"Subcommittee Leads","description":"Own a specific piece of the event: sponsorships, live and silent auction procurement, print and promotions, decorations, or food and beverage."},{"name":"Table Hosts","link":"table-host","description":"Take personal responsibility for filling and hosting one table of guests."}]},{"type":"bodyText","spaceAfter":"tight","text":"Chairs and the steering committee typically come on board nine to twelve months out, giving enough runway to lock in the date, budget, venue, and theme before the detail work starts."},{"type":"subsectionHeader","title":"The Season at a Glance","spaceBefore":"tight"},{"type":"dataTable","compact":true,"columns":["Timeframe","What&rsquo;s Happening"],"labelWidth":"22%","rows":[{"label":"12 Months&nbsp;Out","value":"Recruit chair and co-chair. Name subcommittee leads. Set the date, budget,&nbsp;theme."},{"label":"9 Months&nbsp;Out","value":"Recruit subcommittee volunteers. Begin sponsorship conversations and open live auction procurement outreach."},{"label":"6 Months&nbsp;Out","value":"Build sponsorship packages at multiple giving levels. Start the guest list. Ask board and committee members to commit to bringing their own tables. Launch procurement in earnest, for silent and live auction items alike."},{"label":"3 Months&nbsp;Out","value":"Check in with all committed sponsors. Assign additional sponsor recruitment to well-connected members. Finalize the program. Settle the top live auction packages, and set starting bids and fair market values."},{"label":"6&ndash;8 Weeks&nbsp;Out","value":"Mail invitations. Lock every live and silent item description into the bidding platform and the printed program."},{"label":"1 Month&nbsp;Out","value":"Follow up on all outstanding sponsor commitments and unpaid tables."}]},{"type":"bodyText","text":"The packages that carry a live auction &mdash; travel, private dining, access nobody can buy off a shelf &mdash; take three to six months to land, and they have to be in hand early enough to photograph, describe, and market before anyone walks in. An item gathered six weeks out arrives too late to sell properly."},{"type":"bodyText","variant":"note","plain":true,"spaceBefore":"none","text":"Some committees meet as a full group up to eight times a year. Others break into subcommittees instead. Decide what cadence works best for yours, and stay consistent once you&rsquo;ve set it."}],"summary":"The roles to define before anyone joins: chair, subcommittee leads and table hosts."},{"id":"your-commitment","label":"The Committee Job Description","pageBreakBefore":true,"blocks":[{"type":"sectionHeader","title":"The Committee Job Description"},{"type":"bodyText","variant":"lede","text":"Clarity is kind. If your committee doesn&rsquo;t know exactly what&rsquo;s expected of them, they can&rsquo;t be expected to deliver it."},{"type":"bodyText","variant":"note","plain":true,"text":"One quick note: you&rsquo;ll see pre-event happy hours mentioned below. Full details on those come a few pages from now."},{"type":"subsectionHeader","title":"Some Categories to Ask Of Your Committee"},{"type":"roleList","items":[{"name":"A Giving Goal","link":"keep-score","description":"A specific dollar amount that you commit to giving personally this season. It&rsquo;s set together with committee leadership, not handed down, and it should be a real reflection of what this mission means to you. Committee members who give first are in the strongest position to ask others to give too. Set it as a range that fits your organization rather than one fixed figure: somewhere between $500 and $2,500 is common, and a member who secures sponsorship of equivalent value has met the same commitment."},{"name":"New Connections","link":"sponsorships","description":"People who don&rsquo;t yet know this organization: a potential sponsor, a donor prospect, a friend who&rsquo;d care about this mission if they knew about it. Agree on a number of new introductions to make this season. Every new name you bring in expands this event&rsquo;s reach beyond what staff and past donors could do alone."},{"name":"One Happy Hour","link":"warm-the-room","description":"Attend, or better yet, host, at least one pre-event happy hour this season (more on what these look like later in this guide). These casual gatherings are how prospects meet this mission before the big ask ever happens, and showing up here does real fundraising work, even when it doesn&rsquo;t feel like it."},{"name":"Personal Invitations","link":"table-host","description":"Send personal invitations, the kind you&rsquo;d actually extend to someone you want in the room, not a form message blasted to your whole contact list. People show up for people."}]},{"type":"calloutBox","title":"Example: One Committee Member&rsquo;s Season","spaceBefore":"tight","items":[{"boldLeadIn":"Giving goal:","rest":"$500, given personally."},{"boldLeadIn":"New connections:","rest":"5 introductions to potential donors or sponsors."},{"boldLeadIn":"Happy hour:","rest":"hosted or attended 1 pre-event gathering for 8 guests."},{"boldLeadIn":"Personal invitations:","rest":"10 sent to people they wanted in the room."}]},{"type":"bodyText","variant":"note","plain":true,"text":"That example sits at the modest end. A committee at a larger organization might set the same four commitments several times higher. What matters is that the numbers are agreed together and written down, not the numbers themselves."},{"type":"subsectionHeader","title":"Three Ways to Contribute"},{"type":"cardGrid","cards":[{"title":"Give","subtitle":"A Gift","link":"keep-score","description":"A personal financial gift, at whatever level is significant to you."},{"title":"Get","subtitle":"A Connection","link":"sponsorships","description":"A network connection or <br>introduction (individual <br>or corporate sponsor) that <br>raises money elsewhere."},{"title":"Save","subtitle":"A Cost","link":"sponsorships","description":"A saved cost, like donated catering, a live auction item, or an in-kind service for the&nbsp;event."}]},{"type":"pullQuote","color":"green","text":"You&rsquo;re not just working the room the night of the gala. You&rsquo;ve been working it for months, one intentional phone call, coffee meeting, and happy hour at a time."},{"type":"bodyText","text":"The best committee members aren&rsquo;t just checking a box. They&rsquo;re representing this mission everywhere they go, at dinner, at happy hour, in every conversation where this cause comes up. That&rsquo;s real fundraising work, even outside a formal ask."}],"summary":"What each member signs up for &mdash; a giving goal, new connections, one happy hour and personal invitations."},{"id":"table-host","label":"What a Table Host Actually Does","blocks":[{"type":"sectionHeader","title":"What a Table Host Actually Does"},{"type":"bodyText","text":"Hosting a table means taking personal responsibility for filling and hosting one table of guests, typically eight to ten seats. It&rsquo;s different from general ticket sales, and it raises more money when done well."},{"type":"roleList","items":[{"name":"Invite Guests","description":"Reach out personally, rather than sending one mass invite."},{"name":"Think About Capacity","description":"Invite people who genuinely have both the interest and the financial capacity to support this mission, not just the headcount to fill a chair. A table built on friendship alone, without regard to giving capacity, can under-deliver even when it&rsquo;s full."},{"name":"Warm the Engine","link":"warm-the-room","description":"Make a personal touchpoint before any formal ask reaches your guest: a call, a coffee, a personal invite. The event itself shouldn&rsquo;t be their first contact with this organization."},{"name":"Say What&rsquo;s Coming","description":"Tell your guests before the night that there will be a live ask &mdash; a paddle raise, an auction, or both. Nobody enjoys being surprised by a request for money over dessert, and a guest who arrives expecting the ask is a guest who has already had time to decide what they want to give."},{"name":"Host on the Night","description":"Welcome your table&rsquo;s guests, sit with them, and be the face of this organization at your table for the evening."},{"name":"Handle the Details","description":"Distribute and collect giving envelopes or pledge materials at the table when the program calls for it."}]},{"type":"calloutBox","title":"What a Full Table Should Deliver","items":[{"boldLeadIn":"Aim for two to three times what the seats cost.","rest":"A table of eight to ten that collectively gives two to three times the price of the table, across the paddle raise and the live auction, is a table doing its job."},{"boldLeadIn":"A full table is not the same as a giving table.","rest":"Eight guests who came for dinner and drinks and give nothing have cost you the catering. If nobody sets the expectation out loud, you end up with a room full of them."}]},{"type":"bodyText","text":"Table hosts outperform open, general-admission ticket sales for one core reason: your guests arrive with a personal reason to be there, and a personal connection to the person who invited them. That accountability drives both attendance and giving."}],"summary":"Taking personal responsibility for one table of eight to ten, and why it raises more than general ticket sales."},{"id":"warm-the-room","label":"Pre-Event Happy Hours","blocks":[{"type":"sectionHeader","title":"Pre-Event Happy Hours"},{"type":"bodyText","variant":"lede","text":"A pre-event happy hour isn&rsquo;t just a party. It&rsquo;s how you thank the sponsors and donors who already said yes, build real buzz before the invitations even go out, and give your table hosts an easy, low-pressure way to introduce their guests to this mission. Every conversation you have here plants a seed you&rsquo;ll harvest on event night."},{"type":"bodyText","text":"Don&rsquo;t let the gala be a guest&rsquo;s first touchpoint with this organization. A prospect who walks in cold, with no prior relationship, is far less likely to give at a meaningful level than one who&rsquo;s already had a warm interaction."},{"type":"subsectionHeader","title":"How to Run Them"},{"type":"roleList","compact":true,"items":[{"name":"Set the Guest List","description":"Invite prospects the committee hasn&rsquo;t had a chance to meet with personally yet."},{"name":"Find a Venue","description":"Approach restaurants, breweries, or spirits brands about hosting in-kind. Many will donate the space or the bar for visibility with a donor audience."},{"name":"Keep the Ask Short","description":"Ten minutes is enough: introduce the mission, explain how to get involved, and let your CEO or executive director make a brief, direct ask."}]},{"type":"bodyText","text":"An invitation to a happy hour or casual lunch is an easier yes to extend than a direct solicitation. Use it as the on-ramp, and don&rsquo;t let the momentum die afterward. If you invited three prospects to a happy hour, follow up with those three people directly while the interaction is still fresh."}],"summary":"How hosting a gathering before the event thanks early donors, builds real buzz and lifts night-of revenue."},{"id":"sponsorships","label":"Sponsorships","blocks":[{"type":"sectionHeader","title":"Sponsorships"},{"type":"bodyText","variant":"lede","text":"Corporate sponsorship is a business transaction, not a donation in the traditional sense. A company pays to be associated with this mission and gets visibility, goodwill, and often direct access to our audience in return. Approach sponsors with a business case, not a charity pitch."},{"type":"subsectionHeader","title":"Before You Ask"},{"type":"roleList","compact":true,"items":[{"name":"Research First","description":"Look into a company&rsquo;s actual giving priorities and community presence before reaching out. A few well-targeted asks to companies whose values already overlap with our mission beats a generic ask to a long list."},{"name":"Find the Warm Connection","description":"A current donor, board member, or committee member with a relationship at the company is the strongest entry point."},{"name":"Don&rsquo;t Overlook In-Kind","description":"Venue space, printing, food and beverage, or professional services can be as valuable as a cash sponsorship, and some companies prefer to give this way."}]},{"type":"subsectionHeader","title":"Making the Pitch"},{"type":"roleList","compact":true,"items":[{"name":"Tailor It","description":"A proposal that speaks directly to what a company has already said it cares about beats a generic sponsorship deck."},{"name":"Lead With Impact","description":"Sponsors want to see what their investment will produce, not just why we need it."},{"name":"Come Prepared","description":"Have the 501(c)(3) letter, a clear budget, and a sponsorship package that spells out exactly what recognition the sponsor receives, ready before you ask."}]},{"type":"subsectionHeader","title":"After the Check Clears","spaceBefore":"section"},{"type":"bodyText","text":"Securing the sponsorship is the beginning of the relationship, not the end of it. Acknowledge every gift within 48 hours, personally, and get the tax receipt out in that same window. Sponsors thanked that fast renew at markedly higher rates the following year, and the ones left waiting three weeks for a receipt remember that too. Deliver every recognition benefit that was promised without being reminded, and send a follow-up after the event showing the sponsor the impact their support made possible. If a company declines, ask for feedback, thank them anyway, and leave the door open. A graceful no today can become a yes next cycle."}],"summary":"Treating sponsorship as a business transaction: research, the warm connection, and how to pitch it."},{"id":"keep-score","label":"Tracking and Accountability","blocks":[{"type":"sectionHeader","title":"Tracking and Accountability"},{"type":"bodyText","variant":"lede","text":"A goal with no tracking mechanism is just a wish. Here&rsquo;s how we&rsquo;ll see progress together."},{"type":"roleList","items":[{"name":"A Shared Tracker","description":"A simple, shared spreadsheet showing each member&rsquo;s dollar goal, connections made, and happy hour attendance."},{"name":"A Check-In","description":"A brief moment at each committee meeting where members report their own progress out loud. Seeing each other&rsquo;s progress drives follow-through more than a private reminder ever could.","link":"impact-plan"},{"name":"A Planning Conversation","description":"A one-on-one conversation near the start of the season: how much you&rsquo;re personally aiming to raise, and what you&rsquo;ll do to get there."}]},{"type":"bodyText","text":"Not every committee member is a natural fundraiser, and that&rsquo;s alright. We&rsquo;ll meet you where you are, with templates you can personalize and an offer to co-write a solicitation email or role-play a phone call anytime it would help."}],"summary":"The shared tracker, the check-in and the planning conversation that turn a goal into progress."},{"id":"impact-plan","label":"The Committee Impact Plan","summary":"A one-page worksheet each member fills in before every check-in, so progress gets reported rather than assumed.","blocks":[{"type":"sectionHeader","title":"The Committee Impact Plan"},{"type":"bodyText","text":"A tracker only works if everyone arrives at the meeting already knowing their own numbers. This one-sheet gives each member somewhere to record what they committed to, what they have delivered so far, and the single next step they will take before the group meets again."},{"type":"bodyText","text":"Hand a copy to every member at the start of the season and bring it to each check-in. It is deliberately unbranded, so it can carry your organization&rsquo;s name rather than anyone else&rsquo;s."},{"type":"linkOut","title":"Committee Impact Plan","note":"One page. Print it, or download it and print from the file.","label":"Open the one-sheet","url":"https://claude.ai/code/artifact/edec570b-a3ed-430f-82f6-a82b1b17090f"}]},{"id":"recognition","label":"Recognition","blocks":[{"type":"sectionHeader","title":"Recognition"},{"type":"bodyText","variant":"lede","text":"People repeat behavior that gets noticed. Here&rsquo;s how we&rsquo;ll make sure your work doesn&rsquo;t go unseen."},{"type":"roleList","compact":true,"items":[{"name":"Public Recognition","description":"Top-performing committee members are recognized publicly, at meetings, and at the event itself."},{"name":"A Personal Thank-You","description":"A handwritten note within 48 hours of the event to anyone who went above their basic commitment."},{"name":"Specific Shout-Outs","description":"Wins get called out by name where appropriate: the member who landed a new corporate sponsor, the table host who sold out early."}]},{"type":"bodyText","variant":"note","plain":true,"spaceBefore":"tight","text":"A committee member who feels seen is more likely to return next year, and more likely to say yes when we eventually ask you to join the board."}],"summary":"Making sure committee work gets noticed, both publicly and personally."},{"id":"event-night","label":"A Day-Of Reminder","blocks":[{"type":"sectionHeader","title":"A Day-Of Reminder"},{"type":"bodyText","spaceAfter":"snug","text":"The work doesn&rsquo;t stop when the doors open. A few reminders, especially for table hosts:"},{"type":"checklist","items":["Don&rsquo;t sit at your own table all night. Circulate. Introduce guests to each other and to program participants.","Fill tables with donors who have real giving capacity, not just warm bodies to hit a headcount.","Work the room before you eat, the way you&rsquo;d host your own family gathering."]}],"summary":"Reminders for table hosts once the doors open, from where to sit to when to eat."},{"id":"closing","label":"Closing Thoughts","blocks":[{"type":"closingPage","eyebrow":"Closing Thoughts","quote":"A great event committee doesn&rsquo;t just deliver one incredible night.<br>It lays the groundwork for the NEXT event, and every event after&nbsp;that.","body":"Every person you invite, every table you fill, and every quick text that says &ldquo;thinking of you!&rdquo; builds toward something bigger than one night on the calendar. Thank you for saying yes to being part of a committee making a difference. This is how we build something that lasts.","sources":"Sources: Chronicle of Philanthropy, &ldquo;A Timeline for Organizing a Black-Tie Fundraising Gala&rdquo; (Michelle Gienow). FundEasy, &ldquo;Table Hosts vs. Open Invitation Banquets.&rdquo; Double the Donation, &ldquo;Corporate Sponsorship Best Practices&rdquo; (Kyra Engle). Auction Packages webinar, &ldquo;Activating Boards and Honorees&rdquo; (Keith Jones). Plus Emily Preble&rsquo;s personal notes from &ldquo;Event Committee: Lila TCC.&rdquo;","brand":"Emily Preble <em>Auctions<\/em>","tag":"Build the Team"}]}]}</script>
-<script type="application/json" id="library-data" data-epa>{"seriesTitle":"EPA Resource Guides","seriesNote":"Practical guides for nonprofit teams running benefit auctions and fundraising events.","guides":[{"slug":"build-the-team","title":"Building Successful Event Committees","subtitle":"Build the Team","blurb":"Structure, roles, table hosting, sponsorships and accountability for a working event committee.","status":"available","url":"/resources/build-the-team.html"},{"slug":"leading-the-charge","title":"Pre-Committed Giving","subtitle":"Leading the Charge","blurb":"How to set the tone for generosity before the appeal begins: benchmarks, scripts, objections and templates.","status":"available","url":"/resources/leading-the-charge.html"},{"slug":"live-auction-101","title":"Live Auction 101","subtitle":"Procurement & Best Practices","blurb":"Know your audience, build the dream item list, choose a procurement method, make the ask, and learn from the results.","status":"available","url":"/resources/live-auction-101.html"},{"slug":"underbid-recording","title":"Auction Data & Underbid Recording","subtitle":"Learning from Non-Winning Bids","blurb":"How to capture every bid placed in your live auction, read what the numbers say about your lots and your donors, and turn losing bidders into your best cultivation list.","status":"available","url":"/resources/underbid-recording.html"},{"slug":"gratitude-plan","title":"Donor Gratitude and Stewardship","subtitle":"The Gratitude Plan","blurb":"A stewardship framework built on Thank, Show, Invite — with a donor timeline, ten donor tracks, and plug-and-play email, letter and phone templates.","status":"available","url":"/resources/gratitude-plan.html"},{"slug":"event-budget-calculator","title":"Event Budget Calculator","subtitle":"A Planning Tool","blurb":"Enter your fundraising goal and guest count, then see what your sponsorship levels, ticket prices and giving tiers need to be to hit it.","status":"available","url":"/resources/event-budget-calculator.html","cta":"Open the tool"},{"slug":"event-data-analyzer","title":"Event Data Analyzer","subtitle":"Reading Your Results","blurb":"Put in what happened at your event — revenue, guest roster, clerking sheets, and the underbid record — and get back a detailed report on what the data means, ready to download and share with your team.","status":"available","url":"/resources/event-data-analyzer.html","cta":"Open the tool"},{"slug":"placeholder-1","title":"More guides coming","subtitle":"","blurb":"Additional guides in this series are being written and will appear here.","status":"soon","url":""}],"seriesUrl":"/resources/epa-resource-guides.html","current":"build-the-team"}</script>
+<script type="application/json" id="guide-data" data-epa>{"meta":{"title":"Building Successful Event Committees","subtitle":"A Guide for Event Committees","brand":"Emily Preble <em>Auctions<\/em>","editHash":"7b58ba83f02a025440a2f42b8777b0227ae75edc93b54d7105eed2807863e7af"},"sections":[{"id":"cover","label":"Cover","blocks":[{"type":"coverPage","eyebrow":"Emily Preble <em>Auctions<\/em>","title":"Building Successful Event Committees","accent":"Build the Team","subtitle":"Who to recruit, what to ask of them, and how to lead your committee from the first meeting to the final thank-you."}]},{"id":"contents","label":"Contents","blocks":[{"type":"tableOfContents","title":"In This Guide"}]},{"id":"why-this-matters","label":"Why This Matters","pageBreakBefore":true,"summary":"Why an event committee is not your board, and what this group actually exists to do.","blocks":[{"type":"sectionHeader","title":"Why This Matters"},{"type":"bodyText","text":"Nobody joins an event committee to stuff envelopes. Your members say yes because they believe in the mission and know people who might join it too, if someone asked. Your committee's job for the season is simple: bring the right people into the room, and help them understand why their support matters.","variant":"lede"},{"type":"bodyText","text":"An event committee is not your board, though the two overlap. Your board governs the organization. Your event committee carries out one specific goal: fill the room with the right people and hit a specific revenue number. It has its own structure, its own timeline and its own accountability, separate from board business."},{"type":"bodyText","text":"A well-run committee also doubles as a training ground. Give members a real role and real recognition, and within a few seasons your organization has a bench of trained, mission-aligned candidates ready for board service."},{"type":"bodyText","text":"This guide assumes the format we recommend for every gala: an online auction that opens 7 to 10 days before the event and closes after it, a live auction of five to eight items run as an escalator, and a paddle raise (some organizations call it a Fund-A-Need or special appeal) that follows the live auction. For the details, see [[guide:online-auction-playbook|The Online Auction Playbook]] and [[guide:live-auction-101|Live Auction 101]].","variant":"note","plain":true}]},{"id":"your-team","label":"Build the Structure Before You Recruit","pageBreakBefore":true,"summary":"The roles to define before anyone joins, and the season from twelve months out to the debrief.","blocks":[{"type":"sectionHeader","title":"Build the Structure Before You Recruit"},{"type":"bodyText","text":"Define the roles before anyone joins. At minimum, your committee needs:"},{"type":"roleList","compact":true,"items":[{"name":"Chair and Co-Chair","description":"Coordinate with the executive director or staff lead on major decisions, and own the smaller day-to-day calls. The chair and co-chair build their own committee. It's their network being activated, so they own the invitation list."},{"name":"Subcommittee Leads","description":"Each owns one piece of the event: sponsorships, live auction procurement (the five to eight lots that make up your escalator), online auction procurement, print and promotions, decorations, or food and beverage."},{"name":"Table Hosts","description":"Take personal responsibility for filling and hosting one table of guests.","link":"table-host"}]},{"type":"bodyText","text":"Recruit your chair and co-chair about twelve months out, and name your subcommittee leads soon after. That runway lets you lock the date, budget, venue and theme before the detail work starts.[^1]","spaceAfter":"tight"},{"type":"subsectionHeader","title":"The Season at a Glance","spaceBefore":"tight"},{"type":"dataTable","compact":true,"columns":["Timeframe","What's Happening"],"labelWidth":"22%","rows":[{"label":"12 Months Out","value":"Recruit the chair and co-chair. Name subcommittee leads and agree on each role's [[succession|term]]. Set the date, budget, venue and theme."},{"label":"9 Months Out","value":"Recruit subcommittee volunteers and hold your [[first-meeting|first committee meeting]]. Begin sponsorship conversations. Open outreach for your five to eight live auction lots."},{"label":"6 Months Out","value":"Build sponsorship packages at several giving levels. Start the guest list, and ask board and committee members to commit to hosting tables. Procure online auction items in earnest, one item per listing rather than themed baskets. Begin pre-committed paddle raise conversations with your top donors."},{"label":"3 Months Out","value":"Check in with every committed sponsor, and assign additional sponsor outreach to well-connected members. Finalize the program. Lock the live auction lineup in escalator order, with starting bids and fair market values."},{"label":"6 to 8 Weeks Out","value":"Mail invitations. Load every online auction item into the bidding platform with its photo, description, value and pickup deadline. Only the live auction lots appear in the printed program."},{"label":"1 Month Out","value":"Follow up on outstanding sponsor commitments and unpaid tables. Confirm each table host's guest list."},{"label":"7 to 10 Days Out","value":"Open online bidding. Every committee member shares the launch message with their own network."},{"label":"Event Week","value":"Table hosts confirm their guests, tell them what's coming and make sure each one is registered to bid. Hold a short final huddle on night-of assignments."},{"label":"Event Night","value":"Table hosts welcome and sit with their guests. The live auction runs, the paddle raise follows it, and the online auction's close is announced from the stage and by text at the same moment."},{"label":"After the Event","value":"Thank every donor and bidder within 48 hours of the event, and every online bidder within 48 hours of the auction's close (see [[guide:gratitude-plan|The Gratitude Plan]]). The online auction closes after the gala (for example, Sunday evening), and winners pick up the following week. Hold your [[debrief|committee debrief]] within two weeks."}]},{"type":"bodyText","text":"The packages that carry a live auction (travel, private dining, access nobody can buy off a shelf) often take months to land, and they need to be in hand early enough to describe and market before guests arrive. Online items run on the same clock: each one needs a photo, a description and a value before bidding opens, so an item that turns up in the final weeks is too late to sell well. For the full procurement method, see [[guide:live-auction-101|Live Auction 101]] and [[guide:online-auction-playbook|The Online Auction Playbook]]."},{"type":"bodyText","text":"Some committees meet as a full group as often as monthly. Others work mainly in subcommittees and gather the full group a few times a season. Choose the cadence that suits yours, and hold to it once it's set.","variant":"note","plain":true,"spaceBefore":"none"},{"type":"calloutBox","title":"Common Pitfall","items":[{"boldLeadIn":"Recruiting before the roles exist.","rest":"A volunteer who says yes to a vague invitation will define the job for themselves, and it rarely matches what you needed. Write the roles first, then recruit to them."}]}]},{"id":"your-commitment","label":"The Committee Job Description","pageBreakBefore":true,"summary":"What each member signs up for: a giving goal, new connections, one happy hour and personal invitations.","blocks":[{"type":"sectionHeader","title":"The Committee Job Description"},{"type":"bodyText","text":"Clarity is kind. If your members don't know exactly what's expected of them, you can't expect them to deliver it.","variant":"lede"},{"type":"subsectionHeader","title":"Four Commitments to Ask of Every Member"},{"type":"roleList","items":[{"name":"A Giving Goal","description":"A specific dollar amount each member commits to giving personally this season. Set it together with committee leadership rather than handing it down, so it reflects what the mission means to that member. Members who give first are in the strongest position to ask others. Use a range that fits your organization rather than one fixed figure; in our experience, many committees land somewhere between $500 and $2,500, and a member who secures a sponsorship of equal value has met the same commitment. Members who make their gift before the event can also help anchor your paddle raise (see [[guide:leading-the-charge|Ensuring Paddle Raise Success]]).","link":"keep-score"},{"name":"New Connections","description":"People who don't yet know your organization: a potential sponsor, a donor prospect, a friend who would care about the mission if they knew about it. Agree on a number of new introductions for the season. Every new name extends the event's reach beyond what staff and past donors can do alone.","link":"sponsorships"},{"name":"One Happy Hour","description":"Attend, or better yet host, at least one pre-event happy hour this season (see [[warm-the-room|Pre-Event Happy Hours]]). These casual gatherings are where prospects meet the mission before any ask happens.","link":"warm-the-room"},{"name":"Personal Invitations","description":"The kind of invitation a member would extend to someone they truly want in the room, not a form message sent to an entire contact list. People show up for people.","link":"table-host"}]},{"type":"calloutBox","title":"Example: One Committee Member's Season","items":[{"boldLeadIn":"Giving goal:","rest":"$500, given personally."},{"boldLeadIn":"New connections:","rest":"5 introductions to potential donors or sponsors."},{"boldLeadIn":"Happy hour:","rest":"hosted 1 pre-event gathering for 8 guests."},{"boldLeadIn":"Personal invitations:","rest":"10 sent to people they wanted in the room."}],"spaceBefore":"tight"},{"type":"bodyText","text":"That example sits at the modest end. A committee at a larger organization might set each commitment several times higher. What matters is that the numbers are agreed together and written down.","variant":"note","plain":true},{"type":"subsectionHeader","title":"Three Ways to Contribute"},{"type":"cardGrid","cards":[{"title":"Give","subtitle":"A Gift","link":"keep-score","description":"A personal financial gift, at whatever level is significant to the member."},{"title":"Get","subtitle":"A Connection","link":"sponsorships","description":"An introduction to an individual donor or corporate sponsor that brings in money beyond the member's own gift."},{"title":"Save","subtitle":"A Cost","link":"gift-acceptance","description":"A saved cost, such as donated catering, a live auction item or an in-kind service for the event."}]},{"type":"pullQuote","color":"green","text":"Your committee isn't just working the room on gala night. It has been working the room for months, one phone call, coffee and happy hour at a time."}]},{"id":"first-meeting","label":"Your First Committee Meeting","summary":"A ready-to-use agenda for the kickoff, so every member leaves knowing the goal, the format and their first assignment.","blocks":[{"type":"sectionHeader","title":"Your First Committee Meeting"},{"type":"bodyText","text":"The kickoff sets the tone for the whole season. Keep it to about 90 minutes, and send the agenda and the job description a few days ahead so members arrive ready to commit.","variant":"lede"},{"type":"calloutBox","title":"Kickoff Agenda","items":[{"boldLeadIn":"Open with the mission.","rest":"A program leader or someone your organization serves tells one short story. Start here, before any numbers."},{"boldLeadIn":"Share the goal and the format.","rest":"The revenue goal, the guest count, and how the night works: an online auction that opens 7 to 10 days early and closes after the gala, five to eight live lots run as an escalator, and the paddle raise that follows."},{"boldLeadIn":"Walk the timeline.","rest":"Go through [[your-team|The Season at a Glance]] and have members put the key dates in their calendars on the spot."},{"boldLeadIn":"Confirm roles.","rest":"Introduce the subcommittee leads and let each member choose a subcommittee."},{"boldLeadIn":"Review the job description.","rest":"Walk through the four commitments and hand out the [[impact-plan|Committee Impact Plan]]."},{"boldLeadIn":"Schedule the planning conversations.","rest":"Book each member's one-on-one within two weeks, rather than asking for numbers in front of the group."},{"boldLeadIn":"Set the cadence.","rest":"The meeting schedule, the shared tracker, and how the group will communicate between meetings."},{"boldLeadIn":"Close with one assignment.","rest":"Every member leaves with one task to finish before the next meeting, such as a list of ten people to invite."}],"numbered":true}]},{"id":"table-host","label":"What a Table Host Actually Does","summary":"Taking personal responsibility for one table of eight to ten, and why it raises more than general ticket sales.","blocks":[{"type":"sectionHeader","title":"What a Table Host Actually Does"},{"type":"bodyText","text":"Hosting a table means taking personal responsibility for filling and hosting one table of guests, typically eight to ten seats. It's different from general ticket sales, and done well, it raises more money."},{"type":"roleList","items":[{"name":"Invite Personally","description":"Reach out one guest at a time, rather than sending one mass invitation."},{"name":"Think About Capacity","description":"Invite people with both the interest and the financial capacity to support the mission, not just bodies to fill chairs. A table built on friendship alone can under-deliver even when every seat is full."},{"name":"Make Contact Before the Ask","description":"Reach each guest personally before any formal ask does: a call, a coffee, a happy hour invitation. The event itself shouldn't be their first contact with your organization.","link":"warm-the-room"},{"name":"Say What's Coming","description":"Tell guests before the night that there will be a live auction and a paddle raise, and that online bidding opens about a week ahead. Nobody enjoys being surprised by a request for money over dessert, and a guest who knows the ask is coming has already had time to decide what to give."},{"name":"Host on the Night","description":"Welcome guests as they arrive and introduce them to each other during the cocktail hour. Then sit with them for dinner and the program, and be the face of your organization at that table."},{"name":"Handle the Details","description":"Make sure every guest is registered to bid before the night, and hand out pledge cards or envelopes when the program calls for it."}]},{"type":"calloutBox","title":"What a Full Table Should Deliver","items":[{"boldLeadIn":"Aim for two to three times what the seats cost.","rest":"That's our rule of thumb: a table of eight to ten that collectively gives two to three times the table price, across the live auction and the paddle raise, is doing its job."},{"boldLeadIn":"A full table is not the same as a giving table.","rest":"Eight guests who come for dinner and drinks and give nothing have cost you the catering. If nobody sets the expectation out loud, you end up with a room full of them."}]},{"type":"bodyText","text":"Table hosts tend to outperform open, general-admission ticket sales for one core reason: each guest arrives with a personal connection to the person who invited them.[^2] That relationship drives both attendance and giving."}]},{"id":"warm-the-room","label":"Pre-Event Happy Hours","summary":"How a gathering before the event thanks early donors, builds buzz and warms up prospects before the ask.","blocks":[{"type":"sectionHeader","title":"Pre-Event Happy Hours"},{"type":"bodyText","text":"A pre-event happy hour is more than a party. It thanks the sponsors and donors who have already said yes, builds buzz before the invitations go out, and gives your table hosts an easy, low-pressure way to introduce their guests to the mission.","variant":"lede"},{"type":"bodyText","text":"Don't let the gala be a guest's first contact with your organization. In our experience, a prospect who walks in cold gives at a lower level than one who has already had a warm interaction."},{"type":"subsectionHeader","title":"How to Run Them"},{"type":"roleList","compact":true,"items":[{"name":"Set the Guest List","description":"Invite prospects the committee hasn't yet had a chance to meet personally."},{"name":"Find a Venue","description":"Approach restaurants, breweries or spirits brands about hosting in-kind. Some will donate the space or the bar in exchange for visibility with a donor audience."},{"name":"Keep the Ask Short","description":"Ten minutes is enough: introduce the mission, explain how to get involved, and let your executive director make a brief, direct ask."}]},{"type":"bodyText","text":"A happy hour or casual lunch is an easier invitation to extend than a direct solicitation. Use it as the on-ramp, and don't let the momentum fade afterward. If a member invited three prospects, that member follows up with all three while the conversation is still fresh."}]},{"id":"sponsorships","label":"Sponsorships","summary":"Treating sponsorship as a business partnership: research, the warm connection, the pitch and the follow-through.","blocks":[{"type":"sectionHeader","title":"Sponsorships"},{"type":"bodyText","text":"Corporate sponsorship is a business partnership, not a donation in the traditional sense. A company pays to be associated with your mission and receives visibility, goodwill and often direct access to your audience in return. Approach sponsors with a business case, not a charity pitch.[^3]","variant":"lede"},{"type":"subsectionHeader","title":"Before You Ask"},{"type":"roleList","compact":true,"items":[{"name":"Research First","description":"Learn a company's actual giving priorities and community presence before reaching out. A few well-targeted asks to companies whose values already overlap with your mission beat a generic ask to a long list."},{"name":"Find the Warm Connection","description":"A current donor, board member or committee member with a relationship at the company is the strongest entry point."},{"name":"Don't Overlook In-Kind","description":"Venue space, printing, food and beverage, or professional services can be as valuable as cash, and some companies prefer to give this way."}]},{"type":"subsectionHeader","title":"Making the Pitch"},{"type":"roleList","compact":true,"items":[{"name":"Tailor It","description":"A proposal that speaks to what a company has already said it cares about beats a generic sponsorship deck."},{"name":"Lead With Impact","description":"Sponsors want to see what their investment will produce, not just why you need it."},{"name":"Come Prepared","description":"Have your 501(c)(3) letter, a clear budget, and a sponsorship package that spells out exactly what recognition the sponsor receives, ready before you ask."}]},{"type":"subsectionHeader","title":"After the Check Clears","spaceBefore":"section"},{"type":"bodyText","text":"Securing the sponsorship is the beginning of the relationship. Thank every sponsor personally within 48 hours, and send the receipt in that same window; speed tells a sponsor how much you value the partnership. Deliver every promised recognition benefit without being reminded, and follow up after the event with the impact their support made possible. If a company declines, ask for feedback, thank them anyway and leave the door open. A graceful no this year can become a yes next year.[^3] For timing and templates, see [[guide:gratitude-plan|The Gratitude Plan]]."}]},{"id":"gift-acceptance","label":"Procuring Items and Accepting Gifts","summary":"Where each donated item belongs, what to decline, and what to get in writing before you say yes.","blocks":[{"type":"sectionHeader","title":"Procuring Items and Accepting Gifts"},{"type":"bodyText","text":"Every item your committee brings in becomes a promise to a bidder. A few simple acceptance rules keep that promise honest.","variant":"lede"},{"type":"subsectionHeader","title":"Know Where Each Item Belongs"},{"type":"roleList","compact":true,"items":[{"name":"Live Auction","description":"Five to eight standout lots, ordered as an escalator: start strong, build in value, and finish with the item the room will fight over. Consignment trips and anything with a donor minimum belong here too, where the starting bid can protect the floor. See [[guide:live-auction-101|Live Auction 101]]."},{"name":"Online Auction","description":"Everything else, listed as single items rather than baskets, each opening at $10. Item descriptions live in the bidding platform, not in the printed program. See [[guide:online-auction-playbook|The Online Auction Playbook]]."}]},{"type":"calloutBox","title":"What to Decline","items":[{"boldLeadIn":"Items that clash with your mission.","rest":"If it would embarrass your organization in a photo, pass."},{"boldLeadIn":"Items that create liability.","rest":"Anything that needs a license or permit to transfer, or that your venue or insurance won't allow."},{"boldLeadIn":"Strings you can't meet.","rest":"Narrow date windows, near-term expiration, hidden fees or heavy blackout dates frustrate winners."},{"boldLeadIn":"Used or worn goods.","rest":"Decline them unless the item is a collectible with documented provenance."},{"boldLeadIn":"Inflated values.","rest":"If the donor's number is far above what similar items sell for, ask for backup or decline the item."}]},{"type":"subsectionHeader","title":"Get It in Writing"},{"type":"bodyText","text":"Use one simple donation form for every item, signed before the item is announced or listed. It should capture:","spaceAfter":"snug"},{"type":"checklist","items":["The donor's name, contact details and how they want to be credited.","A full description, including restrictions, expiration and blackout dates.","The donor's estimate of fair market value, with backup such as a receipt, published price or rate card.","Any minimum sale price the donor requires.","Delivery or pickup details, and who holds the item until the event."]},{"type":"bodyText","text":"<strong>A few tax basics.<\/strong> Your acknowledgment letter to an item donor describes the item but does not state its value; valuing the gift for tax purposes is the donor's responsibility.[^4] You still need a good faith fair market value for the listing and for the winner's receipt, because a winning bidder can deduct only what they paid above that value.[^4] Donated services, such as a photographer's session, are generally not deductible for the person who gives them.[^4] Before accepting any single item worth more than $5,000, loop in your finance lead, since high-value donated property can carry extra IRS reporting.[^5] Confirm the specifics with your tax advisor."},{"type":"calloutBox","title":"Pro Tip","items":[{"boldLeadIn":"No form, no listing.","rest":"Make the signed donation form the trigger for adding an item to the catalog. It saves you from chasing missing details in the final week."}]}]},{"id":"keep-score","label":"Tracking and Accountability","summary":"The shared tracker, the check-in and the planning conversation that turn a goal into progress.","blocks":[{"type":"sectionHeader","title":"Tracking and Accountability"},{"type":"bodyText","text":"A goal with no tracking is just a wish. Three simple tools keep your committee's progress visible.","variant":"lede"},{"type":"roleList","items":[{"name":"A Shared Tracker","description":"One shared spreadsheet showing each member's giving goal, connections made and happy hour attendance."},{"name":"A Check-In","description":"A brief moment at each committee meeting where members report their own progress out loud. Seeing each other's progress drives follow-through more than a private reminder ever could.","link":"impact-plan"},{"name":"A Planning Conversation","description":"A one-on-one near the start of the season covering how much each member aims to raise and what they'll do to get there."}]},{"type":"bodyText","text":"Not every member is a natural fundraiser, and that's fine. Meet people where they are: give them templates they can personalize, and offer to co-write a solicitation email or role-play a phone call whenever it would help."}]},{"id":"impact-plan","label":"The Committee Impact Plan","summary":"A one-page worksheet each member fills in before every check-in, so progress gets reported rather than assumed.","blocks":[{"type":"sectionHeader","title":"The Committee Impact Plan"},{"type":"bodyText","text":"A tracker only works if everyone arrives at the meeting already knowing their own numbers. This one-sheet gives each member a place to record what they committed to, what they have delivered so far, and the single next step they'll take before the group meets again."},{"type":"bodyText","text":"Hand a copy to every member at the kickoff and bring it to each check-in. It is deliberately unbranded, so it can carry your organization's name."},{"type":"linkOut","title":"Committee Impact Plan","note":"One page. Print it, or download it and print from the file.","label":"Open the one-sheet","url":"/resources/impact-plan.html"}]},{"id":"recognition","label":"Recognition","summary":"Making sure committee work gets noticed, both publicly and personally.","blocks":[{"type":"sectionHeader","title":"Recognition"},{"type":"bodyText","text":"People repeat behavior that gets noticed. Make sure your committee's work never goes unseen.","variant":"lede"},{"type":"roleList","compact":true,"items":[{"name":"Public Recognition","description":"Recognize top-performing members by name at meetings and at the event itself."},{"name":"A Personal Thank-You","description":"Thank every member within 48 hours of the event, and send a handwritten note within the week to anyone who went beyond their commitment."},{"name":"Specific Shout-Outs","description":"Call out wins by name: the member who landed a new corporate sponsor, the table host who sold out early."}]},{"type":"bodyText","text":"A member who feels seen is more likely to return next year, and more likely to say yes when you eventually invite them to join the board. For the full stewardship timeline, see [[guide:gratitude-plan|The Gratitude Plan]].","variant":"note","plain":true,"spaceBefore":"tight"}]},{"id":"event-night","label":"Event Night Reminders","summary":"What table hosts and committee members do once the doors open, from cocktail hour to the paddle raise.","blocks":[{"type":"sectionHeader","title":"Event Night Reminders"},{"type":"bodyText","text":"The work doesn't stop when the doors open. A few reminders, especially for table hosts:","spaceAfter":"snug"},{"type":"checklist","items":["Arrive early enough to greet your guests as they walk in.","Work the room before you eat, the way you'd host your own family gathering. Use the cocktail hour to introduce guests to each other, to staff and to program participants.","Sit with your guests for dinner and the program, especially during the live auction and the paddle raise. Your example sets the tone for the table.","Remind guests they can bid online from their seats, and repeat the closing time at your table once it's announced from the stage.","If you've pre-committed a paddle raise gift, raise your paddle the moment your level is called.","Before guests leave, note anyone who seemed especially moved, and pass the names to staff for follow-up."]}]},{"id":"debrief","label":"The Post-Event Debrief","summary":"An eight-point agenda to capture what worked, what didn't and what to start earlier next year.","blocks":[{"type":"sectionHeader","title":"The Post-Event Debrief"},{"type":"bodyText","text":"Hold the debrief within two weeks of the event, after the online auction has closed and the thank-yous have gone out, while memories are still fresh.","variant":"lede"},{"type":"calloutBox","title":"Debrief Agenda","items":[{"boldLeadIn":"Thank the room.","rest":"Open by naming specific wins and the people behind them."},{"boldLeadIn":"Review the numbers.","rest":"Total raised against the goal, broken out by sponsorships, tickets, live auction, paddle raise and online auction. Note how many online bidders held no ticket."},{"boldLeadIn":"What worked.","rest":"The moments, tactics and items worth repeating."},{"boldLeadIn":"What didn't.","rest":"Be specific and keep it about systems, not people."},{"boldLeadIn":"The committee itself.","rest":"Which commitments were met, which roles were unclear, and where anyone burned out."},{"boldLeadIn":"Stewardship check.","rest":"Confirm that every 48-hour thank-you went out, every pickup is complete, and every sponsor benefit was delivered."},{"boldLeadIn":"Next year.","rest":"Hold the date, ask who's returning, confirm the next chair, and list what to start earlier."},{"boldLeadIn":"Write it down.","rest":"File a one-page summary in the committee's shared folder so next year's team starts with it."}],"numbered":true},{"type":"bodyText","text":"Your online auction records every bid, so your underbidder list is already built. To turn those bidders into your warmest prospects, see [[guide:underbid-recording|Auction Data & Underbid Recording]]."},{"type":"linkOut","title":"Donor Gratitude and Stewardship","note":"Thank-you timing, templates and the full stewardship timeline.","label":"Open the guide","guide":"gratitude-plan"}]},{"id":"succession","label":"Preventing Burnout and Planning Succession","summary":"Defined terms, co-chairs and a graceful exit, so your best volunteers come back.","blocks":[{"type":"sectionHeader","title":"Preventing Burnout and Planning Succession"},{"type":"bodyText","text":"The fastest way to lose a great chair is a job that never ends. Build the exit into the role from day one.","variant":"lede"},{"type":"roleList","compact":true,"items":[{"name":"Define the Term","description":"We recommend one season per role, renewable once. A clear end date makes the yes easier and the handoff natural."},{"name":"Pair Every Chair With a Co-Chair","description":"The co-chair shares the load this year and is ready to chair next year."},{"name":"Name Deputies Early","description":"By three months out, ask each subcommittee lead to name a deputy who could step in."},{"name":"Document as You Go","description":"Keep contacts, sponsor agreements, item donors, vendor details and the timeline in one shared folder. The folder is the handoff."},{"name":"Watch for Warning Signs","description":"Missed meetings and unanswered messages usually mean overload, not indifference. Check in privately and offer a lighter role."},{"name":"Make Stepping Back Graceful","description":"A member can move to a lighter role, such as table host or happy hour host, without leaving the committee. Thank departing leaders publicly."}]}]},{"id":"sources","label":"Sources","blocks":[{"type":"sourcesList","title":"Sources","items":[{"num":1,"text":"Gienow, M. (2015, March 2). \"A Timeline for Organizing a Black-Tie Fundraising Gala.\" <em>The Chronicle of Philanthropy<\/em>. https://www.philanthropy.com/solutions/a-timeline-for-organizing-a-black-tie-fundraising-gala/"},{"num":2,"text":"FundEasy. \"Table Hosts vs. Open Invitation Banquets.\" https://fundeasy.com/blog/table-hosts-vs-open-invitation-banquets"},{"num":3,"text":"Engle, K. (2025, December 17). \"Corporate Sponsorship Best Practices: A Nonprofit's Guide.\" Double the Donation. https://doublethedonation.com/corporate-sponsorship-best-practices/"},{"num":4,"text":"Internal Revenue Service. Publication 1771, \"Charitable Contributions: Substantiation and Disclosure Requirements.\" https://www.irs.gov/pub/irs-pdf/p1771.pdf"},{"num":5,"text":"Internal Revenue Service. \"About Form 8282, Donee Information Return.\" https://www.irs.gov/forms-pubs/about-form-8282"}]}]},{"id":"closing","label":"Closing Thoughts","blocks":[{"type":"closingPage","eyebrow":"Closing Thoughts","quote":"A great event committee doesn't just deliver one incredible night. It lays the groundwork for the next event, and every event after that.","body":"Every person your committee invites, every table it fills, and every quick text that says \"thinking of you!\" builds toward something bigger than one night on the calendar. Thank you for leading a team that makes a difference. This is how you build something that lasts.","sources":"","brand":"Emily Preble <em>Auctions<\/em>","tag":"Build the Team"}]}]}</script>
+<script type="application/json" id="library-data" data-epa>{"seriesTitle":"EPA Resource Guides","seriesNote":"Practical guides for nonprofit teams running benefit auctions and fundraising events.","guides":[{"slug":"build-the-team","title":"Building Successful Event Committees","subtitle":"Build the Team","blurb":"Structure, roles, timelines, table hosting, sponsorships and accountability for a committee that does the work.","status":"available","url":"/resources/build-the-team.html"},{"slug":"leading-the-charge","title":"Pre-Committed Giving","subtitle":"Ensuring Paddle Raise Success","blurb":"How to secure leadership gifts before the paddle raise begins, so the room follows their lead: benchmarks, timelines, call scripts, objection handling and templates.","status":"available","url":"/resources/leading-the-charge.html"},{"slug":"live-auction-101","title":"Live Auction 101","subtitle":"Procurement & Best Practices","blurb":"Know your audience, build the dream item list, choose a procurement method, make the ask, and learn from the results.","status":"available","url":"/resources/live-auction-101.html"},{"slug":"online-auction-playbook","title":"The Online Auction Playbook","subtitle":"Raise More, Reach Further","blurb":"How to replace the silent auction table with an online auction that reaches every supporter, plus a full promotion plan and ready-to-send templates.","status":"available","url":"/resources/online-auction-playbook.html"},{"slug":"underbid-recording","title":"Auction Data & Underbid Recording","subtitle":"Learning from Non-Winning Bids","blurb":"How to capture every bid placed in your live auction, read what the numbers say about your lots and your donors, and turn losing bidders into your best cultivation list.","status":"available","url":"/resources/underbid-recording.html"},{"slug":"gratitude-plan","title":"Donor Gratitude and Stewardship","subtitle":"The Gratitude Plan","blurb":"A stewardship framework built on Thank, Show, Invite, with a donor timeline, ten donor tracks, receipt guidance, and plug-and-play email, letter and phone templates.","status":"available","url":"/resources/gratitude-plan.html"},{"slug":"event-budget-calculator","title":"Event Budget Calculator","subtitle":"A Planning Tool","blurb":"Enter your fundraising goal and guest count, then see what your sponsorship levels, ticket prices and giving tiers need to be to hit it.","status":"available","url":"/resources/event-budget-calculator.html","cta":"Open the tool"},{"slug":"event-data-analyzer","title":"Event Data Analyzer","subtitle":"Reading Your Results","blurb":"Put in what happened at your event (revenue, guest roster, clerking sheets and the underbid record) and get back a detailed report on what the data means, ready to download and share with your team.","status":"available","url":"/resources/event-data-analyzer.html","cta":"Open the tool"},{"slug":"placeholder-1","title":"More guides coming","subtitle":"","blurb":"Additional guides in this series are being written and will appear here.","status":"soon","url":""}],"seriesUrl":"/resources/epa-resource-guides.html","current":"build-the-team"}</script>
 
 <script data-epa>
 /* ============================================================
@@ -1423,6 +1506,15 @@ EPA.FIELDS = [];
      so a guide that gets republished at a new address is fixed by one
      rebuild instead of by hunting down sentences. */
   var REF_TOKEN = /\[\[([A-Za-z0-9_:-]+)\|([^\]|]+)\]\]/g;
+
+  /* A footnote citation, written [^11] or [^11, 12]. Same reasoning as
+     REF_TOKEN: <sup><a> can't be typed into copy, so it's a token that
+     becomes a superscript link to the matching sourcesList row (#fn-N).
+     The first citation of each number also carries id="fnref-N", which
+     is where that row's back-arrow returns to. FN_SEEN is reset at the
+     top of every renderGuide so the ids land on first appearance. */
+  var FN_TOKEN = /\[\^(\d+(?:\s*,\s*\d+)*)\]/g;
+  var FN_SEEN = {};
 
   /* Limited inline HTML. Escapes everything, then restores the
      allowlist: <em> <strong> <br> plus named/numeric entities.
@@ -1517,13 +1609,23 @@ EPA.FIELDS = [];
     return (sec && sec.label) || "";
   }
 
+  function footnote(whole, list) {
+    var links = list.split(/\s*,\s*/).map(function (n) {
+      var first = !FN_SEEN[n];
+      FN_SEEN[n] = true;
+      return '<a class="fn-ref" data-fn="' + n + '" href="#fn-' + n + '"' +
+             (first ? ' id="fnref-' + n + '"' : "") + ">" + n + "</a>";
+    });
+    return '<sup class="fn">' + links.join(", ") + "</sup>";
+  }
+
   function refs(html) {
     return html.replace(REF_TOKEN, function (whole, target, label) {
       if (target.indexOf("guide:") === 0) {
         return guideRef(label, target.slice(6), target);
       }
       return jump(label, target, true);
-    });
+    }).replace(FN_TOKEN, footnote);
   }
 
   /* text() is the pipeline every piece of copy goes through. */
@@ -1731,10 +1833,15 @@ EPA.FIELDS = [];
       var owner = b.owner
         ? '<div class="callout-owner"' + P(ctx, "owner") + ">" + text(b.owner, v) + "</div>"
         : "";
+      /* A numbered step sequence is the same box, same bold-lead-in-plus-
+         rest shape, same orange marker color - just an <ol> instead of a
+         <ul> so the browser counts instead of bulleting. No new styling
+         needed: .callout li::marker already colors either one. */
+      var tag = b.numbered ? "ol" : "ul";
       return "<div" + cls("callout", "no-break", before(b)) + ">" +
         '<div class="callout-head">' + num + "<span" + P(ctx, "title") + ">" +
           text(b.title, v) + "</span></div>" +
-        '<div class="callout-body">' + owner + "<ul>" + items + "</ul></div></div>";
+        '<div class="callout-body">' + owner + "<" + tag + ">" + items + "</" + tag + "></div></div>";
     },
 
     exampleBox: function (b, v, ctx) {
@@ -1887,6 +1994,30 @@ EPA.FIELDS = [];
       var color = b.color === "green" ? "pq-green" : b.color === "cream" ? "pq-cream" : "";
       return "<div" + cls("pull-quote", color, b.bare ? "pq-bare" : "", before(b)) +
              P(ctx, "text") + ">" + text(b.text, v) + "</div>";
+    },
+
+    /* A numbered reference list for guides that cite outside research.
+       Inline citations are written straight into body copy as
+       <sup><a href="#fn-N" id="fnref-N">N</a></sup> - raw HTML, same as
+       any <br> or <strong> already is, so nothing upstream needed to
+       change to support them. This block is only the landing list: one
+       row per source, each jumping back to where it was cited. */
+    sourcesList: function (b, v, ctx) {
+      var rows = (b.items || []).map(function (it, i) {
+        /* The list renders after the body it cites, so FN_SEEN already
+           knows which numbers were used. A source nobody cited has
+           nowhere to go back to, so it gets no arrow. */
+        var back = FN_SEEN[String(it.num)]
+          ? ' <a class="fn-back" href="#fnref-' + esc(it.num) + '" aria-label="Back to text">&#8617;</a>'
+          : "";
+        return '<li id="fn-' + esc(it.num) + '" data-row="' + i + '">' +
+          '<span class="fn-num">' + esc(it.num) + ".</span> <span" +
+          P(ctx, "items." + i + ".text") + ">" + text(it.text, v) + "</span>" + back +
+        "</li>";
+      }).join("");
+      return "<div" + cls("sources-list", before(b)) + ">" +
+        (b.title ? '<div class="sources-title"' + P(ctx, "title") + ">" + text(b.title, v) + "</div>" : "") +
+        "<ol>" + rows + "</ol></div>";
     }
   };
 
@@ -1913,6 +2044,7 @@ EPA.FIELDS = [];
   function renderGuide(guide, values) {
     var sheets = [];
     var flow = [];
+    FN_SEEN = {};
 
     function flushFlow() {
       if (!flow.length) return;
@@ -2054,6 +2186,16 @@ EPA.FIELDS = [];
             }
           })(n);
           out += "[[" + n.getAttribute("data-jump") + "|" + label + "]]";
+          continue;
+        }
+        /* A footnote citation goes back out as its [^N, M] token, for the
+           same reason a cross-reference does: unwrapped, it would save as
+           a bare number glued to the end of the sentence. */
+        if (tag === "sup" && n.classList && n.classList.contains("fn")) {
+          var nums = [].map.call(n.querySelectorAll("a[data-fn]"), function (a) {
+            return a.getAttribute("data-fn");
+          });
+          if (nums.length) out += "[^" + nums.join(", ") + "]";
           continue;
         }
         if (tag === "em" || tag === "i") { out += "<em>"; walk(n); out += "</em>"; continue; }
@@ -2693,6 +2835,19 @@ EPA.FIELDS = [];
   function mount() {
     renderTools();
 
+    /* The way in, for Emily, on a browser that has not been unlocked:
+       click the brand mark. It is already in the bar and reads as
+       branding, so it advertises nothing to a client - and anyone who
+       does click it just meets a passphrase prompt. Once unlocked this
+       browser shows the Edit button and none of this is needed again. */
+    /* The brand mark is the client's control now: it opens the library. */
+    var brand = document.querySelector(".app-bar .app-brand");
+    if (brand) {
+      brand.classList.add("app-brand-key");
+      brand.addEventListener("click", function () {
+        if (EPA.openLibrary) EPA.openLibrary();
+      });
+    }
     /* "E" toggles edit mode, unless the caret is in text. */
     document.addEventListener("keydown", function (ev) {
       if (ev.key !== "e" && ev.key !== "E") return;
@@ -2727,23 +2882,36 @@ EPA.FIELDS = [];
 
   var EDIT = /[?&]edit=1\b/.test(location.search);
 
+  /* Where "back to the library" goes. Same tab: the hub is the home
+     page a client arrived from, not a side trip. */
+  function seriesUrl() {
+    return (EPA.LIBRARY && EPA.LIBRARY.seriesUrl) || "/resources/epa-resource-guides.html";
+  }
+
   function shell() {
+    var home = EPA.render.esc(seriesUrl());
     return '' +
       '<div class="app-bar">' +
-        '<a class="app-brand" href="https://www.emilyprebleauctions.com/">Emily Preble <em>Auctions</em></a>' +
-        '<span class="app-sep" aria-hidden="true">&rsaquo;</span>' +
-        '<button class="app-crumb-link" id="libBtn" type="button" title="See all guides in this series">Resource Guides</button>' +
-        '<span class="app-sep" aria-hidden="true">&rsaquo;</span>' +
-        '<span class="app-title">' + EPA.render.esc(EPA.GUIDE.meta.title) + '</span>' +
+        '<a class="app-home" href="' + home + '" title="See every EPA guide and tool">' +
+          '<span aria-hidden="true">&#8592;</span> EPA Resource Library</a>' +
+        '<span class="app-brand">Emily Preble <em>Auctions</em></span>' +
+        '<span class="app-sep">/</span>' +
+        '<button class="app-title" id="libBtn" type="button" title="See all guides in this series">' +
+          EPA.render.esc(EPA.GUIDE.meta.title) + '</button>' +
         '<span class="app-stage">' + EPA.render.esc(EPA.GUIDE.meta.subtitle) + '</span>' +
-        '<button class="app-toc" id="tocBtn" type="button" title="Jump to a section">Contents</button>' +
+        '<button class="app-toc" id="tocBtn" type="button" title="Jump to a section">Guide Contents</button>' +
       '</div>' +
       '<div class="workspace">' +
         '<div class="sheet-stack" id="sheetStack"></div>' +
+        '<div class="lib-return-wrap">' +
+          '<a class="lib-return" href="' + home + '">' +
+            '<span aria-hidden="true">&#8592;</span> Return to the EPA Resource Library</a>' +
+          '<span class="lib-return-note">Every guide and planning tool in the series, in one place.</span>' +
+        '</div>' +
       '</div>' +
       '<button class="to-top" id="toTop" type="button" hidden ' +
-        'title="Back to contents" aria-label="Back to contents">' +
-        '<span class="to-top-arrow" aria-hidden="true">&#8593;</span> Contents</button>';
+        'title="Back to guide contents" aria-label="Back to guide contents">' +
+        '<span class="to-top-arrow" aria-hidden="true">&#8593;</span> Guide Contents</button>';
   }
 
   document.getElementById("app").innerHTML = shell();
@@ -2862,21 +3030,23 @@ EPA.FIELDS = [];
      painted). It fails without throwing, so the only reliable check is
      whether anything actually moved - and if it did not, jump instantly.
      Without this the Contents and cross-links look dead. */
+  /* A queued smooth scrollIntoView can fire late and land at the top of the
+     page, so scroll the window to a computed position instead. */
   function scrollToSection(target) {
     var reduce = window.matchMedia &&
                  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var startTop = target.getBoundingClientRect().top;
-    if (reduce) { target.scrollIntoView(true); return; }
+    var margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+    var y = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - margin);
+    var startY = window.pageYOffset;
+    if (reduce) { window.scrollTo(0, y); return; }
     try {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.scrollTo({ top: y, behavior: "smooth" });
     } catch (e) {
-      target.scrollIntoView(true);
+      window.scrollTo(0, y);
       return;
     }
     setTimeout(function () {
-      if (Math.abs(target.getBoundingClientRect().top - startTop) < 2) {
-        target.scrollIntoView(true);
-      }
+      if (Math.abs(window.pageYOffset - startY) < 2) window.scrollTo(0, y);
     }, 350);
   }
 
@@ -2893,6 +3063,24 @@ EPA.FIELDS = [];
     void target.offsetWidth;
     target.classList.add("is-landed");
     if (history.replaceState) history.replaceState(null, "", "#" + target.id);
+  });
+
+  /* Footnotes: a citation down to its source, and the source's arrow
+     back up to where it was cited. Same scroll and landing flash as a
+     cross-link, so the two kinds of in-page link behave alike. A source
+     nobody cited has no #fnref to return to, so its arrow is a no-op. */
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest ? ev.target.closest("a.fn-ref, a.fn-back") : null;
+    if (!a) return;
+    if (document.body.classList.contains("is-editing")) return;
+    var id = (a.getAttribute("href") || "").replace(/^#/, "");
+    var target = id && document.getElementById(id);
+    ev.preventDefault();
+    if (!target) return;
+    scrollToSection(target);
+    target.classList.remove("is-landed");
+    void target.offsetWidth;
+    target.classList.add("is-landed");
   });
 
   EPA.audit = function () {
@@ -2949,11 +3137,9 @@ EPA.FIELDS = [];
       '<div class="lib-panel">' +
         '<h2>' + esc(lib.seriesTitle || "Guides") + "</h2>" +
         (lib.seriesNote ? "<p>" + esc(lib.seriesNote) + "</p>" : "") +
+        '<a class="lib-return" href="' + esc(seriesUrl()) + '">' +
+          '<span aria-hidden="true">&#8592;</span> Return to the EPA Resource Library</a>' +
         '<div class="lib-rows">' + rows + "</div>" +
-        (lib.seriesUrl
-          ? '<a class="lib-all" href="' + esc(lib.seriesUrl) +
-            '" target="_blank" rel="noopener">See the whole series &rarr;</a>'
-          : "") +
         '<div class="ed-modal-actions"><button type="button" id="libClose">Close</button></div>' +
       "</div>";
 
