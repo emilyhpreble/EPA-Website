@@ -636,6 +636,32 @@ body.is-editing .checklist li:hover::before { background: none; }
   widows: 2;
 }
 
+/* Copy button on every template card (screen only). */
+.email-head { position: relative; padding-right: 0.95in; }
+.email-copy {
+  position: absolute;
+  top: 50%;
+  right: 0.12in;
+  transform: translateY(-50%);
+  font-family: var(--sans);
+  font-size: 7pt;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--epa-cream);
+  background: rgba(50, 20, 38, 0.18);
+  border: 1px solid rgba(234, 229, 214, 0.7);
+  border-radius: 999px;
+  padding: 0.04in 0.13in;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.email-copy:hover { background: rgba(50, 20, 38, 0.38); }
+.email-copy.is-copied { background: var(--epa-purple); border-color: var(--epa-purple); }
+.email-copy:focus-visible { outline: 2px solid var(--epa-purple); outline-offset: 2px; }
+@media print { .email-copy { display: none !important; } .email-head { padding-right: 0.16in; } }
+.is-editing .email-copy { display: none; }
+
 /* ---------- FOOTNOTES / SOURCES ---------- */
 .epa-doc sup { font-size: 0.68em; line-height: 0; vertical-align: super; }
 .epa-doc sup a {
@@ -1935,6 +1961,11 @@ EPA.FIELDS = [];
           P(ctx, "label") + ">" + text(b.label, v) + "</span></div>"
         : '<div class="email-head">Subject: <span class="subj"' +
           P(ctx, "subject") + ">" + text(b.subject, v) + "</span></div>";
+      /* Copy lifts the template as plain text, subject included. Screen
+         only: hidden in print and in edit mode by CSS, and it carries no
+         data-path, so the editor never sees it. */
+      head = head.replace(/<\/div>$/, '<button type="button" class="email-copy" ' +
+        'aria-label="Copy this template">Copy</button></div>');
       return "<div" + cls("email-card", before(b)) + ">" + head +
         '<div class="email-body"' + P(ctx, "body") + ">" + text(b.body, v) + "</div></div>";
     },
@@ -3081,6 +3112,48 @@ EPA.FIELDS = [];
     target.classList.remove("is-landed");
     void target.offsetWidth;
     target.classList.add("is-landed");
+  });
+
+  /* Template Copy buttons: subject line plus body, as plain text, so it
+     pastes cleanly into an email, a text or a bidding platform. */
+  function copyText(str) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(str);
+    }
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement("textarea");
+      ta.value = str;
+      ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;top:-1000px;opacity:0";
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      ta.remove();
+      if (ok) resolve(); else reject();
+    });
+  }
+  document.addEventListener("click", function (ev) {
+    var btn = ev.target.closest ? ev.target.closest("button.email-copy") : null;
+    if (!btn) return;
+    var card = btn.closest(".email-card");
+    var subj = card.querySelector(".email-head .subj");
+    var body = card.querySelector(".email-body");
+    var out = (subj ? "Subject: " + subj.innerText.trim() + "\n\n" : "") +
+              (body ? body.innerText.trim() : "");
+    copyText(out).then(function () {
+      btn.textContent = "Copied";
+      btn.classList.add("is-copied");
+    }, function () {
+      btn.textContent = "Press Cmd+C";
+      var r = document.createRange(); r.selectNodeContents(body);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    });
+    clearTimeout(btn._t);
+    btn._t = setTimeout(function () {
+      btn.textContent = "Copy";
+      btn.classList.remove("is-copied");
+    }, 1800);
   });
 
   EPA.audit = function () {
