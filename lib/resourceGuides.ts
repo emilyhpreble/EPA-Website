@@ -109,15 +109,15 @@ export const resourceGuides: ResourceGuide[] = [
     sections: [
       {
         title: "Introduction",
-        snippet: "Lush, bundled baskets used to be the standard. After working so many galas each year, we've learned they rarely pay off.",
+        snippet: "Lush, bundled baskets used to be the standard. As the industry evolves, the in-person silent auction model has proven less and less effective.",
       },
       {
         title: "Why Go Online",
-        snippet: "A silent auction table only reaches the people standing next to it. An online auction reaches everyone who loves your mission.",
+        snippet: "A physical silent auction table only reaches the people present at our event. An online auction reaches everyone who loves your mission, whether they can attend our gala or not.",
       },
       {
         title: "Set the Calendar",
-        snippet: "Open bidding seven to ten days before your gala, and close it after the gala ends.",
+        snippet: "Open bidding seven to ten days before your gala, and close it at the end of your gala weekend.",
       },
       {
         title: "Start Every Item at $10",
@@ -125,7 +125,7 @@ export const resourceGuides: ResourceGuide[] = [
       },
       {
         title: "Keep the Close Quiet",
-        snippet: "We don't promote the closing date. When people know the deadline, they wait for it.",
+        snippet: "We don't promote the closing date to maintain a sense of urgency. When people know the deadline, they wait for it.",
       },
       {
         title: "Unbundle the Baskets",
