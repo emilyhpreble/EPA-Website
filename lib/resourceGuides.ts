@@ -185,18 +185,16 @@ export const resourceGuides: ResourceGuide[] = [
   },
   {
     slug: "event-goal-builder",
-    title: "Event Goal Builder",
+    title: "Revenue Goal Tool",
     subtitle: "Base, Dream and Stretch",
     blurb:
-      "Enter a few numbers about your gala and get Base, Dream and Stretch goals built from the people in your room, with a gift chart, plain-language checks and a PDF for your planning call.",
+      "Enter your tickets, sponsors and the size of your room. Get Base, Dream and Stretch goals for every line, type over any number, and download a PDF for your planning call.",
     cta: "Open the Tool",
     sections: [
-      { title: "The Room", snippet: "Couples decide together, so we count buying units: one per household or couple. Every goal on this page starts here." },
-      { title: "Tickets and Sponsors", snippet: "Money you can count before the doors open." },
-      { title: "Auctions and Games", snippet: "Enter what you expect each one to bring in. Your Base goal counts 75% of it, in case a lot or two sells low." },
-      { title: "Your Paddle Raise", snippet: "This is where goals come from people. For each giving level, count the people you can picture giving there." },
-      { title: "Event Costs", snippet: "What the night costs to put on, so you can see what goes to your mission." },
-      { title: "Base, Dream and Stretch", snippet: "Three goals built one stream at a time, a gift chart with plain-language checks, and a PDF to bring to your planning call." },
+      { title: "Tickets and Sponsors", snippet: "Money you can count on before the night starts. We call it locked revenue, and it comes first." },
+      { title: "Your Room", snippet: "Night-of money comes from the people in the room. We count giving units: one guest, or a couple who spends together." },
+      { title: "Your Goals", snippet: "We fill in every line from your numbers. Type over any of them. Many groups set goals below the formula on purpose, to stay safe." },
+      { title: "Base, Dream and Stretch", snippet: "Your goals, a check against what your room can spend, how much to collect for each auction, and your paddle raise stage goal, ready as a PDF." },
     ],
   },
   {
