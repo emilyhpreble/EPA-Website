@@ -184,6 +184,22 @@ export const resourceGuides: ResourceGuide[] = [
     ],
   },
   {
+    slug: "event-goal-builder",
+    title: "Event Goal Builder",
+    subtitle: "Base, Dream and Stretch",
+    blurb:
+      "Enter a few numbers about your gala and get Base, Dream and Stretch goals built from the people in your room, with a gift chart, plain-language checks and a PDF for your planning call.",
+    cta: "Open the Tool",
+    sections: [
+      { title: "The Room", snippet: "Couples decide together, so we count buying units: one per household or couple. Every goal on this page starts here." },
+      { title: "Tickets and Sponsors", snippet: "Money you can count before the doors open." },
+      { title: "Auctions and Games", snippet: "Enter what you expect each one to bring in. Your Base goal counts 75% of it, in case a lot or two sells low." },
+      { title: "Your Paddle Raise", snippet: "This is where goals come from people. For each giving level, count the people you can picture giving there." },
+      { title: "Event Costs", snippet: "What the night costs to put on, so you can see what goes to your mission." },
+      { title: "Base, Dream and Stretch", snippet: "Three goals built one stream at a time, a gift chart with plain-language checks, and a PDF to bring to your planning call." },
+    ],
+  },
+  {
     slug: "event-data-analyzer",
     title: "Event Data Analyzer",
     subtitle: "Reading Your Results",

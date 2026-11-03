@@ -16,6 +16,7 @@ const GATED_FILES = [
   "/resources/gratitude-plan.html",
   "/resources/event-budget-calculator.html",
   "/resources/event-data-analyzer.html",
+  "/resources/event-goal-builder.html",
 ];
 
 // Anything that isn't a page — crawler files, API routes, and every static
