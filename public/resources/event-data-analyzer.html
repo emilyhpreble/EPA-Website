@@ -1437,12 +1437,17 @@ $10K</pre></details>
         + " lots, so everyone who bid only on a lot that has not been typed up is still invisible here. "
         + "Finish the remaining pages and this number will move up, probably by a lot.</p>");
     } else if (a.participation !== null) {
-      var band = a.participation < 30
+      /* Bands match the Underbid Recording guide. Judge the rounded number,
+         so a room shown as 60% is never called "strong". */
+      var shown = Math.round(a.participation);
+      var band = shown < 30
         ? "That is underperforming, and the cause is usually structural rather than a question of generosity: seating that scattered your bidders, opening bids set too high, or a lot list that did not match the room you actually invited."
-        : a.participation < 40
-        ? "That is not a crisis. It usually means one fixable thing went sideways, and the bidding data below is how you find out which one."
-        : a.participation <= 60
-        ? "That is a healthy gala. Most well-run events live right here."
+        : shown < 40
+        ? "That is room to grow, not a crisis. It usually means one fixable thing went sideways, and the bidding data below is how you find out which one."
+        : shown < 50
+        ? "That is a healthy gala. Most well-run events land here."
+        : shown < 60
+        ? "That is a strong room. Your program, seating, and lot mix are working together."
         : "That is a high-energy room. Something is working (the pacing, the storytelling, the seating, the lot mix), and it is worth writing down what you did while you still remember.";
       H.push("<p><b>" + pct(a.participation) + " of the paddles in your room took part</b> in the live auction, the appeal, or both. " + band + "</p>");
       H.push("<p class=\"est\">Calculated against paddles issued rather than guests, because some events issue one paddle per person and some one per couple. Compare it year to year only if you stay consistent.</p>");
