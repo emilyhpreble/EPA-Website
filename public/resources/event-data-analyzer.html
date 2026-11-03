@@ -1407,7 +1407,7 @@ $10K</pre></details>
           + " has come in so far (" + pct(a.rev.fulfillment) + "). "
           + (a.rev.fulfillment >= 95 ? "That is essentially full collection, and it means your follow-up is working."
              : a.rev.fulfillment >= 85 ? "That is normal at this stage. The last stretch is usually a handful of people who need one more reminder."
-             : "There is real money still outstanding. Pledge reminders are the least glamorous and highest-yielding work available to you right now.") + "</p>");
+             : "A meaningful amount is still outstanding. Pledge reminders are the least glamorous and highest-yielding work available to you right now.") + "</p>");
       }
     } else {
       H.push("<p class=\"empty\">No revenue entered yet.</p>");
@@ -1465,7 +1465,7 @@ $10K</pre></details>
       var bothShare = (s.both / t) * 100, liveShare = (s.liveOnly / t) * 100;
       H.push("<p>" + (bothShare > liveShare
         ? "More of your guests gave in both places than gave only in the auction, which is exactly the direction you want. It means the program is converting buyers into givers rather than just selling them things."
-        : "Your live-auction-only group is larger than the group that did both. That is not a failure. Shoppers are real guests who came to acquire something. But growing the overlap is the single clearest sign that a program is maturing. Watch this ratio more than any other number here.") + "</p>");
+        : "Your live-auction-only group is larger than the group that did both. That is not a failure. Shoppers are welcome guests who came to acquire something. But growing the overlap is the single clearest sign that a program is maturing. Watch this ratio more than any other number here.") + "</p>");
     }
 
     /* ---------- 3. The auction ---------- */
@@ -1583,7 +1583,7 @@ $10K</pre></details>
       H.push("<p>" + (a.top3 > 40
         ? "Above 40% is concentrated. It does not mean anything has gone wrong (a great year often looks exactly like this), but the result is resting on very few shoulders. If one of those three has a wedding to attend next April, you are planning around a hole you cannot fill in a week. The answer is not to worry; it is to broaden your base deliberately while you have time, starting with the follow-up list below."
         : a.top3 >= 25
-        ? "Between 25% and 40% is worth watching. Your leadership donors are doing their job, and the rest of the room is carrying real weight too. Track the direction this moves from year to year, and keep cultivating the next tier of bidders so the base keeps widening."
+        ? "Between 25% and 40% is worth watching. Your leadership donors are doing their job, and the rest of the room is carrying its share too. Track the direction this moves from year to year, and keep cultivating the next tier of bidders so the base keeps widening."
         : "Under 25% is a comfortably broad base. No small group is carrying the night, which means a single absence next year will not decide your result. Track the direction this moves more than the number itself.") + "</p>");
       if (a.buyers.length) {
         H.push("<table><thead><tr><th>Buyer</th><th>Spent in the live auction</th><th>Share</th></tr></thead><tbody>");
@@ -1684,7 +1684,7 @@ $10K</pre></details>
         H.push("<p><b>Auction champions (" + T.champions.length + ").</b> "
           + esc(listWords(T.champions.slice(0, 6).map(function (p) { return who(a, p); })))
           + (T.champions.length > 6 ? ", and others" : "")
-          + " bid on three or more lots and won nothing. Their bidding drove your prices up and made the auction feel important to everyone sitting near them. They are doing real work for you and deserve to be treated accordingly, starting with seating them on purpose next year, where their energy will do the most good.</p>");
+          + " bid on three or more lots and won nothing. Their bidding drove your prices up and made the auction feel important to everyone sitting near them. They are doing important work for you and deserve to be treated accordingly, starting with seating them on purpose next year, where their energy will do the most good.</p>");
       }
       if (T.pledgers.length) {
         H.push("<p><b>Pledgers (" + T.pledgers.length + ").</b> They gave in the appeal and never raised a paddle in the auction. They want to give you money and would rather not receive anything in return. They are often your most efficient revenue, and they are the easiest people in the room to under-thank, because they ask for so little.</p>");
