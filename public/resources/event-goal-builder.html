@@ -80,9 +80,11 @@
   a.app-home:hover { background:#c4432c; }
 
   /* ---------- Masthead ---------- */
-  .masthead { background:var(--mast-bg); color:var(--mast-text); padding:3rem 1.5rem 2.75rem;
+  .masthead { background:var(--mast-bg); color:var(--mast-text); padding:3rem 0 2.75rem;
               border-bottom:3px solid var(--mast-accent); }
-  .masthead-inner { max-width:920px; margin:0 auto; }
+  /* Same width and side padding as the goals strip and the cards, so the
+     banner runs edge to edge and its text lines up with everything below. */
+  .masthead-inner { max-width:920px; margin:0 auto; padding:0 1.5rem; }
   .wordmark { font-family:var(--font-display); font-size:1.05rem; letter-spacing:0.02em; }
   .wordmark .wm-accent { color:var(--mast-accent); font-style:italic; }
   .tool-title { margin-top:0.85rem; font-size:clamp(2rem,4.2vw,2.85rem); color:var(--mast-text); }
@@ -258,7 +260,8 @@
     .g2,.g3 { grid-template-columns:1fr; }
     .card { padding:1.3rem 1.05rem 1.5rem; }
     .steps { padding:1.4rem 0.9rem 3rem; gap:1.2rem; }
-    .masthead { padding:2.1rem 1.15rem 1.9rem; }
+    .masthead { padding:2.1rem 0 1.9rem; }
+    .masthead-inner { padding:0 1rem; }
     .status-inner { padding:0.5rem 1rem; gap:0.3rem 0.9rem; }
     .status-goal b { font-size:0.92rem; }
     .status-jump { display:none; }
@@ -292,6 +295,7 @@
     @page { margin:0.6in; }
     .app-bar, .status-bar, main.steps > section:not(#resultsCard), .btn-row, .no-print { display:none !important; }
     body { background:#FFF; color:#321426; font-size:12px; }
+    .masthead-inner { padding:0; }
     .masthead { padding:1.1rem 1.2rem 1rem; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
     .how-it-works { display:none; }
     .tool-title { font-size:1.7rem; }
@@ -315,8 +319,7 @@
   <button class="app-toc" id="tocBtn" type="button" title="Jump to a step">Tool Contents</button>
 </div>
 
-<div class="page">
-  <header class="masthead">
+<header class="masthead">
     <div class="masthead-inner">
       <div class="wordmark">Emily Preble <span class="wm-accent">Auctions</span></div>
       <h1 class="tool-title">Event Goal Builder</h1>
@@ -329,7 +332,6 @@
       </ol>
     </div>
   </header>
-</div>
 
 <div class="status-bar" aria-live="polite">
   <div class="status-inner">
@@ -359,7 +361,7 @@
         <div class="field-input"><input id="f_date" data-k="meta.date" type="date"></div>
         <p class="hint">We use it to tell you when to land your top gift.</p></div>
     </div>
-    <div class="grid g2">
+    <div class="grid">
       <div class="field"><span class="label">What do you call your appeal?</span>
         <div class="seg" id="segAppeal" role="group" aria-label="What do you call your appeal?">
           <button type="button" data-v="paddle raise">Paddle raise</button>
