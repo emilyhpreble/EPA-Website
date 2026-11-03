@@ -398,7 +398,7 @@
     <div class="field" style="margin-top:1.4rem">
       <label for="f_part">Participation rate <span class="assume">Your guess</span></label>
       <div class="slider-row">
-        <input id="f_part" type="range" min="30" max="90" step="1" aria-describedby="partNote">
+        <input id="f_part" type="range" min="1" max="100" step="1" aria-describedby="partNote">
         <output class="slider-out" id="partOut" for="f_part">50%</output>
       </div>
       <p class="hint">The share of buying units you think will give to your <span class="an">paddle raise</span>. This is a guess. Swap in your own number from last year if you have it.</p>
@@ -570,8 +570,8 @@ var GoalMath = (function () {
     staffComps: 0,            // staff, volunteers and comp seats who won't give
     guestsPerUnit: 2,         // buying units = (guests - staffComps) / this
     participation: 50,        // % of buying units that give to the appeal
-    participationMin: 30,     // slider range
-    participationMax: 90,
+    participationMin: 1,      // slider range
+    participationMax: 100,
 
     /* What one buying unit can spend on the night (appeal + auctions +
        games), from TravelPledge. Keys match the "kind of room" picker. */
@@ -1182,12 +1182,13 @@ if (typeof module !== "undefined" && module.exports) module.exports = GoalMath;
 
     var p = R.room.participation;
     $("partOut").textContent = pct(p);
-    var band = p < 40 ? "Room to grow (30% to 39%). A careful plan for a new or quiet crowd."
+    var band = p < 30 ? "Underperforming (under 30%). Most rooms do better than this, so plan this low only if last year's room was this quiet."
+      : p < 40 ? "Room to grow (30% to 39%). A careful plan for a new or quiet crowd."
       : p < 50 ? "A healthy gala (40% to 49%). Most well-run events land here."
       : p < 60 ? "A strong room (50% to 59%). Your program, seating and lots are working together."
       : "A high-energy room (60% and up). Use this only if your past events back it up.";
     $("partNote").textContent = band + " These bands come from our Auction Data and Underbid Recording guide.";
-    $("partNote").classList.toggle("is-warn", p >= 60);
+    $("partNote").classList.toggle("is-warn", p < 30 || p >= 60);
 
     $("roomDerived").innerHTML =
       '<div><span>Buying units</span><b>' + fmtNum(R.room.units) + '</b></div>' +
