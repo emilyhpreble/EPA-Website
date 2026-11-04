@@ -393,7 +393,7 @@
      - live lots plan at 75% of value, 5 to 8 lots
      - online items plan at 50% of value (Emily chose 2026-11-03, so the
        calculator and the Revenue Goal Tool's "most to collect" agree)
-     - top paddle raise gift = about 10% of the paddle raise
+     - top paddle raise level = about 10% of the whole event goal (Emily, 2026-11-03)
      - pre-commit: 20% to 30% established, 10% to 15% first year
      - average gift per giving unit: Base $500 / Stretch $750 / Dream $1,000
    ========================================================================= */
@@ -505,7 +505,7 @@ var CalcMath = (function () {
                 perItem: onlineItems > 0 ? roundNice(onlineValue / onlineItems) : 0 },
       paddle: {
         goal: target.paddle,
-        topGift: roundNice(target.paddle * d.topGiftShare),
+        topGift: roundNice(goal * d.topGiftShare),
         precommit: [roundNice(target.paddle * d.precommitEstablished[0]), roundNice(target.paddle * d.precommitEstablished[1])],
         precommitNew: [roundNice(target.paddle * d.precommitNew[0]), roundNice(target.paddle * d.precommitNew[1])]
       },
@@ -731,7 +731,7 @@ if (typeof module !== "undefined" && module.exports) module.exports = CalcMath;
       "<li><b>Each goal</b> = your " + usd(R.goal) + " goal x its share of the mix.</li>" +
       "<li><b>Sponsors</b>: each level gets a quarter of the sponsor goal, rounded to a price sponsors know.</li>" +
       "<li><b>Auctions</b>: the live auction brings about two thirds of auction money. The online auction brings the rest.</li>" +
-      "<li><b>Top gift</b> = about 10% of the paddle raise.</li>" +
+      "<li><b>Top gift</b> = about 10% of your whole event goal.</li>" +
       "</ul>");
     H.push('<p class="src">These numbers are a plan, not a promise. To build goals from the people in your room, use the Revenue Goal Tool.</p>');
 
