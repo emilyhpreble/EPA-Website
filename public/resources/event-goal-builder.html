@@ -241,18 +241,30 @@
   .tier-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0.8rem; }
   .tier-row .tier-name { font-size:0.8rem; font-weight:600; margin-bottom:0.3rem; }
   .tier-row .hint { margin-top:0.3rem; }
-  .gift-range { margin-top:1.4rem; }
-  .gr-row { display:grid; grid-template-columns:6.5rem minmax(0,1fr); align-items:center; gap:0.6rem; height:2.4rem; }
-  .gr-label { font-size:0.8rem; font-weight:600; }
-  .gr-track { position:relative; height:100%; }
-  .gr-track::before { content:""; position:absolute; left:0; right:0; top:62%; border-top:2px solid var(--track); }
-  .gr-band { position:absolute; top:0; bottom:0; background:rgba(154,146,67,0.3);
-             border-left:2px solid var(--good); border-right:2px solid var(--good); }
-  .gr-dot { position:absolute; top:62%; width:0.8rem; height:0.8rem; margin:-0.4rem 0 0 -0.4rem; border-radius:50%; background:var(--accent); }
-  .gr-val { position:absolute; top:0; transform:translateX(-50%); font-size:0.72rem; font-weight:600; white-space:nowrap;
-            font-variant-numeric:tabular-nums; }
-  .gr-val.is-left { transform:none; }
-  .gr-val.is-right { transform:translateX(-100%); }
+  .gift-range { margin-top:1.4rem; display:flex; flex-direction:column; gap:0.9rem; }
+  .gr-row { display:grid; grid-template-columns:6.5rem minmax(0,1fr); align-items:center; gap:0.6rem; }
+  .gr-label { font-size:0.8rem; font-weight:600; line-height:1.25; }
+  .gr-label small { display:block; font-weight:400; font-size:0.7rem; color:var(--text-muted); }
+  .gr-track { position:relative; }
+  /* Industry data: the full range, with the green middle band where most giving units fall. */
+  .gr-data { height:2.8rem; background:var(--track); border-radius:6px; }
+  .gr-band { position:absolute; top:0; bottom:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+             background:rgba(154,146,67,0.45); border-radius:6px; padding:0 0.2rem; text-align:center;
+             font-size:0.7rem; font-weight:600; line-height:1.2; color:var(--text); }
+  /* Your estimates: Base up to Dream, on the same scale as the data above. */
+  .gr-est { height:3.8rem; }
+  .gr-est::before { content:""; position:absolute; left:0; right:0; top:50%; border-top:2px dashed var(--border-strong); }
+  .gr-line { position:absolute; top:50%; height:4px; margin-top:-2px; background:var(--accent); border-radius:2px; }
+  .gr-dot { position:absolute; top:50%; width:0.9rem; height:0.9rem; margin:-0.45rem 0 0 -0.45rem; border-radius:50%;
+            background:var(--accent); border:2px solid var(--surface); }
+  .gr-val { position:absolute; transform:translateX(-50%); font-size:0.7rem; font-weight:600; white-space:nowrap;
+            text-align:center; line-height:1.15; font-variant-numeric:tabular-nums; }
+  .gr-val.is-up { top:0; }
+  .gr-val.is-down { bottom:0; }
+  .gr-val.is-left { transform:none; text-align:left; }
+  .gr-val.is-right { transform:translateX(-100%); text-align:right; }
+  .order-note { margin-top:0.8rem; padding:0.55rem 0.8rem; border-radius:7px; font-size:0.85rem;
+                background:var(--warn-soft); border-left:3px solid var(--accent); }
   .gr-axis { position:relative; height:1.2rem; font-size:0.7rem; color:var(--text-muted); font-variant-numeric:tabular-nums; }
   .gr-axis span { position:absolute; transform:translateX(-50%); }
   .gr-axis span:first-child { transform:none; }
@@ -385,8 +397,9 @@
           <div class="field-input"><span class="prefix">$</span><input id="f_gd" data-k="gift.dream" data-num type="text" inputmode="decimal"></div>
           <p class="hint">Lights out</p></div>
       </div>
+      <p class="order-note" id="orderNote" hidden>Your Base goal should have the lowest gift and your Dream goal the highest. Check your three numbers.</p>
       <div class="gift-range" id="giftRange" aria-hidden="true"></div>
-      <p class="hint">Event data puts the average gift per giving unit between about $250 and $1,500. Most events land between $500 and $1,000, the green band. It's an average: some give $5,000 and some give $250.</p></div>
+      <p class="hint"><b>Top bar: industry data.</b> The average gift per giving unit runs from about $250 to $1,500. The green band, $500 to $1,000, is the middle range where most giving units fall. <b>Bottom bar: your estimates,</b> from your Base goal up to your Dream goal. It's an average: some give $5,000 and some give $250.</p></div>
   </section>
 
   <!-- ============ The plan ============ -->
@@ -649,23 +662,38 @@ if (typeof module !== "undefined" && module.exports) module.exports = GoalMath;
     TIERS.forEach(function (t) { $("sb_" + t).textContent = usd(R.tiers[t].total); });
   }
 
-  /* Where each goal's average gift sits on the range event data shows. */
+  /* Two bars on one scale: what industry data shows on top, the client's
+     own Base, Stretch and Dream estimates underneath. */
   function drawRange() {
     var r = D.giftRange;
     function pos(v) { return Math.max(0, Math.min(100, (v - r.low) / (r.high - r.low) * 100)); }
-    var band = '<div class="gr-band" style="left:' + pos(r.typicalLow) + "%;width:" + (pos(r.typicalHigh) - pos(r.typicalLow)) + '%"></div>';
-    var H = TIERS.map(function (t) {
-      var g = R.tiers[t].gift, x = pos(g);
-      var edge = x < 8 ? " is-left" : x > 92 ? " is-right" : "";
-      return '<div class="gr-row"><span class="gr-label">' + TNAME[t] + '</span><div class="gr-track">' + band +
-        '<span class="gr-dot" style="left:' + x + '%"></span><span class="gr-val' + edge + '" style="left:' + x + '%">' + usd(g) + "</span></div></div>";
-    });
+    var g = {}; TIERS.forEach(function (t) { g[t] = R.tiers[t].gift; });
+    $("orderNote").hidden = g.base <= g.stretch && g.stretch <= g.dream;
+
+    var data = '<div class="gr-row"><span class="gr-label">Industry data<small>All events</small></span>' +
+      '<div class="gr-track gr-data"><div class="gr-band" style="left:' + pos(r.typicalLow) + "%;width:" +
+      (pos(r.typicalHigh) - pos(r.typicalLow)) + '%"><span>Most events</span><span>' + usd(r.typicalLow) + " to " +
+      usd(r.typicalHigh) + "</span></div></div></div>";
+
+    /* Labels alternate below, above, below from left to right, so neighbors
+       never collide, even when the three gifts are typed out of order. */
+    var xs = TIERS.map(function (t) { return pos(g[t]); });
+    var rank = TIERS.map(function (t, i) { return i; }).sort(function (a, b) { return xs[a] - xs[b]; });
+    var lo = Math.min.apply(null, xs), hi = Math.max.apply(null, xs);
+    var marks = TIERS.map(function (t, i) {
+      var x = xs[i], edge = x < 10 ? " is-left" : x > 90 ? " is-right" : "";
+      var name = TNAME[t].replace(" goal", "");
+      return '<span class="gr-dot" style="left:' + x + '%"></span><span class="gr-val ' + (rank.indexOf(i) === 1 ? "is-up" : "is-down") +
+        edge + '" style="left:' + x + '%">' + name + " " + usd(g[t]) + "</span>";
+    }).join("");
+    var est = '<div class="gr-row"><span class="gr-label">Your estimates<small>Base to Dream</small></span>' +
+      '<div class="gr-track gr-est"><span class="gr-line" style="left:' + lo + "%;width:" + (hi - lo) + '%"></span>' + marks + "</div></div>";
+
     var ticks = [250, 500, 750, 1000, 1250, 1500].map(function (v) {
       var minor = v === 750 || v === 1250;  /* hidden on phones so the labels don't collide */
       return "<span" + (minor ? ' class="is-minor"' : "") + ' style="left:' + pos(v) + '%">' + usd(v) + "</span>";
     }).join("");
-    H.push('<div class="gr-row" style="height:auto"><span></span><div class="gr-axis">' + ticks + "</div></div>");
-    $("giftRange").innerHTML = H.join("");
+    $("giftRange").innerHTML = data + est + '<div class="gr-row"><span></span><div class="gr-axis">' + ticks + "</div></div>";
   }
 
   function drawReport() {
