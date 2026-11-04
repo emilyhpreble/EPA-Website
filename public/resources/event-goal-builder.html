@@ -107,7 +107,7 @@
   .status-goal { display:flex; align-items:baseline; gap:0.4rem; font-variant-numeric:tabular-nums; }
   .status-goal span { font-size:0.68rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); }
   .status-goal b { font-size:1rem; font-weight:600; }
-  .status-goal.is-dream b { color:var(--accent); }
+  .status-goal.is-main b { color:var(--accent); }
   .status-jump { margin-left:auto; }
 
   /* ---------- Steps ---------- */
@@ -144,10 +144,6 @@
                 font-size:0.85rem; font-weight:600; padding:0.5rem 0.85rem; border-radius:7px; min-height:2.5rem; }
   .seg button:hover:not(.is-on) { border-color:var(--accent); }
   .seg button.is-on { background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
-  .derived { margin-top:1.1rem; display:flex; flex-wrap:wrap; gap:0.6rem; }
-  .derived div { background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:0.6rem 0.85rem; min-width:9rem; }
-  .derived span { display:block; font-size:0.68rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); }
-  .derived b { font-size:1.15rem; font-weight:600; font-variant-numeric:tabular-nums; }
 
   .btn { border:1px solid var(--border-strong); background:var(--surface); color:var(--text);
          font-size:0.85rem; font-weight:600; padding:0.6rem 1rem; border-radius:7px; min-height:2.5rem; }
@@ -194,7 +190,7 @@
 
   .goal-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:0.8rem; margin-top:1rem; }
   .goal-card { border:1px solid var(--border); border-radius:9px; padding:0.95rem 1rem; background:var(--surface-2); }
-  .goal-card.is-dream { border-color:var(--accent); border-width:2px; }
+  .goal-card.is-main { border-color:var(--accent); border-width:2px; }
   .goal-card h4 { font-family:var(--font-body); font-size:0.72rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--epa-green); }
   .goal-card .big { display:block; font-size:1.65rem; font-weight:600; margin-top:0.2rem; font-variant-numeric:tabular-nums; }
   .goal-card .net { display:block; font-size:0.85rem; color:var(--text-muted); }
@@ -231,36 +227,36 @@
                         border-radius:7px; padding:0.45rem 0.9rem; }
   .lib-actions button:hover { border-color:var(--epa-orange); color:var(--epa-orange); }
 
-  /* ---------- The goal grid: every line, every tier, all typeable ---------- */
-  .goal-grid { display:grid; grid-template-columns:minmax(9rem,1.3fr) repeat(3,minmax(0,1fr)); gap:0.55rem 0.8rem;
-               margin-top:1.3rem; align-items:start; }
-  .gg-head { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--epa-green);
-             padding-bottom:0.3rem; border-bottom:1px solid var(--border-strong); }
-  .gg-head.is-dream { color:var(--accent); }
-  .gg-label { font-weight:600; font-size:0.92rem; padding-top:0.5rem; min-width:0; }
-  .gg-label small { display:block; font-weight:400; font-size:0.78rem; color:var(--text-muted); }
-  .gg-cell { min-width:0; }
-  .gg-cell .tier-tag { display:none; }
-  .gg-cell .field-input input { padding:0.5rem 0.5rem; font-weight:400; }
-  .gg-cell.is-typed .field-input { border-color:var(--accent); box-shadow:inset 3px 0 0 var(--accent); }
-  .gg-cell.is-typed .field-input input { font-weight:600; }
-  .gg-cell.is-off .field-input { opacity:0.45; }
-  .undo { display:block; margin-top:0.25rem; border:0; background:none; padding:0; font-size:0.74rem; text-align:left;
-          color:var(--text-muted); text-decoration:underline; text-underline-offset:2px; }
-  .undo:hover { color:var(--accent); }
-  .gg-total { font-weight:600; font-size:1.08rem; padding-top:0.55rem; border-top:1px solid var(--border-strong);
-              font-variant-numeric:tabular-nums; }
-  .gg-total.gg-label { font-size:0.92rem; }
-  .gg-total.is-dream { color:var(--accent); }
-  .grid-key { margin-top:1rem; font-size:0.8rem; color:var(--text-muted); }
-  .grid-key .swatch { display:inline-block; width:0.9rem; height:0.9rem; vertical-align:-0.15rem; margin-right:0.3rem;
-                      border:1px solid var(--accent); box-shadow:inset 3px 0 0 var(--accent); border-radius:3px; }
+  /* ---------- Locked in, written as an equation ---------- */
+  .equation { margin-top:1.2rem; display:flex; flex-wrap:wrap; align-items:center; gap:0.6rem; }
+  .eq-item { background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:0.6rem 0.85rem; min-width:8rem; }
+  .eq-item span { display:block; font-size:0.68rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); }
+  .eq-item b { display:block; font-size:1.15rem; font-weight:600; font-variant-numeric:tabular-nums; }
+  .eq-item small { display:block; font-size:0.75rem; color:var(--text-muted); }
+  .eq-item.is-total { border:2px solid var(--accent); }
+  .eq-item.is-sample b { color:var(--text-muted); }
+  .eq-op { font-size:1.4rem; font-weight:600; color:var(--accent); }
 
+  /* ---------- Average gift: one box per goal, then where each sits on the range ---------- */
   .tier-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0.8rem; }
-  .off-note { margin-top:0.9rem; padding:0.6rem 0.8rem; border-radius:7px; font-size:0.85rem;
-              background:var(--warn-soft); border-left:3px solid var(--accent); }
-  details.more { margin-top:1.4rem; border-top:1px solid var(--border); padding-top:0.9rem; }
-  details.more summary { cursor:pointer; font-weight:600; font-size:0.88rem; color:var(--accent); }
+  .tier-row .tier-name { font-size:0.8rem; font-weight:600; margin-bottom:0.3rem; }
+  .tier-row .hint { margin-top:0.3rem; }
+  .gift-range { margin-top:1.4rem; }
+  .gr-row { display:grid; grid-template-columns:6.5rem minmax(0,1fr); align-items:center; gap:0.6rem; height:2.4rem; }
+  .gr-label { font-size:0.8rem; font-weight:600; }
+  .gr-track { position:relative; height:100%; }
+  .gr-track::before { content:""; position:absolute; left:0; right:0; top:62%; border-top:2px solid var(--track); }
+  .gr-band { position:absolute; top:0; bottom:0; background:rgba(154,146,67,0.3);
+             border-left:2px solid var(--good); border-right:2px solid var(--good); }
+  .gr-dot { position:absolute; top:62%; width:0.8rem; height:0.8rem; margin:-0.4rem 0 0 -0.4rem; border-radius:50%; background:var(--accent); }
+  .gr-val { position:absolute; top:0; transform:translateX(-50%); font-size:0.72rem; font-weight:600; white-space:nowrap;
+            font-variant-numeric:tabular-nums; }
+  .gr-val.is-left { transform:none; }
+  .gr-val.is-right { transform:translateX(-100%); }
+  .gr-axis { position:relative; height:1.2rem; font-size:0.7rem; color:var(--text-muted); font-variant-numeric:tabular-nums; }
+  .gr-axis span { position:absolute; transform:translateX(-50%); }
+  .gr-axis span:first-child { transform:none; }
+  .gr-axis span:last-child { transform:translateX(-100%); }
 
   /* ---------- Phones ---------- */
   @media (max-width:760px) {
@@ -275,20 +271,11 @@
     .app-bar .app-stage { display:none; }
     .goal-cards { grid-template-columns:1fr; }
     .tier-row { gap:0.5rem; }
-    .derived.tiers { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0.5rem; }
-    .derived.tiers div { min-width:0; padding:0.5rem 0.55rem; }
-    .derived.tiers b { font-size:1rem; }
-
-    /* The goal grid: line name on its own row, then Base, Dream and Stretch side by side. */
-    .goal-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:0.35rem 0.5rem; }
-    .gg-head { display:none; }
-    .gg-label { grid-column:1 / -1; padding-top:0.9rem; }
-    .gg-cell .tier-tag { display:block; font-size:0.64rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
-                         color:var(--text-muted); margin-bottom:0.2rem; }
-    .gg-cell .field-input .prefix { padding:0 0 0 0.4rem; }
-    .gg-cell .field-input input { padding:0.5rem 0.35rem; font-size:0.95rem; }
-    .gg-total.gg-label { border-top:1px solid var(--border-strong); }
-    .gg-total.gg-cell { border-top:0; padding-top:0; }
+    .gr-row { grid-template-columns:5.2rem minmax(0,1fr); gap:0.4rem; }
+    /* The equation reads top to bottom: tickets, +, sponsors, =, locked in. */
+    .equation { flex-direction:column; align-items:stretch; gap:0.3rem; }
+    .eq-op { text-align:center; line-height:1; }
+    .gr-axis span.is-minor { display:none; }
 
     .report table.stack thead { display:none; }
     .report table.stack, .report table.stack tbody, .report table.stack tr { display:block; width:100%; }
@@ -325,7 +312,7 @@
   <button class="app-brand" id="libBtn" type="button" title="See everything in this series">Emily Preble <em>Auctions</em></button>
   <span class="app-sep">/</span>
   <button class="app-title" id="libBtn2" type="button" title="See everything in this series">Revenue Goal Tool</button>
-  <span class="app-stage">Base, Dream and Stretch</span>
+  <span class="app-stage">Base, Stretch and Dream</span>
   <button class="app-toc" id="tocBtn" type="button" title="Jump to a step">Tool Contents</button>
 </div>
 
@@ -336,122 +323,77 @@
     <p class="tool-tagline">Three goals for your gala, built from your tickets, your sponsors and the people in your room.</p>
     <p class="print-meta" id="printMeta"></p>
     <ol class="how-it-works">
-      <li><strong>Add your tickets and sponsors.</strong> This is money you can count on.</li>
-      <li><strong>Tell us about your room.</strong> How many giving units, and what each one might spend.</li>
-      <li><strong>Check your goals.</strong> We fill in every line. Type over any number you like.</li>
+      <li><strong>Enter what you know.</strong> Your tickets and your sponsors.</li>
+      <li><strong>Tell us about your room.</strong> How many giving units, and the average gift you expect.</li>
+      <li><strong>Get three goals.</strong> Base, Stretch and Dream, with the math shown.</li>
     </ol>
   </div>
 </header>
 
 <div class="status-bar" aria-live="polite">
   <div class="status-inner">
-    <div class="status-goal"><span>Base</span><b id="sbBase">$0</b></div>
-    <div class="status-goal is-dream"><span>Dream</span><b id="sbDream">$0</b></div>
-    <div class="status-goal"><span>Stretch</span><b id="sbStretch">$0</b></div>
-    <button class="btn status-jump" type="button" id="jumpBtn">See your plan</button>
+    <div class="status-goal is-main"><span>Base goal</span><b id="sb_base">$0</b></div>
+    <div class="status-goal"><span>Stretch goal</span><b id="sb_stretch">$0</b></div>
+    <div class="status-goal"><span>Dream goal</span><b id="sb_dream">$0</b></div>
+    <button class="btn status-jump" type="button" id="jumpBtn">See your goals</button>
   </div>
 </div>
 
 <div class="page">
 <main class="steps">
 
-  <!-- ============ 1. Tickets and sponsors ============ -->
+  <!-- ============ 1. What you know ============ -->
   <section class="card" id="locked">
     <div class="step-head">
       <span class="step-number">Step 1</span>
-      <h2>Tickets and sponsors</h2>
-      <p class="step-blurb">Money you can count on before the night starts. We call it <strong>locked revenue</strong>, and it comes first.</p>
+      <h2>What you know</h2>
+      <p class="step-blurb">Start with the money you can count on before the event: tickets and sponsors. <strong>Gray numbers are samples.</strong> Type your own over them.</p>
     </div>
     <div class="grid g3">
       <div class="field"><label for="f_tprice">Ticket price</label>
         <div class="field-input"><span class="prefix">$</span><input id="f_tprice" data-k="ticketPrice" data-num type="text" inputmode="decimal"></div></div>
-      <div class="field"><label for="f_tsold">Tickets sold</label>
-        <div class="field-input"><input id="f_tsold" data-k="ticketsSold" data-num type="text" inputmode="numeric"><span class="suffix">seats</span></div>
-        <p class="hint">Every seat, even free ones.</p></div>
-      <div class="field"><label for="f_comps">Free seats in that count</label>
-        <div class="field-input"><input id="f_comps" data-k="compSeats" data-num type="text" inputmode="numeric"><span class="suffix">seats</span></div>
-        <p class="hint">Sponsor and guest seats nobody paid for. We take them out so sponsor money isn't counted twice.</p></div>
+      <div class="field"><label for="f_tsold">Tickets you plan to sell</label>
+        <div class="field-input"><input id="f_tsold" data-k="ticketsSold" data-num type="text" inputmode="numeric"><span class="suffix">tickets</span></div></div>
+      <div class="field"><label for="f_spc">Sponsor money</label>
+        <div class="field-input"><span class="prefix">$</span><input id="f_spc" data-k="sponsors" data-num type="text" inputmode="decimal"></div>
+        <p class="hint">What you expect from all your sponsors.</p></div>
     </div>
-    <div class="grid g2">
-      <div class="field"><label for="f_spc">Sponsor money committed</label>
-        <div class="field-input"><span class="prefix">$</span><input id="f_spc" data-k="sponsorsCommitted" data-num type="text" inputmode="decimal"></div>
-        <p class="hint">Sponsors who said yes. Base counts only this.</p></div>
-      <div class="field"><label for="f_spa">Sponsor money you're still asking for</label>
-        <div class="field-input"><span class="prefix">$</span><input id="f_spa" data-k="sponsorsAsking" data-num type="text" inputmode="decimal"></div>
-        <p class="hint">Your target. Dream and Stretch count it too.</p></div>
-    </div>
-    <div class="derived" id="lockedOut"></div>
+    <div class="equation" id="lockedOut" aria-live="polite"></div>
   </section>
 
-  <!-- ============ 2. The room ============ -->
+  <!-- ============ 2. Your room ============ -->
   <section class="card" id="room">
     <div class="step-head">
       <span class="step-number">Step 2</span>
       <h2>Your room</h2>
-      <p class="step-blurb">Night-of money comes from the people in the room. We count <strong>giving units</strong>: one guest, or a couple who spends together.</p>
+      <p class="step-blurb">The rest of your goal comes from the people in the room. We count <strong>giving units</strong>: one guest, or a couple who gives together.</p>
     </div>
     <div class="grid g2">
       <div class="field"><label for="f_units">Giving units</label>
-        <div class="field-input"><input id="f_units" data-k="units" data-num data-blank type="text" inputmode="numeric"><span class="suffix">units</span></div>
+        <div class="field-input"><input id="f_units" data-k="units" data-num type="text" inputmode="numeric"><span class="suffix">units</span></div>
         <p class="hint" id="unitsHint"></p></div>
     </div>
-    <div class="field" style="margin-top:1.2rem"><span class="label">What one giving unit might spend in the room</span>
+    <div class="field" style="margin-top:1.3rem"><span class="label">What do you expect the average gift per giving unit to be?</span>
       <div class="tier-row">
-        <div class="field"><label for="f_sb" class="hint" style="margin:0 0 0.3rem">Base</label>
-          <div class="field-input"><span class="prefix">$</span><input id="f_sb" data-k="spend.base" data-num type="text" inputmode="decimal"></div></div>
-        <div class="field"><label for="f_sd" class="hint" style="margin:0 0 0.3rem">Dream</label>
-          <div class="field-input"><span class="prefix">$</span><input id="f_sd" data-k="spend.dream" data-num type="text" inputmode="decimal"></div></div>
-        <div class="field"><label for="f_ss" class="hint" style="margin:0 0 0.3rem">Stretch</label>
-          <div class="field-input"><span class="prefix">$</span><input id="f_ss" data-k="spend.stretch" data-num type="text" inputmode="decimal"></div></div>
+        <div class="field"><label for="f_gb" class="tier-name">Base goal</label>
+          <div class="field-input"><span class="prefix">$</span><input id="f_gb" data-k="gift.base" data-num type="text" inputmode="decimal"></div>
+          <p class="hint">What you plan to raise</p></div>
+        <div class="field"><label for="f_gs" class="tier-name">Stretch goal</label>
+          <div class="field-input"><span class="prefix">$</span><input id="f_gs" data-k="gift.stretch" data-num type="text" inputmode="decimal"></div>
+          <p class="hint">If the night goes very well</p></div>
+        <div class="field"><label for="f_gd" class="tier-name">Dream goal</label>
+          <div class="field-input"><span class="prefix">$</span><input id="f_gd" data-k="gift.dream" data-num type="text" inputmode="decimal"></div>
+          <p class="hint">Lights out</p></div>
       </div>
-      <p class="hint">Paddle raise plus auctions. Tickets and sponsors don't count here.</p></div>
-    <div class="grid g2">
-      <div class="field"><span class="label">Live auction?</span>
-        <div class="seg" id="segLive" role="group" aria-label="Live auction?">
-          <button type="button" data-v="yes">Yes</button><button type="button" data-v="no">No</button>
-        </div></div>
-      <div class="field"><span class="label">Silent or online auction?</span>
-        <div class="seg" id="segSilent" role="group" aria-label="Silent or online auction?">
-          <button type="button" data-v="yes">Yes</button><button type="button" data-v="no">No</button>
-        </div></div>
-    </div>
-    <p class="off-note" id="offNote" hidden></p>
-    <p class="hint" style="margin-top:1.2rem"><b>What your room can spend</b>: giving units x spend per unit.</p>
-    <div class="derived tiers" id="roomOut" style="margin-top:0.5rem"></div>
-    <details class="more">
-      <summary>Change how room money splits</summary>
-      <div class="grid g2">
-        <div class="field"><label for="f_pshare">Paddle raise share</label>
-          <div class="field-input"><input id="f_pshare" data-k="paddlePct" data-num type="text" inputmode="numeric"><span class="suffix">%</span></div>
-          <p class="hint">Comes off the top. We start at 35%.</p></div>
-        <div class="field"><label for="f_lshare">Live auction share of the rest</label>
-          <div class="field-input"><input id="f_lshare" data-k="livePct" data-num type="text" inputmode="numeric"><span class="suffix">%</span></div>
-          <p class="hint">Silent or online gets what's left. We start at 65%.</p></div>
-      </div>
-    </details>
-  </section>
-
-  <!-- ============ 3. The goals ============ -->
-  <section class="card" id="goals">
-    <div class="step-head">
-      <span class="step-number">Step 3</span>
-      <h2>Your goals</h2>
-      <p class="step-blurb">We filled in every line from your numbers. Type over any of them. Many groups set goals below the formula on purpose, to stay safe.</p>
-    </div>
-    <div class="goal-grid" id="goalGrid"></div>
-    <p class="grid-key"><span class="swatch"></span>An orange edge means you typed that number. Tap "Use formula" to go back.</p>
-    <div class="grid g2">
-      <div class="field"><label for="f_exp">Event expenses (optional)</label>
-        <div class="field-input"><span class="prefix">$</span><input id="f_exp" data-k="expenses" data-num data-blank type="text" inputmode="decimal" placeholder="Leave blank to skip"></div>
-        <p class="hint">Add these to see net next to gross.</p></div>
-    </div>
+      <div class="gift-range" id="giftRange" aria-hidden="true"></div>
+      <p class="hint">Event data puts the average gift per giving unit between about $250 and $1,500. Most events land between $500 and $1,000, the green band. It's an average: some give $5,000 and some give $250.</p></div>
   </section>
 
   <!-- ============ The plan ============ -->
   <section class="card" id="resultsCard">
     <div class="step-head">
-      <span class="step-number">Your plan</span>
-      <h2>Base, Dream and Stretch</h2>
+      <span class="step-number">Your goals</span>
+      <h2>Base, Stretch and Dream</h2>
       <p class="step-blurb">This updates as you type. Download it as a PDF for your planning call.</p>
     </div>
     <div class="grid g2 no-print">
@@ -470,51 +412,42 @@
 </main>
 </div>
 
-<script type="application/json" id="library-data" data-epa>{"seriesTitle":"EPA Resource Guides","seriesNote":"Practical guides for nonprofit teams running benefit auctions and fundraising events.","guides":[{"slug":"build-the-team","title":"Building Successful Event Committees","subtitle":"Build the Team","blurb":"Structure, roles, timelines, table hosting, sponsorships and accountability for a committee that does the work.","status":"available","url":"/resources/build-the-team.html"},{"slug":"leading-the-charge","title":"Pre-Committed Giving","subtitle":"Ensuring Paddle Raise Success","blurb":"How to secure leadership gifts before the paddle raise begins, so the room follows their lead: benchmarks, timelines, call scripts, objection handling and templates.","status":"available","url":"/resources/leading-the-charge.html"},{"slug":"live-auction-101","title":"Live Auction 101","subtitle":"Procurement & Best Practices","blurb":"Know your audience, build the dream item list, choose a procurement method, make the ask, and learn from the results.","status":"available","url":"/resources/live-auction-101.html"},{"slug":"online-auction-playbook","title":"The Online Auction Playbook","subtitle":"Raise More, Reach Further","blurb":"How to replace the silent auction table with an online auction that reaches every supporter, plus a full promotion plan and ready-to-send templates.","status":"available","url":"/resources/online-auction-playbook.html"},{"slug":"underbid-recording","title":"Auction Data & Underbid Recording","subtitle":"Learning from Non-Winning Bids","blurb":"How to capture every bid placed in your live auction, read what the numbers say about your lots and your donors, and turn losing bidders into your best cultivation list.","status":"available","url":"/resources/underbid-recording.html"},{"slug":"gratitude-plan","title":"Donor Gratitude and Stewardship","subtitle":"The Gratitude Plan","blurb":"A stewardship framework built on Thank, Show, Invite, with a donor timeline, ten donor tracks, receipt guidance, and plug-and-play email, letter and phone templates.","status":"available","url":"/resources/gratitude-plan.html"},{"slug":"event-budget-calculator","title":"Event Budget Calculator","subtitle":"A Planning Tool","blurb":"Type your goal and your guest count. Get a one-page plan for sponsors, tickets, auctions, the paddle raise and games, with a PDF for your planning call.","status":"available","url":"/resources/event-budget-calculator.html","cta":"Open the tool"},{"slug":"event-goal-builder","title":"Revenue Goal Tool","subtitle":"Base, Dream and Stretch","blurb":"Enter your tickets, sponsors and the size of your room. Get Base, Dream and Stretch goals for every line, type over any number, and download a PDF for your planning call.","status":"available","url":"/resources/event-goal-builder.html","cta":"Open the tool"},{"slug":"event-data-analyzer","title":"Event Data Analyzer","subtitle":"Reading Your Results","blurb":"Put in what happened at your event (revenue, guest roster, clerking sheets and the underbid record) and get back a detailed report on what the data means, ready to download and share with your team.","status":"available","url":"/resources/event-data-analyzer.html","cta":"Open the tool"},{"slug":"placeholder-1","title":"More guides coming","subtitle":"","blurb":"Additional guides in this series are being written and will appear here.","status":"soon","url":""}],"seriesUrl":"/resources/epa-resource-guides.html","current":"event-goal-builder"}</script>
+<script type="application/json" id="library-data" data-epa>{"seriesTitle":"EPA Resource Guides","seriesNote":"Practical guides for nonprofit teams running benefit auctions and fundraising events.","guides":[{"slug":"build-the-team","title":"Building Successful Event Committees","subtitle":"Build the Team","blurb":"Structure, roles, timelines, table hosting, sponsorships and accountability for a committee that does the work.","status":"available","url":"/resources/build-the-team.html"},{"slug":"leading-the-charge","title":"Pre-Committed Giving","subtitle":"Ensuring Paddle Raise Success","blurb":"How to secure leadership gifts before the paddle raise begins, so the room follows their lead: benchmarks, timelines, call scripts, objection handling and templates.","status":"available","url":"/resources/leading-the-charge.html"},{"slug":"live-auction-101","title":"Live Auction 101","subtitle":"Procurement & Best Practices","blurb":"Know your audience, build the dream item list, choose a procurement method, make the ask, and learn from the results.","status":"available","url":"/resources/live-auction-101.html"},{"slug":"online-auction-playbook","title":"The Online Auction Playbook","subtitle":"Raise More, Reach Further","blurb":"How to replace the silent auction table with an online auction that reaches every supporter, plus a full promotion plan and ready-to-send templates.","status":"available","url":"/resources/online-auction-playbook.html"},{"slug":"underbid-recording","title":"Auction Data & Underbid Recording","subtitle":"Learning from Non-Winning Bids","blurb":"How to capture every bid placed in your live auction, read what the numbers say about your lots and your donors, and turn losing bidders into your best cultivation list.","status":"available","url":"/resources/underbid-recording.html"},{"slug":"gratitude-plan","title":"Donor Gratitude and Stewardship","subtitle":"The Gratitude Plan","blurb":"A stewardship framework built on Thank, Show, Invite, with a donor timeline, ten donor tracks, receipt guidance, and plug-and-play email, letter and phone templates.","status":"available","url":"/resources/gratitude-plan.html"},{"slug":"event-budget-calculator","title":"Event Budget Calculator","subtitle":"A Planning Tool","blurb":"Type your goal and your guest count. Get a one-page plan for sponsors, tickets, auctions, the paddle raise and games, with a PDF for your planning call.","status":"available","url":"/resources/event-budget-calculator.html","cta":"Open the tool"},{"slug":"event-goal-builder","title":"Revenue Goal Tool","subtitle":"Base, Stretch and Dream","blurb":"Enter your tickets, sponsors and giving units, pick the average gift you expect, and get your Base, Stretch and Dream goals with the math shown and a PDF for your planning call.","status":"available","url":"/resources/event-goal-builder.html","cta":"Open the tool"},{"slug":"event-data-analyzer","title":"Event Data Analyzer","subtitle":"Reading Your Results","blurb":"Put in what happened at your event (revenue, guest roster, clerking sheets and the underbid record) and get back a detailed report on what the data means, ready to download and share with your team.","status":"available","url":"/resources/event-data-analyzer.html","cta":"Open the tool"},{"slug":"placeholder-1","title":"More guides coming","subtitle":"","blurb":"Additional guides in this series are being written and will appear here.","status":"soon","url":""}],"seriesUrl":"/resources/epa-resource-guides.html","current":"event-goal-builder"}</script>
 <script>
 /* =========================================================================
    REVENUE GOAL TOOL: ALL THE MATH LIVES HERE
    =========================================================================
 
    Method adapted from Jay Fiske's buying-unit model (TravelPledge, "5 Steps
-   to Set Realistic Revenue Goals for Your Auction"), with Emily's changes:
-     - Locked revenue (tickets + sponsors) comes first.
-     - The paddle raise gets its own share of in-room money. Fiske leaves it out.
-     - Turning an auction off moves only part of its share elsewhere.
-     - Every line in every tier can be typed over.
+   to Set Realistic Revenue Goals for Your Auction"), the way Emily walks a
+   client through it on a goals call:
 
-   Lines: tickets, sponsors, paddle, live, silent ("silent or online").
-   Tiers: base, dream, stretch.
+     locked in    = tickets (price x tickets) + sponsors
+     giving units = tickets / 2, rounded down (most guests come as couples)
+     each goal    = locked in + giving units x average gift per giving unit
+
+   Three goals, always in this order:
+     Base goal    what you plan to raise
+     Stretch goal if the night goes very well
+     Dream goal   everything breaks your way
+
+   A box left blank uses the sample number below (shown gray on the page).
    ========================================================================= */
 var GoalMath = (function () {
   "use strict";
 
-  var TIERS = ["base", "dream", "stretch"];
-  var LINES = ["tickets", "sponsors", "paddle", "live", "silent"];
-  var IN_ROOM = ["paddle", "live", "silent"];
+  var TIERS = ["base", "stretch", "dream"];
 
   var DEFAULTS = {
-    /* Sample numbers every box starts with. */
+    /* Sample numbers, shown gray in empty boxes and used until replaced. */
     ticketPrice: 150,
     ticketsSold: 150,
-    compSeats: 10,          // free seats inside ticketsSold (sponsor tables, guests of honor)
-    sponsorsCommitted: 30000,
-    sponsorsAsking: 10000,  // still asking; counts in Dream and Stretch only
-    guestsPerUnit: 2,       // giving units helper: seats / 2, same as the budget calculator
-    spend: { base: 500, dream: 750, stretch: 1000 },  // per giving unit, in the room
-    liveAuction: true,
-    silentAuction: true,
+    sponsors: 30000,
+    gift: { base: 500, stretch: 750, dream: 1000 },  // average gift per giving unit
+    guestsPerUnit: 2,
 
-    /* The split of in-room money. Paddle raise first, then the rest. */
-    paddleShare: 0.35,
-    liveShareOfRest: 0.65,  // silent or online gets the other 35% of the rest
-    offMoveShare: 0.25,     // when an auction is off, this much of its share moves to the lines still on
-
-    /* Procurement caps: most fair market value to collect, at Dream. */
-    liveYield: 0.75,        // live lots sell at about 75% of value (library canon)
-    silentYield: 0.50,      // silent or online: 50% here to stay on the safe side
-
-    stageRound: 5000        // paddle raise stage goal: Dream paddle rounded down to this
+    /* What event data shows for the average gift per giving unit. */
+    giftRange: { low: 250, high: 1500, typicalLow: 500, typicalHigh: 1000 }
   };
 
   function num(v) {
@@ -522,101 +455,37 @@ var GoalMath = (function () {
     return isFinite(n) ? n : 0;
   }
   function blank(v) { return v === "" || v == null; }
+  function pick(v, sample) { return blank(v) ? sample : Math.max(0, num(v)); }
 
-  /* The share of in-room money each line gets, after any auction is turned off.
-     An auction that is off keeps nothing. Only offMoveShare of its share moves,
-     spread over the lines still on in proportion to their own shares. */
-  function shares(on, d) {
-    var s = {
-      paddle: d.paddleShare,
-      live: (1 - d.paddleShare) * d.liveShareOfRest,
-      silent: (1 - d.paddleShare) * (1 - d.liveShareOfRest)
-    };
-    var moved = 0, onTotal = 0, out = {};
-    IN_ROOM.forEach(function (k) { if (on[k]) onTotal += s[k]; else moved += s[k] * d.offMoveShare; });
-    IN_ROOM.forEach(function (k) {
-      out[k] = on[k] ? s[k] + (onTotal > 0 ? moved * s[k] / onTotal : 0) : 0;
-    });
-    return out;
-  }
-
-  /* S is the page state:
-       ticketPrice, ticketsSold, compSeats, sponsorsCommitted, sponsorsAsking,
-       units ("" = seats / 2), spend {base,dream,stretch}, liveAuction, silentAuction,
-       paddleShare, liveShareOfRest (as fractions), expenses ("" = none),
-       over {base:{line:value or ""}, dream:{...}, stretch:{...}}             */
+  /* S: ticketPrice, ticketsSold, sponsors, units, gift {base, stretch, dream}.
+     Any of them may be "" (blank), which means "use the sample". */
   function compute(S) {
     var d = DEFAULTS;
-    var paddleShare = blank(S.paddleShare) ? d.paddleShare : Math.min(1, Math.max(0, num(S.paddleShare)));
-    var liveShareOfRest = blank(S.liveShareOfRest) ? d.liveShareOfRest : Math.min(1, Math.max(0, num(S.liveShareOfRest)));
-    var cfg = { paddleShare: paddleShare, liveShareOfRest: liveShareOfRest, offMoveShare: d.offMoveShare };
+    var price = pick(S.ticketPrice, d.ticketPrice);
+    var tickets = pick(S.ticketsSold, d.ticketsSold);
+    var sponsors = pick(S.sponsors, d.sponsors);
+    var autoUnits = Math.floor(tickets / d.guestsPerUnit);
+    var units = pick(S.units, autoUnits);
 
-    var on = { paddle: true, live: S.liveAuction !== false, silent: S.silentAuction !== false };
-    var share = shares(on, cfg);
-
-    var seats = Math.max(0, num(S.ticketsSold));
-    var paidSeats = Math.max(0, seats - Math.max(0, num(S.compSeats)));
-    var autoUnits = Math.round(seats / d.guestsPerUnit);
-    var units = blank(S.units) ? autoUnits : Math.max(0, num(S.units));
-
-    var ticketMoney = num(S.ticketPrice) * paidSeats;
-    var committed = num(S.sponsorsCommitted), asking = num(S.sponsorsAsking);
-    var hasExpenses = !blank(S.expenses);
-    var expenses = hasExpenses ? num(S.expenses) : 0;
-    var over = S.over || {};
+    var ticketMoney = price * tickets;
+    var locked = ticketMoney + sponsors;
 
     var tiers = {};
     TIERS.forEach(function (t) {
-      var spend = num(S.spend && !blank(S.spend[t]) ? S.spend[t] : d.spend[t]);
-      var capacity = units * spend;
-      var formula = {
-        tickets: ticketMoney,
-        sponsors: t === "base" ? committed : committed + asking,
-        paddle: Math.round(capacity * share.paddle),
-        live: Math.round(capacity * share.live),
-        silent: Math.round(capacity * share.silent)
-      };
-      var lines = {}, typed = {};
-      LINES.forEach(function (k) {
-        var o = over[t] ? over[t][k] : "";
-        var off = (k === "live" && !on.live) || (k === "silent" && !on.silent);
-        typed[k] = !off && !blank(o);
-        lines[k] = off ? 0 : typed[k] ? num(o) : formula[k];
-      });
-      var locked = lines.tickets + lines.sponsors;
-      var inRoom = lines.paddle + lines.live + lines.silent;
-      var total = locked + inRoom;
-      var perUnit = units > 0 ? inRoom / units : null;
-      tiers[t] = {
-        spend: spend, capacity: capacity, formula: formula, lines: lines, typed: typed,
-        locked: locked, inRoom: inRoom, total: total,
-        perUnit: perUnit,
-        overSpend: perUnit !== null && Math.round(perUnit) > spend,
-        net: hasExpenses ? total - expenses : null
-      };
+      var gift = pick(S.gift ? S.gift[t] : "", d.gift[t]);
+      var room = units * gift;
+      tiers[t] = { gift: gift, room: room, total: locked + room };
     });
 
-    /* Stage goal: Dream paddle raise rounded down to the nearest $5,000.
-       A small paddle raise (under $5,000) rounds down to the nearest $1,000. */
-    var dream = tiers.dream.lines;
-    var stage = Math.floor(dream.paddle / d.stageRound) * d.stageRound;
-    if (stage === 0 && dream.paddle >= 1000) stage = Math.floor(dream.paddle / 1000) * 1000;
-
     return {
-      on: on, share: share, paddleShare: paddleShare, liveShareOfRest: liveShareOfRest,
-      seats: seats, paidSeats: paidSeats, autoUnits: autoUnits, units: units,
-      ticketMoney: ticketMoney, committed: committed, asking: asking,
-      hasExpenses: hasExpenses, expenses: expenses,
-      tiers: tiers,
-      caps: {
-        live: on.live ? dream.live / d.liveYield : 0,
-        silent: on.silent ? dream.silent / d.silentYield : 0
-      },
-      stageGoal: stage
+      price: price, tickets: tickets, sponsors: sponsors,
+      autoUnits: autoUnits, units: units,
+      ticketMoney: ticketMoney, locked: locked,
+      tiers: tiers
     };
   }
 
-  return { DEFAULTS: DEFAULTS, TIERS: TIERS, LINES: LINES, compute: compute, shares: shares };
+  return { DEFAULTS: DEFAULTS, TIERS: TIERS, compute: compute };
 })();
 
 if (typeof module !== "undefined" && module.exports) module.exports = GoalMath;
@@ -626,25 +495,22 @@ if (typeof module !== "undefined" && module.exports) module.exports = GoalMath;
 (function () {
   "use strict";
 
-  var D = GoalMath.DEFAULTS, TIERS = GoalMath.TIERS, LINES = GoalMath.LINES;
-  var KEY = "epa-revenue-goal-tool-v1";
-  var TNAME = { base: "Base", dream: "Dream", stretch: "Stretch" };
-  var LABEL = { tickets: "Tickets", sponsors: "Sponsors", paddle: "Paddle raise", live: "Live auction", silent: "Silent or online auction" };
+  var D = GoalMath.DEFAULTS, TIERS = GoalMath.TIERS;
+  var KEY = "epa-revenue-goal-tool-v3";
+  var TNAME = { base: "Base goal", stretch: "Stretch goal", dream: "Dream goal" };
+  var MEANING = {
+    base: "The amount you plan to raise. A solid night gets you here.",
+    stretch: "What you raise if the night goes very well.",
+    dream: "Lights out. What you raise when something rare happens, like a guest standing up to give $100,000."
+  };
 
   /* =======================================================================
      State: one plain object, saved to localStorage on every change.
+     Every box starts blank, so it shows its gray sample number.
      ======================================================================= */
   function fresh() {
-    return {
-      event: "",
-      ticketPrice: D.ticketPrice, ticketsSold: D.ticketsSold, compSeats: D.compSeats,
-      sponsorsCommitted: D.sponsorsCommitted, sponsorsAsking: D.sponsorsAsking,
-      units: "", spend: JSON.parse(JSON.stringify(D.spend)),
-      liveAuction: D.liveAuction, silentAuction: D.silentAuction,
-      paddlePct: D.paddleShare * 100, livePct: D.liveShareOfRest * 100,
-      expenses: "",
-      over: { base: {}, dream: {}, stretch: {} }
-    };
+    return { event: "", ticketPrice: "", ticketsSold: "", sponsors: "", units: "",
+             gift: { base: "", stretch: "", dream: "" } };
   }
   var S = fresh();
 
@@ -656,14 +522,9 @@ if (typeof module !== "undefined" && module.exports) module.exports = GoalMath;
       var p = JSON.parse(raw);
       if (p && typeof p === "object") {
         S = Object.assign(fresh(), p);
-        S.spend = Object.assign(fresh().spend, p.spend || {});
-        var o = p.over || {};
-        S.over = { base: o.base || {}, dream: o.dream || {}, stretch: o.stretch || {} };
+        S.gift = Object.assign(fresh().gift, p.gift || {});
       }
     } catch (e) {}
-  }
-  function mathState() {
-    return Object.assign({}, S, { paddleShare: S.paddlePct / 100, liveShareOfRest: S.livePct / 100 });
   }
 
   /* =======================================================================
@@ -689,12 +550,7 @@ if (typeof module !== "undefined" && module.exports) module.exports = GoalMath;
     var r = Math.round(v || 0);
     return (r < 0 ? "-$" : "$") + Math.abs(r).toLocaleString("en-US");
   }
-  function pct(v) { return Math.round(v) + "%"; }
-  function words(list) {
-    if (list.length <= 1) return list.join("");
-    if (list.length === 2) return list[0] + " and " + list[1];
-    return list.slice(0, -1).join(", ") + " and " + list[list.length - 1];
-  }
+  function blank(v) { return v === "" || v == null; }
 
   /* Commas as you type, without throwing the cursor to the end. */
   function liveFormat(el) {
@@ -714,58 +570,20 @@ if (typeof module !== "undefined" && module.exports) module.exports = GoalMath;
      ======================================================================= */
   function fields() { return [].slice.call(document.querySelectorAll("[data-k]")); }
 
+  /* The gray sample in each empty box. Giving units has none here: drawLive
+     shows tickets / 2 there, since it moves with the ticket count. */
+  var SAMPLE = {
+    ticketPrice: D.ticketPrice, ticketsSold: D.ticketsSold, sponsors: D.sponsors,
+    "gift.base": D.gift.base, "gift.stretch": D.gift.stretch, "gift.dream": D.gift.dream
+  };
+
   function hydrate() {
     fields().forEach(function (el) {
-      var v = getPath(S, el.getAttribute("data-k"));
-      if (el.hasAttribute("data-num")) el.value = (v === "" || v == null) ? "" : fmtNum(parseNum(v));
-      else el.value = v == null ? "" : v;
-    });
-    setSeg("segLive", S.liveAuction === false ? "no" : "yes");
-    setSeg("segSilent", S.silentAuction === false ? "no" : "yes");
-  }
-
-  function setSeg(id, v) {
-    [].forEach.call($(id).querySelectorAll("button"), function (b) {
-      var on = b.getAttribute("data-v") === v;
-      b.classList.toggle("is-on", on);
-      b.setAttribute("aria-pressed", on ? "true" : "false");
-    });
-  }
-
-  /* The goal grid is built once. drawGrid() fills in the numbers. */
-  function buildGrid() {
-    var H = ['<div class="gg-head"></div>'];
-    TIERS.forEach(function (t) { H.push('<div class="gg-head' + (t === "dream" ? " is-dream" : "") + '">' + TNAME[t] + "</div>"); });
-    LINES.forEach(function (k) {
-      H.push('<div class="gg-label">' + LABEL[k] + '<small id="sub_' + k + '"></small></div>');
-      TIERS.forEach(function (t) {
-        H.push('<div class="gg-cell" id="c_' + t + "_" + k + '"><span class="tier-tag">' + TNAME[t] + "</span>" +
-          '<div class="field-input"><span class="prefix">$</span><input type="text" inputmode="numeric" data-t="' + t +
-          '" data-line="' + k + '" aria-label="' + TNAME[t] + " " + LABEL[k] + '"></div>' +
-          '<button type="button" class="undo" data-t="' + t + '" data-line="' + k + '" hidden></button></div>');
-      });
-    });
-    H.push('<div class="gg-label gg-total">Total</div>');
-    TIERS.forEach(function (t) {
-      H.push('<div class="gg-cell gg-total' + (t === "dream" ? " is-dream" : "") + '"><span class="tier-tag">' + TNAME[t] +
-        '</span><span id="tot_' + t + '"></span></div>');
-    });
-    var grid = $("goalGrid");
-    grid.innerHTML = H.join("");
-    [].forEach.call(grid.querySelectorAll("input"), function (inp) {
-      var t = inp.getAttribute("data-t"), k = inp.getAttribute("data-line");
-      inp.addEventListener("input", function () {
-        liveFormat(inp);
-        S.over[t][k] = inp.value.trim() === "" ? "" : parseNum(inp.value);
-        update();
-      });
-      inp.addEventListener("blur", function () { drawGrid(); });
-    });
-    [].forEach.call(grid.querySelectorAll(".undo"), function (b) {
-      b.addEventListener("click", function () {
-        S.over[b.getAttribute("data-t")][b.getAttribute("data-line")] = "";
-        update();
-      });
+      var k = el.getAttribute("data-k"), v = getPath(S, k);
+      if (el.hasAttribute("data-num")) {
+        el.value = blank(v) ? "" : fmtNum(parseNum(v));
+        if (SAMPLE[k] != null) el.placeholder = fmtNum(SAMPLE[k]);
+      } else el.value = v == null ? "" : v;
     });
   }
 
@@ -775,22 +593,11 @@ if (typeof module !== "undefined" && module.exports) module.exports = GoalMath;
         var k = el.getAttribute("data-k");
         if (el.hasAttribute("data-num")) {
           liveFormat(el);
-          setPath(S, k, (el.hasAttribute("data-blank") && el.value.trim() === "") ? "" : parseNum(el.value));
+          setPath(S, k, el.value.trim() === "" ? "" : parseNum(el.value));
         } else setPath(S, k, el.value);
         update();
       });
     });
-    function seg(id, fn) {
-      $(id).addEventListener("click", function (ev) {
-        var b = ev.target.closest("button[data-v]");
-        if (!b) return;
-        fn(b.getAttribute("data-v") === "yes");
-        setSeg(id, b.getAttribute("data-v"));
-        update();
-      });
-    }
-    seg("segLive", function (v) { S.liveAuction = v; });
-    seg("segSilent", function (v) { S.silentAuction = v; });
     $("clearBtn").addEventListener("click", function () {
       if (!window.confirm("Start over? This clears everything you've typed and puts the sample numbers back.")) return;
       S = fresh(); hydrate(); update();
@@ -809,166 +616,80 @@ if (typeof module !== "undefined" && module.exports) module.exports = GoalMath;
   var timer = null;
   function update() {
     save();
-    R = GoalMath.compute(mathState());
+    R = GoalMath.compute(S);
     drawLive();
     clearTimeout(timer);
     timer = setTimeout(function () { drawReport(); }, 60);
   }
 
-  function drawLive() {
-    var T = R.tiers;
-    $("lockedOut").innerHTML =
-      '<div><span>Locked revenue, Base</span><b>' + usd(T.base.locked) + "</b></div>" +
-      '<div><span>Dream and Stretch</span><b>' + usd(T.dream.locked) + "</b></div>";
-
-    $("unitsHint").innerHTML = S.units === ""
-      ? "Not sure? Most guests come in pairs, so we use seats divided by 2. That's <b>" + fmtNum(R.autoUnits) + "</b> for you. Leave out staff and volunteers."
-      : "You typed your own number. Clear the box to go back to <b>" + fmtNum(R.autoUnits) + "</b> (seats divided by 2).";
-    $("f_units").placeholder = fmtNum(R.autoUnits);
-
-    var off = [];
-    if (!R.on.live) off.push("No live auction? Only a quarter of what it would have raised moves to your " +
-      (R.on.silent ? "paddle raise and silent or online auction" : "paddle raise") + ". Rooms without a live auction raise less.");
-    if (!R.on.silent) off.push("No silent or online auction? Only a quarter of its share moves to your " +
-      (R.on.live ? "paddle raise and live auction" : "paddle raise") + ".");
-    $("offNote").hidden = !off.length;
-    $("offNote").textContent = off.join(" ");
-
-    $("roomOut").innerHTML = TIERS.map(function (t) {
-      return "<div><span>" + TNAME[t] + "</span><b>" + usd(T[t].capacity) + "</b></div>";
-    }).join("");
-
-    drawGrid();
-    $("sbBase").textContent = usd(T.base.total);
-    $("sbDream").textContent = usd(T.dream.total);
-    $("sbStretch").textContent = usd(T.stretch.total);
+  function eqItem(label, value, sub, cls) {
+    return '<div class="eq-item' + (cls ? " " + cls : "") + '"><span>' + label + "</span><b>" + value + "</b>" +
+      (sub ? "<small>" + sub + "</small>" : "") + "</div>";
   }
 
-  function drawGrid() {
-    if (!R) return;
-    var sub = {
-      tickets: usd(S.ticketPrice) + " x " + fmtNum(R.paidSeats) + " paid seats",
-      sponsors: "Base counts committed only",
-      paddle: pct(R.share.paddle * 100) + " of room money",
-      live: R.on.live ? pct(R.share.live * 100) + " of room money" : "Turned off",
-      silent: R.on.silent ? pct(R.share.silent * 100) + " of room money" : "Turned off"
-    };
-    LINES.forEach(function (k) {
-      $("sub_" + k).textContent = sub[k];
-      TIERS.forEach(function (t) {
-        var T = R.tiers[t], cell = $("c_" + t + "_" + k);
-        var inp = cell.querySelector("input"), undo = cell.querySelector(".undo");
-        var isOff = (k === "live" && !R.on.live) || (k === "silent" && !R.on.silent);
-        cell.classList.toggle("is-typed", !!T.typed[k]);
-        cell.classList.toggle("is-off", isOff);
-        inp.disabled = isOff;
-        if (document.activeElement !== inp) inp.value = fmtNum(T.lines[k]);
-        undo.hidden = !T.typed[k];
-        undo.textContent = "Use formula: " + usd(T.formula[k]);
-      });
+  function drawLive() {
+    var ticketSample = blank(S.ticketPrice) || blank(S.ticketsSold), sponsorSample = blank(S.sponsors);
+    $("lockedOut").innerHTML =
+      eqItem("Tickets", usd(R.ticketMoney), usd(R.price) + " x " + fmtNum(R.tickets), ticketSample ? "is-sample" : "") +
+      '<span class="eq-op">+</span>' +
+      eqItem("Sponsors", usd(R.sponsors), "", sponsorSample ? "is-sample" : "") +
+      '<span class="eq-op">=</span>' +
+      eqItem("Locked in before the event", usd(R.locked), "", "is-total" + (ticketSample || sponsorSample ? " is-sample" : ""));
+
+    var entry = blank(S.ticketsSold)
+      ? "the sample of " + fmtNum(R.tickets) + " tickets"
+      : "your entry of " + fmtNum(R.tickets) + " tickets you plan to sell";
+    $("unitsHint").innerHTML = blank(S.units)
+      ? "Tickets divided by 2, since most guests come as couples. Based on " + entry + ", that means <b>" +
+        fmtNum(R.autoUnits) + " giving units</b> for you."
+      : "You typed your own number. Clear the box to go back to " + fmtNum(R.autoUnits) + " (tickets divided by 2).";
+    $("f_units").placeholder = fmtNum(R.autoUnits);
+
+    drawRange();
+    TIERS.forEach(function (t) { $("sb_" + t).textContent = usd(R.tiers[t].total); });
+  }
+
+  /* Where each goal's average gift sits on the range event data shows. */
+  function drawRange() {
+    var r = D.giftRange;
+    function pos(v) { return Math.max(0, Math.min(100, (v - r.low) / (r.high - r.low) * 100)); }
+    var band = '<div class="gr-band" style="left:' + pos(r.typicalLow) + "%;width:" + (pos(r.typicalHigh) - pos(r.typicalLow)) + '%"></div>';
+    var H = TIERS.map(function (t) {
+      var g = R.tiers[t].gift, x = pos(g);
+      var edge = x < 8 ? " is-left" : x > 92 ? " is-right" : "";
+      return '<div class="gr-row"><span class="gr-label">' + TNAME[t] + '</span><div class="gr-track">' + band +
+        '<span class="gr-dot" style="left:' + x + '%"></span><span class="gr-val' + edge + '" style="left:' + x + '%">' + usd(g) + "</span></div></div>";
     });
-    TIERS.forEach(function (t) { $("tot_" + t).textContent = usd(R.tiers[t].total); });
+    var ticks = [250, 500, 750, 1000, 1250, 1500].map(function (v) {
+      var minor = v === 750 || v === 1250;  /* hidden on phones so the labels don't collide */
+      return "<span" + (minor ? ' class="is-minor"' : "") + ' style="left:' + pos(v) + '%">' + usd(v) + "</span>";
+    }).join("");
+    H.push('<div class="gr-row" style="height:auto"><span></span><div class="gr-axis">' + ticks + "</div></div>");
+    $("giftRange").innerHTML = H.join("");
   }
 
   function drawReport() {
     var T = R.tiers, H = [];
-    var rowsIn = [["Tickets", "tickets"], ["Sponsors", "sponsors"]];
-    var rowsRoom = [["Paddle raise", "paddle"], R.on.live ? ["Live auction", "live"] : null,
-                    R.on.silent ? ["Silent or online auction", "silent"] : null].filter(Boolean);
-    function row(label, get, cls) {
-      return "<tr" + (cls ? ' class="' + cls + '"' : "") + "><td>" + esc(label) + "</td>" + TIERS.map(function (t) {
-        return '<td class="num" data-label="' + TNAME[t] + '">' + get(t) + "</td>";
-      }).join("") + "</tr>";
-    }
 
-    /* ---------- 1. The goals ---------- */
-    H.push("<h3>Your goals</h3>");
+    H.push("<h3>Your three goals</h3>");
     H.push('<div class="goal-cards">' + TIERS.map(function (t) {
-      return '<div class="goal-card' + (t === "dream" ? " is-dream" : "") + '"><h4>' + TNAME[t] + '</h4><span class="big">' +
-        usd(T[t].total) + '</span><span class="net">' + (R.hasExpenses ? usd(T[t].net) + " net" : "Total goal") + "</span></div>";
+      return '<div class="goal-card' + (t === "base" ? " is-main" : "") + '"><h4>' + TNAME[t] + '</h4><span class="big">' +
+        usd(T[t].total) + '</span><span class="net">' + usd(R.locked) + " + " + fmtNum(R.units) + " x " + usd(T[t].gift) + "</span></div>";
     }).join("") + "</div>");
-    H.push("<p>Start with your <b>locked revenue</b>: tickets and sponsors bring in " + usd(T.base.locked) + " at Base" +
-      (T.dream.locked !== T.base.locked || T.stretch.locked !== T.base.locked
-        ? ", " + usd(T.dream.locked) + " at Dream and " + usd(T.stretch.locked) + " at Stretch." : " in every goal.") +
-      " The rest has to come from the room.</p>");
-    var tb = '<table class="stack"><thead><tr><th>Line</th><th class="num">Base</th><th class="num">Dream</th><th class="num">Stretch</th></tr></thead><tbody>';
-    rowsIn.forEach(function (r) { tb += row(r[0], function (t) { return usd(T[t].lines[r[1]]); }); });
-    tb += row("Locked revenue", function (t) { return usd(T[t].locked); }, "total");
-    rowsRoom.forEach(function (r) { tb += row(r[0], function (t) { return usd(T[t].lines[r[1]]); }); });
-    tb += row("Total goal", function (t) { return usd(T[t].total); }, "total");
-    if (R.hasExpenses) {
-      tb += row("Event expenses", function () { return "-" + usd(R.expenses); });
-      tb += row("Net goal", function (t) { return usd(T[t].net); }, "net");
-    }
-    H.push(tb + "</tbody></table>");
+    H.push("<ul>" + TIERS.map(function (t) {
+      return "<li><b>" + TNAME[t] + ":</b> " + esc(MEANING[t]) + "</li>";
+    }).join("") + "</ul>");
 
-    /* ---------- 2. Can the room give this? ---------- */
-    H.push("<h3>Can your room give this?</h3>");
-    if (!R.units) {
-      H.push('<p class="est">Enter your giving units in Step 2 to check this.</p>');
-    } else {
-      H.push("<p>Your goals ask each of your " + fmtNum(R.units) + " giving units to spend this much in the room, on the paddle raise and auctions.</p>");
-      var st = '<table class="stack"><thead><tr><th>Goal</th><th class="num">From the room</th><th class="num">Per giving unit</th>' +
-        '<th class="num">Your estimate</th><th>Check</th></tr></thead><tbody>';
-      TIERS.forEach(function (t) {
-        var x = T[t];
-        st += "<tr><td>" + TNAME[t] + '</td><td class="num" data-label="From the room">' + usd(x.inRoom) +
-          '</td><td class="num" data-label="Per giving unit">' + usd(x.perUnit) +
-          '</td><td class="num" data-label="Your estimate">' + usd(x.spend) +
-          '</td><td data-label="Check"><span class="pill ' + (x.overSpend ? "warn" : "ok") + '">' +
-          (x.overSpend ? "Above your estimate" : "Fits") + "</span></td></tr>";
-      });
-      H.push(st + "</tbody></table>");
-      var over = TIERS.filter(function (t) { return T[t].overSpend; });
-      var checks = over.map(function (t) {
-        return "<li><b>Your " + TNAME[t] + " goal asks each unit for " + usd(T[t].perUnit) + ".</b> You think they'll spend " +
-          usd(T[t].spend) + ". Lower this goal, or invite more giving units.</li>";
-      });
-      if (!checks.length) checks.push('<li class="is-ok"><b>Every goal fits what you think your room will spend.</b></li>');
-      H.push('<ul class="checks">' + checks.join("") + "</ul>");
-      H.push('<p class="est">The formula says your room could spend ' + usd(T.base.capacity) + " at Base, " + usd(T.dream.capacity) +
-        " at Dream and " + usd(T.stretch.capacity) + " at Stretch. Goals under that leave room to beat them.</p>");
-    }
-
-    /* ---------- 3. Procurement caps ---------- */
-    if (R.on.live || R.on.silent) {
-      H.push("<h3>How much to collect</h3>");
-      H.push("<p>These are the <b>most</b> auction items to collect for your Dream goal, at fair market value. They are limits, not targets. Past them, items sell cheap.</p>");
-      var ct = '<table class="stack"><thead><tr><th>Auction</th><th class="num">Dream goal</th><th class="num">Items sell at</th>' +
-        '<th class="num">Most to collect</th></tr></thead><tbody>';
-      if (R.on.live) ct += '<tr><td>Live auction</td><td class="num" data-label="Dream goal">' + usd(T.dream.lines.live) +
-        '</td><td class="num" data-label="Items sell at">' + pct(D.liveYield * 100) + ' of value</td><td class="num" data-label="Most to collect">' +
-        usd(R.caps.live) + "</td></tr>";
-      if (R.on.silent) ct += '<tr><td>Silent or online</td><td class="num" data-label="Dream goal">' + usd(T.dream.lines.silent) +
-        '</td><td class="num" data-label="Items sell at">' + pct(D.silentYield * 100) + ' of value</td><td class="num" data-label="Most to collect">' +
-        usd(R.caps.silent) + "</td></tr>";
-      H.push(ct + "</tbody></table>");
-    }
-
-    /* ---------- 4. Stage goal ---------- */
-    H.push("<h3>Your paddle raise stage goal</h3>");
-    if (R.stageGoal > 0) {
-      H.push("<p>Announce <b>" + usd(R.stageGoal) + "</b> from the stage. That's your Dream paddle raise of " + usd(T.dream.lines.paddle) +
-        ", rounded down" + (T.dream.lines.paddle >= D.stageRound ? " to the nearest $5,000" : "") +
-        ". A goal the room can beat feels like a win.</p>");
-    } else {
-      H.push('<p class="est">Enter a Dream paddle raise goal of at least $1,000 to get a stage goal.</p>');
-    }
-
-    /* ---------- 5. The math ---------- */
     H.push("<h3>How the math works</h3>");
-    var shareBits = ["paddle raise " + pct(R.share.paddle * 100)];
-    if (R.on.live) shareBits.push("live auction " + pct(R.share.live * 100));
-    if (R.on.silent) shareBits.push("silent or online " + pct(R.share.silent * 100));
     H.push("<ul>" +
-      "<li><b>Locked revenue</b> = tickets (" + usd(S.ticketPrice) + " x " + fmtNum(R.paidSeats) + " paid seats) + sponsors. Base counts committed sponsors only.</li>" +
-      "<li><b>Room can spend</b> = " + fmtNum(R.units) + " giving units x what one unit might spend.</li>" +
-      "<li><b>The split</b>: " + words(shareBits) + ". When an auction is off, only a quarter of its share moves to the other lines.</li>" +
-      "<li><b>Most to collect</b> = Dream live goal / 75%, and Dream silent or online goal / 50%. We use 50% to stay on the safe side.</li>" +
-      "<li><b>Stage goal</b> = Dream paddle raise, rounded down to the nearest $5,000.</li>" +
+      "<li><b>Locked in before the event</b> = tickets (" + usd(R.price) + " x " + fmtNum(R.tickets) + ") + sponsors (" +
+        usd(R.sponsors) + ") = " + usd(R.locked) + ".</li>" +
+      "<li><b>Giving units</b> = " + (blank(S.units)
+        ? fmtNum(R.tickets) + " tickets / 2 = " + fmtNum(R.units) + ". One per couple."
+        : fmtNum(R.units) + ", the number you entered.") + "</li>" +
+      "<li><b>Each goal</b> = locked in + giving units x the average gift you expect.</li>" +
       "</ul>");
-    H.push('<p class="src">Adapted from Jay Fiske\'s buying-unit model, TravelPledge, "5 Steps to Set Realistic Revenue Goals for Your Auction." ' +
-      "His version leaves out the paddle raise. This one gives it a share first.</p>");
+    H.push('<p class="src">Adapted from Jay Fiske\'s buying-unit model, TravelPledge, "5 Steps to Set Realistic Revenue Goals for Your Auction."</p>');
 
     $("report").innerHTML = H.join("");
     $("printMeta").textContent = S.event || "";
@@ -1059,13 +780,14 @@ if (typeof module !== "undefined" && module.exports) module.exports = GoalMath;
       else if (tag === "p") blocks.push({ type: "p", note: /\b(est|src)\b/.test(el.className), runs: runsOf(el, false, /\bsrc\b/.test(el.className)) });
       else if (tag === "ul") [].forEach.call(el.children, function (li) { blocks.push({ type: "li", runs: runsOf(li, false, false) }); });
       else if (tag === "div" && el.classList.contains("goal-cards")) {
-        var head = [""], gross = ["Total goal"], net = ["Net"];
+        /* On paper the three cards become one small table: the goal, then its math. */
+        var head = [""], goal = ["Goal"], how = ["The math"];
         [].forEach.call(el.querySelectorAll(".goal-card"), function (c) {
           head.push(cellText(c.querySelector("h4")));
-          gross.push(cellText(c.querySelector(".big")));
-          net.push(cellText(c.querySelector(".net")).replace(/ net$/, ""));
+          goal.push(cellText(c.querySelector(".big")));
+          how.push(cellText(c.querySelector(".net")));
         });
-        blocks.push({ type: "table", head: head, rows: R.hasExpenses ? [gross, net] : [gross] });
+        blocks.push({ type: "table", head: head, rows: [goal, how] });
       } else if (tag === "table") {
         var hd = [], rows = [];
         [].forEach.call(el.querySelectorAll("tr"), function (tr) {
@@ -1110,7 +832,7 @@ if (typeof module !== "undefined" && module.exports) module.exports = GoalMath;
       setFont(F.display, "normal", 23);
       doc.setTextColor(234, 229, 214);
       doc.text(doc.splitTextToSize(fold(S.event || "Revenue Goals"), CW)[0], M, 66);
-      var sub = [S.event ? "Revenue goals" : "", "Base, Dream and Stretch"].filter(Boolean);
+      var sub = [S.event ? "Revenue goals" : "", "Base, Stretch and Dream"].filter(Boolean);
       setFont(F.body, "normal", 9);
       doc.setTextColor(200, 192, 178);
       doc.text(fold(sub.join("  ·  ")), M, 86);
@@ -1340,7 +1062,6 @@ if (typeof module !== "undefined" && module.exports) module.exports = GoalMath;
 
   /* ---- boot ---- */
   load();
-  buildGrid();
   hydrate();
   wire();
   update();

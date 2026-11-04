@@ -185,15 +185,14 @@ export const resourceGuides: ResourceGuide[] = [
   {
     slug: "event-goal-builder",
     title: "Revenue Goal Tool",
-    subtitle: "Base, Dream and Stretch",
+    subtitle: "Base, Stretch and Dream",
     blurb:
-      "Enter your tickets, sponsors and the size of your room. Get Base, Dream and Stretch goals for every line, type over any number, and download a PDF for your planning call.",
+      "Enter your tickets, sponsors and giving units, pick the average gift you expect, and get your Base, Stretch and Dream goals with the math shown and a PDF for your planning call.",
     cta: "Open the Tool",
     sections: [
-      { title: "Tickets and Sponsors", snippet: "Money you can count on before the night starts. We call it locked revenue, and it comes first." },
-      { title: "Your Room", snippet: "Night-of money comes from the people in the room. We count giving units: one guest, or a couple who spends together." },
-      { title: "Your Goals", snippet: "We fill in every line from your numbers. Type over any of them. Many groups set goals below the formula on purpose, to stay safe." },
-      { title: "Base, Dream and Stretch", snippet: "Your goals, a check against what your room can spend, how much to collect for each auction, and your paddle raise stage goal, ready as a PDF." },
+      { title: "What You Know", snippet: "Start with the money you can count on before the event: tickets plus sponsors equals what is locked in." },
+      { title: "Your Room", snippet: "Giving units are tickets divided by 2. Then pick the average gift you expect, with event data shown as a guide." },
+      { title: "Base, Stretch and Dream", snippet: "Three goals with the math shown, ready as a PDF for your planning call." },
     ],
   },
   {
