@@ -174,13 +174,12 @@ export const resourceGuides: ResourceGuide[] = [
     title: "Event Budget Calculator",
     subtitle: "A Planning Tool",
     blurb:
-      "Enter your fundraising goal and guest count, then see what your sponsorship levels, ticket prices and giving tiers need to be to hit it.",
+      "Type your goal and your guest count. Get a one-page plan for sponsors, tickets, auctions, the paddle raise and games, with a PDF for your planning call.",
     cta: "Open the Tool",
     sections: [
-      { title: "Set Your Goal", snippet: "Start with the number you actually need to raise, then tell us roughly who's in the room." },
-      { title: "Check Your Starting Percentages", snippet: "These starting percentages reflect typical events. Adjust them if your event leans differently." },
-      { title: "Work Down Each Section", snippet: "Every section is pre-filled with a suggested starting point: sponsorship levels, ticket prices, giving tiers." },
-      { title: "Watch the Running Total", snippet: "Once you scroll past the first step, a bar at the top tracks your projected revenue against your goal as you go." },
+      { title: "Your Goal and Your Guests", snippet: "Start with the number you need to raise. Everything else builds from these three boxes." },
+      { title: "Your Money Mix", snippet: "Where your money comes from. These starting numbers fit most galas. Change any of them, but keep the total at 100%." },
+      { title: "Your Plan", snippet: "One line for each part of the night, a check on your ticket price and your room, and a PDF for your planning call." },
     ],
   },
   {
